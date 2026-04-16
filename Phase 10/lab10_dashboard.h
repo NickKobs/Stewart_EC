@@ -29,6 +29,8 @@ public:
     void logQueue(const std::string& message);
     void logTask(int taskId, const std::string& message);
     void sendTaskMessage(int fromTaskId, int toTaskId, const std::string& message);
+    bool isInteractive() const;
+    std::string promptInput(const std::string& prompt, int maxLength = 255);
     void setHoldOnExit(bool holdOnExit);
     void finish(const std::string& message);
 

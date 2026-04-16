@@ -169,6 +169,45 @@ lab12/fast:
 .PHONY : lab12/fast
 
 #=============================================================================
+# Target rules for targets named lab18
+
+# Build rule for target.
+lab18: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab18
+.PHONY : lab18
+
+# fast build rule for target.
+lab18/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/build
+.PHONY : lab18/fast
+
+#=============================================================================
+# Target rules for targets named lab22_deadlock
+
+# Build rule for target.
+lab22_deadlock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab22_deadlock
+.PHONY : lab22_deadlock
+
+# fast build rule for target.
+lab22_deadlock/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/build
+.PHONY : lab22_deadlock/fast
+
+#=============================================================================
+# Target rules for targets named lab21
+
+# Build rule for target.
+lab21: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab21
+.PHONY : lab21
+
+# fast build rule for target.
+lab21/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/build
+.PHONY : lab21/fast
+
+#=============================================================================
 # Target rules for targets named lab15
 
 # Build rule for target.
@@ -220,6 +259,32 @@ lab14/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/build
 .PHONY : lab14/fast
 
+#=============================================================================
+# Target rules for targets named lab20
+
+# Build rule for target.
+lab20: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab20
+.PHONY : lab20
+
+# fast build rule for target.
+lab20/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/build
+.PHONY : lab20/fast
+
+#=============================================================================
+# Target rules for targets named lab23
+
+# Build rule for target.
+lab23: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab23
+.PHONY : lab23
+
+# fast build rule for target.
+lab23/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/build
+.PHONY : lab23/fast
+
 Phase_10/lab10.o: Phase_10/lab10.cpp.o
 .PHONY : Phase_10/lab10.o
 
@@ -250,9 +315,12 @@ Phase_10/lab10_dashboard.o: Phase_10/lab10_dashboard.cpp.o
 # target to build an object file
 Phase_10/lab10_dashboard.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_10/lab10_dashboard.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_10/lab10_dashboard.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_10/lab10_dashboard.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_10/lab10_dashboard.cpp.o
 .PHONY : Phase_10/lab10_dashboard.cpp.o
 
 Phase_10/lab10_dashboard.i: Phase_10/lab10_dashboard.cpp.i
@@ -261,9 +329,12 @@ Phase_10/lab10_dashboard.i: Phase_10/lab10_dashboard.cpp.i
 # target to preprocess a source file
 Phase_10/lab10_dashboard.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_10/lab10_dashboard.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_10/lab10_dashboard.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_10/lab10_dashboard.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_10/lab10_dashboard.cpp.i
 .PHONY : Phase_10/lab10_dashboard.cpp.i
 
 Phase_10/lab10_dashboard.s: Phase_10/lab10_dashboard.cpp.s
@@ -272,9 +343,12 @@ Phase_10/lab10_dashboard.s: Phase_10/lab10_dashboard.cpp.s
 # target to generate assembly for a file
 Phase_10/lab10_dashboard.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_10/lab10_dashboard.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_10/lab10_dashboard.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_10/lab10_dashboard.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_10/lab10_dashboard.cpp.s
 .PHONY : Phase_10/lab10_dashboard.cpp.s
 
 Phase_10/lab10_semaphore.o: Phase_10/lab10_semaphore.cpp.o
@@ -348,78 +422,6 @@ Phase_12/lab12.s: Phase_12/lab12.cpp.s
 Phase_12/lab12.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12.cpp.s
 .PHONY : Phase_12/lab12.cpp.s
-
-Phase_12/lab12_dashboard.o: Phase_12/lab12_dashboard.cpp.o
-.PHONY : Phase_12/lab12_dashboard.o
-
-# target to build an object file
-Phase_12/lab12_dashboard.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o
-.PHONY : Phase_12/lab12_dashboard.cpp.o
-
-Phase_12/lab12_dashboard.i: Phase_12/lab12_dashboard.cpp.i
-.PHONY : Phase_12/lab12_dashboard.i
-
-# target to preprocess a source file
-Phase_12/lab12_dashboard.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.i
-.PHONY : Phase_12/lab12_dashboard.cpp.i
-
-Phase_12/lab12_dashboard.s: Phase_12/lab12_dashboard.cpp.s
-.PHONY : Phase_12/lab12_dashboard.s
-
-# target to generate assembly for a file
-Phase_12/lab12_dashboard.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.s
-.PHONY : Phase_12/lab12_dashboard.cpp.s
-
-Phase_12/lab12_scheduler.o: Phase_12/lab12_scheduler.cpp.o
-.PHONY : Phase_12/lab12_scheduler.o
-
-# target to build an object file
-Phase_12/lab12_scheduler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o
-.PHONY : Phase_12/lab12_scheduler.cpp.o
-
-Phase_12/lab12_scheduler.i: Phase_12/lab12_scheduler.cpp.i
-.PHONY : Phase_12/lab12_scheduler.i
-
-# target to preprocess a source file
-Phase_12/lab12_scheduler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.i
-.PHONY : Phase_12/lab12_scheduler.cpp.i
-
-Phase_12/lab12_scheduler.s: Phase_12/lab12_scheduler.cpp.s
-.PHONY : Phase_12/lab12_scheduler.s
-
-# target to generate assembly for a file
-Phase_12/lab12_scheduler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.s
-.PHONY : Phase_12/lab12_scheduler.cpp.s
-
-Phase_12/lab12_semaphore.o: Phase_12/lab12_semaphore.cpp.o
-.PHONY : Phase_12/lab12_semaphore.o
-
-# target to build an object file
-Phase_12/lab12_semaphore.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o
-.PHONY : Phase_12/lab12_semaphore.cpp.o
-
-Phase_12/lab12_semaphore.i: Phase_12/lab12_semaphore.cpp.i
-.PHONY : Phase_12/lab12_semaphore.i
-
-# target to preprocess a source file
-Phase_12/lab12_semaphore.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.i
-.PHONY : Phase_12/lab12_semaphore.cpp.i
-
-Phase_12/lab12_semaphore.s: Phase_12/lab12_semaphore.cpp.s
-.PHONY : Phase_12/lab12_semaphore.s
-
-# target to generate assembly for a file
-Phase_12/lab12_semaphore.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.s
-.PHONY : Phase_12/lab12_semaphore.cpp.s
 
 Phase_13/lab13.o: Phase_13/lab13.cpp.o
 .PHONY : Phase_13/lab13.o
@@ -517,6 +519,126 @@ Phase_16/lab16.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_16/lab16.cpp.s
 .PHONY : Phase_16/lab16.cpp.s
 
+Phase_18/lab18.o: Phase_18/lab18.cpp.o
+.PHONY : Phase_18/lab18.o
+
+# target to build an object file
+Phase_18/lab18.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Phase_18/lab18.cpp.o
+.PHONY : Phase_18/lab18.cpp.o
+
+Phase_18/lab18.i: Phase_18/lab18.cpp.i
+.PHONY : Phase_18/lab18.i
+
+# target to preprocess a source file
+Phase_18/lab18.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Phase_18/lab18.cpp.i
+.PHONY : Phase_18/lab18.cpp.i
+
+Phase_18/lab18.s: Phase_18/lab18.cpp.s
+.PHONY : Phase_18/lab18.s
+
+# target to generate assembly for a file
+Phase_18/lab18.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Phase_18/lab18.cpp.s
+.PHONY : Phase_18/lab18.cpp.s
+
+Phase_20/lab20.o: Phase_20/lab20.cpp.o
+.PHONY : Phase_20/lab20.o
+
+# target to build an object file
+Phase_20/lab20.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_20/lab20.cpp.o
+.PHONY : Phase_20/lab20.cpp.o
+
+Phase_20/lab20.i: Phase_20/lab20.cpp.i
+.PHONY : Phase_20/lab20.i
+
+# target to preprocess a source file
+Phase_20/lab20.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_20/lab20.cpp.i
+.PHONY : Phase_20/lab20.cpp.i
+
+Phase_20/lab20.s: Phase_20/lab20.cpp.s
+.PHONY : Phase_20/lab20.s
+
+# target to generate assembly for a file
+Phase_20/lab20.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_20/lab20.cpp.s
+.PHONY : Phase_20/lab20.cpp.s
+
+Phase_21/lab21.o: Phase_21/lab21.cpp.o
+.PHONY : Phase_21/lab21.o
+
+# target to build an object file
+Phase_21/lab21.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_21/lab21.cpp.o
+.PHONY : Phase_21/lab21.cpp.o
+
+Phase_21/lab21.i: Phase_21/lab21.cpp.i
+.PHONY : Phase_21/lab21.i
+
+# target to preprocess a source file
+Phase_21/lab21.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_21/lab21.cpp.i
+.PHONY : Phase_21/lab21.cpp.i
+
+Phase_21/lab21.s: Phase_21/lab21.cpp.s
+.PHONY : Phase_21/lab21.s
+
+# target to generate assembly for a file
+Phase_21/lab21.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_21/lab21.cpp.s
+.PHONY : Phase_21/lab21.cpp.s
+
+Phase_22/lab22_Deadlock.o: Phase_22/lab22_Deadlock.cpp.o
+.PHONY : Phase_22/lab22_Deadlock.o
+
+# target to build an object file
+Phase_22/lab22_Deadlock.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_22/lab22_Deadlock.cpp.o
+.PHONY : Phase_22/lab22_Deadlock.cpp.o
+
+Phase_22/lab22_Deadlock.i: Phase_22/lab22_Deadlock.cpp.i
+.PHONY : Phase_22/lab22_Deadlock.i
+
+# target to preprocess a source file
+Phase_22/lab22_Deadlock.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_22/lab22_Deadlock.cpp.i
+.PHONY : Phase_22/lab22_Deadlock.cpp.i
+
+Phase_22/lab22_Deadlock.s: Phase_22/lab22_Deadlock.cpp.s
+.PHONY : Phase_22/lab22_Deadlock.s
+
+# target to generate assembly for a file
+Phase_22/lab22_Deadlock.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_22/lab22_Deadlock.cpp.s
+.PHONY : Phase_22/lab22_Deadlock.cpp.s
+
+Phase_23/lab23.o: Phase_23/lab23.cpp.o
+.PHONY : Phase_23/lab23.o
+
+# target to build an object file
+Phase_23/lab23.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Phase_23/lab23.cpp.o
+.PHONY : Phase_23/lab23.cpp.o
+
+Phase_23/lab23.i: Phase_23/lab23.cpp.i
+.PHONY : Phase_23/lab23.i
+
+# target to preprocess a source file
+Phase_23/lab23.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Phase_23/lab23.cpp.i
+.PHONY : Phase_23/lab23.cpp.i
+
+Phase_23/lab23.s: Phase_23/lab23.cpp.s
+.PHONY : Phase_23/lab23.s
+
+# target to generate assembly for a file
+Phase_23/lab23.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Phase_23/lab23.cpp.s
+.PHONY : Phase_23/lab23.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -557,6 +679,11 @@ help:
 	@echo "... lab14"
 	@echo "... lab15"
 	@echo "... lab16"
+	@echo "... lab18"
+	@echo "... lab20"
+	@echo "... lab21"
+	@echo "... lab22_deadlock"
+	@echo "... lab23"
 	@echo "... Phase_10/lab10.o"
 	@echo "... Phase_10/lab10.i"
 	@echo "... Phase_10/lab10.s"
@@ -572,15 +699,6 @@ help:
 	@echo "... Phase_12/lab12.o"
 	@echo "... Phase_12/lab12.i"
 	@echo "... Phase_12/lab12.s"
-	@echo "... Phase_12/lab12_dashboard.o"
-	@echo "... Phase_12/lab12_dashboard.i"
-	@echo "... Phase_12/lab12_dashboard.s"
-	@echo "... Phase_12/lab12_scheduler.o"
-	@echo "... Phase_12/lab12_scheduler.i"
-	@echo "... Phase_12/lab12_scheduler.s"
-	@echo "... Phase_12/lab12_semaphore.o"
-	@echo "... Phase_12/lab12_semaphore.i"
-	@echo "... Phase_12/lab12_semaphore.s"
 	@echo "... Phase_13/lab13.o"
 	@echo "... Phase_13/lab13.i"
 	@echo "... Phase_13/lab13.s"
@@ -593,6 +711,21 @@ help:
 	@echo "... Phase_16/lab16.o"
 	@echo "... Phase_16/lab16.i"
 	@echo "... Phase_16/lab16.s"
+	@echo "... Phase_18/lab18.o"
+	@echo "... Phase_18/lab18.i"
+	@echo "... Phase_18/lab18.s"
+	@echo "... Phase_20/lab20.o"
+	@echo "... Phase_20/lab20.i"
+	@echo "... Phase_20/lab20.s"
+	@echo "... Phase_21/lab21.o"
+	@echo "... Phase_21/lab21.i"
+	@echo "... Phase_21/lab21.s"
+	@echo "... Phase_22/lab22_Deadlock.o"
+	@echo "... Phase_22/lab22_Deadlock.i"
+	@echo "... Phase_22/lab22_Deadlock.s"
+	@echo "... Phase_23/lab23.o"
+	@echo "... Phase_23/lab23.i"
+	@echo "... Phase_23/lab23.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -86,67 +86,19 @@ CMakeFiles/lab12.dir/Phase_12/lab12.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab12.dir/Phase_12/lab12.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12.cpp" -o CMakeFiles/lab12.dir/Phase_12/lab12.cpp.s
 
-CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o: CMakeFiles/lab12.dir/flags.make
-CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Phase\ 12/lab12_dashboard.cpp
-CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o: CMakeFiles/lab12.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o -MF CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o.d -o CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_dashboard.cpp"
-
-CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_dashboard.cpp" > CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.i
-
-CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_dashboard.cpp" -o CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.s
-
-CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o: CMakeFiles/lab12.dir/flags.make
-CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Phase\ 12/lab12_scheduler.cpp
-CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o: CMakeFiles/lab12.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o -MF CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o.d -o CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_scheduler.cpp"
-
-CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_scheduler.cpp" > CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.i
-
-CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_scheduler.cpp" -o CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.s
-
-CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o: CMakeFiles/lab12.dir/flags.make
-CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Phase\ 12/lab12_semaphore.cpp
-CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o: CMakeFiles/lab12.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o -MF CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o.d -o CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_semaphore.cpp"
-
-CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_semaphore.cpp" > CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.i
-
-CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 12/lab12_semaphore.cpp" -o CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.s
-
 # Object files for target lab12
 lab12_OBJECTS = \
-"CMakeFiles/lab12.dir/Phase_12/lab12.cpp.o" \
-"CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o" \
-"CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o" \
-"CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o"
+"CMakeFiles/lab12.dir/Phase_12/lab12.cpp.o"
 
 # External object files for target lab12
 lab12_EXTERNAL_OBJECTS =
 
 lab12: CMakeFiles/lab12.dir/Phase_12/lab12.cpp.o
-lab12: CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o
-lab12: CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o
-lab12: CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o
 lab12: CMakeFiles/lab12.dir/build.make
 lab12: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libncurses.tbd
 lab12: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libform.tbd
 lab12: CMakeFiles/lab12.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable lab12"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lab12"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lab12.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

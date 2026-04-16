@@ -4,11 +4,13 @@
 #include <cmath>
 #include <cstdlib>
 #include <cstdio>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <string_view>
 #include <utility>
+#include <vector>
 #include <unistd.h>
 
 namespace {
@@ -140,6 +142,75 @@ void TaskDashboard::sendTaskMessage(int fromTaskId, int toTaskId, const std::str
     std::ostringstream systemEvent;
     systemEvent << "task " << fromIndex << " -> task " << toIndex << " | " << message;
     logSystem(systemEvent.str());
+}
+
+bool TaskDashboard::isInteractive() const {
+    return interactive_;
+}
+
+std::string TaskDashboard::promptInput(const std::string& prompt, int maxLength) {
+    if (!interactive_) {
+        std::printf("%s", prompt.c_str());
+        std::fflush(stdout);
+
+        std::string line;
+        if (!std::getline(std::cin, line)) {
+            return {};
+        }
+
+        return line;
+    }
+
+    std::lock_guard<std::mutex> guard(renderMutex_);
+
+    const int safeMaxLength = std::max(1, maxLength);
+    const int promptWidth = std::min(
+        COLS - 4,
+        std::max(kMinPaneWidth, std::min(COLS - 4, static_cast<int>(prompt.size()) + safeMaxLength + 6))
+    );
+    const int promptHeight = 5;
+    const int promptY = std::max(0, (LINES - promptHeight) / 2);
+    const int promptX = std::max(0, (COLS - promptWidth) / 2);
+
+    WINDOW* promptFrame = newwin(promptHeight, promptWidth, promptY, promptX);
+    WINDOW* promptBody = derwin(promptFrame, promptHeight - 2, promptWidth - 2, 1, 1);
+    box(promptFrame, 0, 0);
+    mvwprintw(promptFrame, 0, 2, " Input ");
+    mvwprintw(promptBody, 0, 0, "%.*s", promptWidth - 4, prompt.c_str());
+    wmove(promptBody, 1, 0);
+    wclrtoeol(promptBody);
+    wrefresh(promptFrame);
+    wrefresh(promptBody);
+
+    keypad(promptBody, TRUE);
+    echo();
+    curs_set(1);
+
+    std::vector<char> buffer(static_cast<std::size_t>(safeMaxLength) + 1U, '\0');
+    const int status = wgetnstr(promptBody, buffer.data(), safeMaxLength);
+
+    noecho();
+    curs_set(0);
+    delwin(promptBody);
+    delwin(promptFrame);
+
+    auto refreshPane = [&](LogPane& pane) {
+        renderTitle(pane);
+        touchwin(pane.body);
+        wrefresh(pane.body);
+    };
+
+    refreshPane(systemPane_);
+    refreshPane(queuePane_);
+    for (auto& pane : taskPanes_) {
+        refreshPane(pane);
+    }
+
+    if (status == ERR) {
+        return {};
+    }
+
+    return std::string(buffer.data());
 }
 
 void TaskDashboard::setHoldOnExit(bool holdOnExit) {
