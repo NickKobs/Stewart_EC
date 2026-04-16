@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/lab11.dir/Phase_11/lab11.cpp.o -o lab11
