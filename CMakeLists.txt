@@ -13,107 +13,107 @@ target_include_directories(Extra_Credit PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(Extra_Credit PRIVATE ${CURSES_LIBRARIES})
 
 add_executable(lab10
-    "Phase 10/lab10.cpp"
-    "Phase 10/lab10_dashboard.cpp"
-    "Phase 10/lab10_semaphore.cpp"
+    "Lab_10/lab10.cpp"
+    "Lab_10/lab10_dashboard.cpp"
+    "Lab_10/lab10_semaphore.cpp"
 )
 
 target_include_directories(lab10 PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(lab10 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab11
-    "Phase 11/lab11.cpp"
+    "Lab_11/lab11.cpp"
 )
 
 target_include_directories(lab11 PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(lab11 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab12
-    "Phase 12/lab12.cpp"
+    "Lab_12/lab12.cpp"
 )
 
 target_include_directories(lab12 PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(lab12 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab18
-    "Phase 18/lab18.cpp"
+    "Lab_18/lab18.cpp"
 )
 
 target_include_directories(lab18 PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(lab18 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab22_deadlock
-    "Phase 22/lab22_Deadlock.cpp"
-    "Phase 10/lab10_dashboard.cpp"
+    "Lab_22/lab22_Deadlock.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
 target_include_directories(lab22_deadlock PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Phase 10"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
     ${CURSES_INCLUDE_DIR}
 )
 target_link_libraries(lab22_deadlock PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab21
-    "Phase 21/lab21.cpp"
-    "Phase 10/lab10_dashboard.cpp"
+    "Lab_21/lab21.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
 target_include_directories(lab21 PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Phase 10"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
     ${CURSES_INCLUDE_DIR}
 )
 target_link_libraries(lab21 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab15
-    "Phase 15/lab15.cpp"
-    "Phase 10/lab10_dashboard.cpp"
+    "Lab_15/lab15.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
-target_include_directories(lab15 PRIVATE "Phase 10" ${CURSES_INCLUDE_DIR})
+target_include_directories(lab15 PRIVATE "Lab_10" ${CURSES_INCLUDE_DIR})
 target_link_libraries(lab15 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab16
-    "Phase 16/lab16.cpp"
-    "Phase 10/lab10_dashboard.cpp"
+    "Lab_16/lab16.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
 target_include_directories(lab16 PRIVATE
     ${CURSES_INCLUDE_DIR}
-    "${CMAKE_CURRENT_SOURCE_DIR}/Phase 10"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
 )
 target_link_libraries(lab16 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab13
-    "Phase 13/lab13.cpp"
+    "Lab_13/lab13.cpp"
 )
 
 target_include_directories(lab13 PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(lab13 PRIVATE ${CURSES_LIBRARIES})
 
 add_executable(lab14
-    "Phase 14/lab14.cpp"
-    "Phase 10/lab10_dashboard.cpp"
+    "Lab_14/lab14.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
 target_include_directories(lab14 PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Phase 10"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
     ${CURSES_INCLUDE_DIR}
 )
 target_link_libraries(lab14 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab20
-    "Phase 20/lab20.cpp"
-    "Phase 10/lab10_dashboard.cpp"
+    "Lab_20/lab20.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
 target_include_directories(lab20 PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Phase 10"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
     ${CURSES_INCLUDE_DIR}
 )
 target_link_libraries(lab20 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab23
-    "Phase 23/lab23.cpp"
+    "Lab_23/lab23.cpp"
 )
 
 target_link_libraries(lab23 PRIVATE Threads::Threads)
