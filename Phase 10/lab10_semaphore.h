@@ -2,12 +2,15 @@
 #define EXTRA_CREDIT_LAB10_SEMAPHORE_H
 
 #include <pthread.h>
+#include <string>
 
 #include "../queue.h"
 
+class TaskDashboard;
+
 class Semaphore {
 public:
-    explicit Semaphore(int initialValue = 1);
+    Semaphore(int initialValue, TaskDashboard& dashboard);
     ~Semaphore();
 
     void Down(int thread_id);
@@ -18,6 +21,7 @@ private:
     pthread_mutex_t lock_;
     pthread_cond_t cond_;
     Queue<int> waitQueue_;
+    TaskDashboard& dashboard_;
 };
 
 #endif
