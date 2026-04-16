@@ -29,6 +29,7 @@ public:
     void logQueue(const std::string& message);
     void logTask(int taskId, const std::string& message);
     void sendTaskMessage(int fromTaskId, int toTaskId, const std::string& message);
+    void setHoldOnExit(bool holdOnExit);
     void finish(const std::string& message);
 
 private:
@@ -47,6 +48,7 @@ private:
 
     bool interactive_ = false;
     bool cursesReady_ = false;
+    bool holdOnExit_ = true;
     int taskCount_ = 0;
     DashboardLabels labels_;
     std::mutex renderMutex_;

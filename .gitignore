@@ -1,0 +1,21 @@
+# CLion and IDE files
+.idea/
+.run/
+.codex/
+
+# CMake build directories
+cmake-build-*/
+build/
+tmp/
+
+# macOS
+.DS_Store
+
+# Executables and object files
+*.o
+*.out
+*.exe
+*.app
+*.dylib
+*.so
+*.a

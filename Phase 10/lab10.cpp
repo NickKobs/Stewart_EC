@@ -28,10 +28,12 @@ struct WorkerContext {
 };
 
 DashboardMode determineDashboardMode(int argc, char* argv[]);
+bool determineHoldOnExit(int argc, char* argv[]);
 void* worker(void* arg);
 
 int main(int argc, char* argv[]) {
     TaskDashboard dashboard(THREAD_COUNT, determineDashboardMode(argc, argv));
+    dashboard.setHoldOnExit(determineHoldOnExit(argc, argv));
     Semaphore semaphore(SEMAPHORE_PERMITS, dashboard);
     pthread_t threads[THREAD_COUNT];
     WorkerContext contexts[THREAD_COUNT];
@@ -82,6 +84,31 @@ DashboardMode determineDashboardMode(int argc, char* argv[]) {
     }
 
     return DashboardMode::Auto;
+}
+
+bool determineHoldOnExit(int argc, char* argv[]) {
+    const char* envHold = std::getenv("LAB10_HOLD");
+    if (envHold != nullptr) {
+        const std::string_view hold(envHold);
+        if (hold == "0" || hold == "false" || hold == "FALSE" || hold == "no") {
+            return false;
+        }
+        if (hold == "1" || hold == "true" || hold == "TRUE" || hold == "yes") {
+            return true;
+        }
+    }
+
+    for (int i = 1; i < argc; ++i) {
+        const std::string_view arg(argv[i]);
+        if (arg == "--no-hold") {
+            return false;
+        }
+        if (arg == "--hold") {
+            return true;
+        }
+    }
+
+    return true;
 }
 
 void* worker(void* arg) {

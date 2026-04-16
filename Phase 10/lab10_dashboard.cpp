@@ -16,7 +16,6 @@ constexpr int kHeaderHeight = 5;
 constexpr int kQueueHeight = 5;
 constexpr int kMinPaneHeight = 6;
 constexpr int kMinPaneWidth = 24;
-constexpr int kFinishPauseMs = 1400;
 
 bool needsDefaultTerm() {
     const char* term = std::getenv("TERM");
@@ -143,12 +142,22 @@ void TaskDashboard::sendTaskMessage(int fromTaskId, int toTaskId, const std::str
     logSystem(systemEvent.str());
 }
 
+void TaskDashboard::setHoldOnExit(bool holdOnExit) {
+    holdOnExit_ = holdOnExit;
+}
+
 void TaskDashboard::finish(const std::string& message) {
     logSystem(message);
 
     if (interactive_) {
         std::lock_guard<std::mutex> guard(renderMutex_);
-        napms(kFinishPauseMs);
+        if (holdOnExit_) {
+            appendLine(systemPane_, "Press Enter, q, or Esc to exit.");
+            int key = 0;
+            while (key != '\n' && key != '\r' && key != 'q' && key != 'Q' && key != 27) {
+                key = wgetch(stdscr);
+            }
+        }
     }
 }
 
@@ -237,7 +246,7 @@ void TaskDashboard::appendLine(LogPane& pane, const std::string& message) {
 
 void TaskDashboard::renderTitle(LogPane& pane) {
     werase(pane.frame);
-    box(pane.frame, 0, 0);
+    wborder(pane.frame, '|', '|', '-', '-', '+', '+', '+', '+');
     mvwprintw(pane.frame, 0, 2, " %s ", pane.title.c_str());
     wrefresh(pane.frame);
 }

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 3.20)
 project(Extra_Credit)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -29,8 +29,10 @@ target_link_libraries(lab11 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab12
     "Phase 12/lab12.cpp"
+    "Phase 12/lab12_dashboard.cpp"
     "Phase 12/lab12_scheduler.cpp"
     "Phase 12/lab12_semaphore.cpp"
 )
 
-target_link_libraries(lab12 PRIVATE Threads::Threads)
+target_include_directories(lab12 PRIVATE ${CURSES_INCLUDE_DIR})
+target_link_libraries(lab12 PRIVATE Threads::Threads ${CURSES_LIBRARIES})

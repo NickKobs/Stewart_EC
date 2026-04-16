@@ -16,6 +16,10 @@ public:
     void dump(int level) const;
 
 private:
+    void publish_state() const;
+    void emit_system(const std::string& message) const;
+    void emit_task(int taskId, const std::string& message) const;
+
     std::string resource_name_;
     int sema_value_;
     int lucky_task_;

@@ -92,13 +92,6 @@ all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
 .PHONY : all
 
-# The main codegen target
-codegen: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" "/Users/stewartpawley/Desktop/Extra Credit/build//CMakeFiles/progress.marks"
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 codegen
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
-.PHONY : codegen
-
 # The main clean target
 clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
@@ -298,6 +291,30 @@ Phase_12/lab12.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12.cpp.s
 .PHONY : Phase_12/lab12.cpp.s
 
+Phase_12/lab12_dashboard.o: Phase_12/lab12_dashboard.cpp.o
+.PHONY : Phase_12/lab12_dashboard.o
+
+# target to build an object file
+Phase_12/lab12_dashboard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.o
+.PHONY : Phase_12/lab12_dashboard.cpp.o
+
+Phase_12/lab12_dashboard.i: Phase_12/lab12_dashboard.cpp.i
+.PHONY : Phase_12/lab12_dashboard.i
+
+# target to preprocess a source file
+Phase_12/lab12_dashboard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.i
+.PHONY : Phase_12/lab12_dashboard.cpp.i
+
+Phase_12/lab12_dashboard.s: Phase_12/lab12_dashboard.cpp.s
+.PHONY : Phase_12/lab12_dashboard.s
+
+# target to generate assembly for a file
+Phase_12/lab12_dashboard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12_dashboard.cpp.s
+.PHONY : Phase_12/lab12_dashboard.cpp.s
+
 Phase_12/lab12_scheduler.o: Phase_12/lab12_scheduler.cpp.o
 .PHONY : Phase_12/lab12_scheduler.o
 
@@ -376,7 +393,6 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Extra_Credit"
@@ -398,6 +414,9 @@ help:
 	@echo "... Phase_12/lab12.o"
 	@echo "... Phase_12/lab12.i"
 	@echo "... Phase_12/lab12.s"
+	@echo "... Phase_12/lab12_dashboard.o"
+	@echo "... Phase_12/lab12_dashboard.i"
+	@echo "... Phase_12/lab12_dashboard.s"
 	@echo "... Phase_12/lab12_scheduler.o"
 	@echo "... Phase_12/lab12_scheduler.i"
 	@echo "... Phase_12/lab12_scheduler.s"
