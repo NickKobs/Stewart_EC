@@ -1,1 +1,1 @@
-/usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/lab12.dir/Phase_12/lab12.cpp.o CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o -o lab12
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/lab12.dir/Phase_12/lab12.cpp.o CMakeFiles/lab12.dir/Phase_12/lab12_scheduler.cpp.o CMakeFiles/lab12.dir/Phase_12/lab12_semaphore.cpp.o -o lab12

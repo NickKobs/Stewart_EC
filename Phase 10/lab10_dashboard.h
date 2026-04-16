@@ -7,9 +7,22 @@
 #include <string>
 #include <vector>
 
+enum class DashboardMode {
+    Auto,
+    Text,
+    Ncurses,
+};
+
 class TaskDashboard {
 public:
-    explicit TaskDashboard(int taskCount);
+    struct DashboardLabels {
+        std::string systemTitle = "System";
+        std::string sharedTitle = "Shared State";
+        std::vector<std::string> taskTitles;
+    };
+
+    TaskDashboard(int taskCount, DashboardMode mode);
+    TaskDashboard(int taskCount, DashboardMode mode, DashboardLabels labels);
     ~TaskDashboard();
 
     void logSystem(const std::string& message);
@@ -35,6 +48,7 @@ private:
     bool interactive_ = false;
     bool cursesReady_ = false;
     int taskCount_ = 0;
+    DashboardLabels labels_;
     std::mutex renderMutex_;
     LogPane systemPane_;
     LogPane queuePane_;

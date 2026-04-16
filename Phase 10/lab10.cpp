@@ -1,6 +1,8 @@
 #include <cstdio>
+#include <cstdlib>
 #include <pthread.h>
 #include <string>
+#include <string_view>
 #include <unistd.h>
 
 #include "lab10_dashboard.h"
@@ -25,10 +27,11 @@ struct WorkerContext {
     TaskDashboard* dashboard = nullptr;
 };
 
+DashboardMode determineDashboardMode(int argc, char* argv[]);
 void* worker(void* arg);
 
-int main() {
-    TaskDashboard dashboard(THREAD_COUNT);
+int main(int argc, char* argv[]) {
+    TaskDashboard dashboard(THREAD_COUNT, determineDashboardMode(argc, argv));
     Semaphore semaphore(SEMAPHORE_PERMITS, dashboard);
     pthread_t threads[THREAD_COUNT];
     WorkerContext contexts[THREAD_COUNT];
@@ -54,6 +57,31 @@ int main() {
 
     dashboard.finish("All tasks completed. Closing dashboard shortly.");
     return 0;
+}
+
+DashboardMode determineDashboardMode(int argc, char* argv[]) {
+    const char* envMode = std::getenv("LAB10_UI");
+    if (envMode != nullptr) {
+        const std::string_view mode(envMode);
+        if (mode == "ncurses") {
+            return DashboardMode::Ncurses;
+        }
+        if (mode == "text") {
+            return DashboardMode::Text;
+        }
+    }
+
+    for (int i = 1; i < argc; ++i) {
+        const std::string_view arg(argv[i]);
+        if (arg == "--ncurses") {
+            return DashboardMode::Ncurses;
+        }
+        if (arg == "--text") {
+            return DashboardMode::Text;
+        }
+    }
+
+    return DashboardMode::Auto;
 }
 
 void* worker(void* arg) {

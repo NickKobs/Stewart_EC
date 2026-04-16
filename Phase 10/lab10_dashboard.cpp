@@ -2,10 +2,13 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
 #include <cstdio>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <string_view>
+#include <utility>
 #include <unistd.h>
 
 namespace {
@@ -14,20 +17,67 @@ constexpr int kQueueHeight = 5;
 constexpr int kMinPaneHeight = 6;
 constexpr int kMinPaneWidth = 24;
 constexpr int kFinishPauseMs = 1400;
+
+bool needsDefaultTerm() {
+    const char* term = std::getenv("TERM");
+    if (term == nullptr || term[0] == '\0') {
+        return true;
+    }
+
+    const std::string_view termValue(term);
+    return termValue == "unknown" || termValue == "dumb";
+}
 }
 
-TaskDashboard::TaskDashboard(int taskCount) : taskCount_(taskCount) {
+TaskDashboard::TaskDashboard(int taskCount, DashboardMode mode)
+    : TaskDashboard(taskCount, mode, DashboardLabels{}) {}
+
+TaskDashboard::TaskDashboard(int taskCount, DashboardMode mode, DashboardLabels labels)
+    : taskCount_(taskCount), labels_(std::move(labels)) {
     if (taskCount_ <= 0) {
         throw std::invalid_argument("task dashboard requires at least one task");
     }
 
-    interactive_ = isatty(STDIN_FILENO) && isatty(STDOUT_FILENO);
+    if (labels_.systemTitle.empty()) {
+        labels_.systemTitle = "System";
+    }
+
+    if (labels_.sharedTitle.empty()) {
+        labels_.sharedTitle = "Shared State";
+    }
+
+    const bool ttyReady = isatty(STDIN_FILENO) && isatty(STDOUT_FILENO);
+    interactive_ = (mode == DashboardMode::Ncurses) || (mode == DashboardMode::Auto && ttyReady);
+    interactive_ = interactive_ && ttyReady;
     if (interactive_) {
-        initializeCurses();
-        buildLayout();
-        logSystem("ncurses dashboard online.");
+        if (needsDefaultTerm()) {
+            setenv("TERM", "xterm-256color", 1);
+        }
+
+        try {
+            initializeCurses();
+            buildLayout();
+            logSystem("ncurses dashboard online.");
+        } catch (const std::exception& error) {
+            if (cursesReady_) {
+                endwin();
+                cursesReady_ = false;
+            }
+
+            interactive_ = false;
+            std::printf("[dashboard] %s Falling back to transcript mode.\n", error.what());
+        }
     } else {
-        std::printf("[dashboard] no TTY detected, using transcript mode.\n");
+        if (mode == DashboardMode::Ncurses) {
+            std::printf("[dashboard] ncurses requested but no compatible TTY was detected. ");
+            std::printf("Using transcript mode instead.\n");
+        } else if (mode == DashboardMode::Auto) {
+            std::printf("[dashboard] no compatible TTY detected. ");
+            std::printf("Using transcript mode instead.\n");
+        } else {
+            std::printf("[dashboard] transcript mode active. ");
+            std::printf("Run with --ncurses in a real terminal for windowed output.\n");
+        }
     }
 }
 
@@ -129,11 +179,11 @@ void TaskDashboard::buildLayout() {
         throw std::runtime_error("terminal is too small for the phase 10 ncurses layout");
     }
 
-    systemPane_.title = "System";
+    systemPane_.title = labels_.systemTitle;
     systemPane_.frame = newwin(kHeaderHeight, totalCols, 0, 0);
     systemPane_.body = derwin(systemPane_.frame, kHeaderHeight - 2, totalCols - 2, 1, 1);
 
-    queuePane_.title = "Semaphore Queue";
+    queuePane_.title = labels_.sharedTitle;
     queuePane_.frame = newwin(kQueueHeight, totalCols, kHeaderHeight, 0);
     queuePane_.body = derwin(queuePane_.frame, kQueueHeight - 2, totalCols - 2, 1, 1);
 
@@ -155,7 +205,11 @@ void TaskDashboard::buildLayout() {
         const int actualWidth = (col == taskCols - 1) ? totalCols - paneX : paneWidth;
 
         auto& pane = taskPanes_[static_cast<std::size_t>(taskId)];
-        pane.title = "Task " + std::to_string(taskId);
+        if (taskId < static_cast<int>(labels_.taskTitles.size()) && !labels_.taskTitles[taskId].empty()) {
+            pane.title = labels_.taskTitles[taskId];
+        } else {
+            pane.title = "Task " + std::to_string(taskId);
+        }
         pane.frame = newwin(actualHeight, actualWidth, paneY, paneX);
         pane.body = derwin(pane.frame, actualHeight - 2, actualWidth - 2, 1, 1);
         scrollok(pane.body, TRUE);

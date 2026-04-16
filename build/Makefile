@@ -199,6 +199,33 @@ Phase_10/lab10.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10.cpp.s
 .PHONY : Phase_10/lab10.cpp.s
 
+Phase_10/lab10_dashboard.o: Phase_10/lab10_dashboard.cpp.o
+.PHONY : Phase_10/lab10_dashboard.o
+
+# target to build an object file
+Phase_10/lab10_dashboard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Phase_10/lab10_dashboard.cpp.o
+.PHONY : Phase_10/lab10_dashboard.cpp.o
+
+Phase_10/lab10_dashboard.i: Phase_10/lab10_dashboard.cpp.i
+.PHONY : Phase_10/lab10_dashboard.i
+
+# target to preprocess a source file
+Phase_10/lab10_dashboard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Phase_10/lab10_dashboard.cpp.i
+.PHONY : Phase_10/lab10_dashboard.cpp.i
+
+Phase_10/lab10_dashboard.s: Phase_10/lab10_dashboard.cpp.s
+.PHONY : Phase_10/lab10_dashboard.s
+
+# target to generate assembly for a file
+Phase_10/lab10_dashboard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Phase_10/lab10_dashboard.cpp.s
+.PHONY : Phase_10/lab10_dashboard.cpp.s
+
 Phase_10/lab10_semaphore.o: Phase_10/lab10_semaphore.cpp.o
 .PHONY : Phase_10/lab10_semaphore.o
 
@@ -359,6 +386,9 @@ help:
 	@echo "... Phase_10/lab10.o"
 	@echo "... Phase_10/lab10.i"
 	@echo "... Phase_10/lab10.s"
+	@echo "... Phase_10/lab10_dashboard.o"
+	@echo "... Phase_10/lab10_dashboard.i"
+	@echo "... Phase_10/lab10_dashboard.s"
 	@echo "... Phase_10/lab10_semaphore.o"
 	@echo "... Phase_10/lab10_semaphore.i"
 	@echo "... Phase_10/lab10_semaphore.s"

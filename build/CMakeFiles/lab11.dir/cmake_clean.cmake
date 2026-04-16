@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/lab11.dir/Phase_10/lab10_dashboard.cpp.o"
+  "CMakeFiles/lab11.dir/Phase_10/lab10_dashboard.cpp.o.d"
   "CMakeFiles/lab11.dir/Phase_11/lab11.cpp.o"
   "CMakeFiles/lab11.dir/Phase_11/lab11.cpp.o.d"
   "lab11"

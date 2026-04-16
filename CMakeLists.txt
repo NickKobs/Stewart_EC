@@ -21,9 +21,11 @@ target_link_libraries(lab10 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab11
     "Phase 11/lab11.cpp"
+    "Phase 10/lab10_dashboard.cpp"
 )
 
-target_link_libraries(lab11 PRIVATE Threads::Threads)
+target_include_directories(lab11 PRIVATE ${CURSES_INCLUDE_DIR} "Phase 10")
+target_link_libraries(lab11 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab12
     "Phase 12/lab12.cpp"
