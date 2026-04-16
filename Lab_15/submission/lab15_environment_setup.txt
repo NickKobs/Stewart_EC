@@ -1,0 +1,18 @@
+$ cd /Users/stewartpawley/Desktop/Extra Credit/Lab_15/submission/environment_fixture
+$ printf "Lab 15 sample text file
+" > random_file_1.txt
+$ printf "#!/bin/sh
+echo Lab 15 executable
+" > a.exe
+$ chmod 755 a.exe
+$ printf "Hard-link source for metadata inspection.
+" > i-nodes
+$ ln i-nodes mylink
+$ ln -s i-nodes mysymlink
+$ ls -li
+total 32
+15780923 -rwxr-xr-x  1 stewartpawley  staff  33 Apr 16 01:44 a.exe
+15780924 -rw-r--r--  2 stewartpawley  staff  42 Apr 16 01:44 i-nodes
+15780924 -rw-r--r--  2 stewartpawley  staff  42 Apr 16 01:44 mylink
+15780927 lrwxr-xr-x  1 stewartpawley  staff   7 Apr 16 01:44 mysymlink -> i-nodes
+15780922 -rw-r--r--  1 stewartpawley  staff  24 Apr 16 01:44 random_file_1.txt

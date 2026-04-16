@@ -1,0 +1,1699 @@
+[dashboard] transcript mode active. Run with --ncurses in a real terminal for windowed output.
+[system] Launching the bounded-buffer producer/consumer model.
+[system] BUFFER_SIZE=3, PRODUCE_COUNT=100, producer_sleep=0.10s, consumer_sleep=0.85s
+[system] Condition-variable waits are guarded with while loops for spurious wakeup safety.
+[queue] Initial buffer state | count=0/3 in=0 out=0 | items=[]
+[system] Parent waits for producer and consumer to finish.
+[task 0] Online and ready to produce.
+[task 0] Produced item 0 into slot 0.
+[task 1] Online and ready to consume.
+[queue] Producer inserted item 0 | count=1/3 in=1 out=0 | items=[0]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 1] Consumed item 0 from slot 0.
+[task 0] Simulating I/O for 0.10s.
+[queue] Consumer removed item 0 | count=0/3 in=1 out=1 | items=[]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] I/O interval finished.
+[task 0] Produced item 1 into slot 1.
+[queue] Producer inserted item 1 | count=1/3 in=2 out=1 | items=[1]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 2 into slot 2.
+[queue] Producer inserted item 2 | count=2/3 in=0 out=1 | items=[1, 2]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 3 into slot 0.
+[queue] Producer inserted item 3 | count=3/3 in=1 out=1 | items=[1, 2, 3]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[1, 2, 3]
+[task 1] I/O interval finished.
+[task 1] Consumed item 1 from slot 1.
+[queue] Consumer removed item 1 | count=2/3 in=1 out=2 | items=[2, 3]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 4 into slot 1.
+[queue] Producer inserted item 4 | count=3/3 in=2 out=2 | items=[2, 3, 4]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[2, 3, 4]
+[task 1] I/O interval finished.
+[task 1] Consumed item 2 from slot 2.
+[queue] Consumer removed item 2 | count=2/3 in=2 out=0 | items=[3, 4]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 5 into slot 2.
+[queue] Producer inserted item 5 | count=3/3 in=0 out=0 | items=[3, 4, 5]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[3, 4, 5]
+[task 1] I/O interval finished.
+[task 1] Consumed item 3 from slot 0.
+[queue] Consumer removed item 3 | count=2/3 in=0 out=1 | items=[4, 5]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 6 into slot 0.
+[queue] Producer inserted item 6 | count=3/3 in=1 out=1 | items=[4, 5, 6]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[4, 5, 6]
+[task 1] I/O interval finished.
+[task 1] Consumed item 4 from slot 1.
+[queue] Consumer removed item 4 | count=2/3 in=1 out=2 | items=[5, 6]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 7 into slot 1.
+[queue] Producer inserted item 7 | count=3/3 in=2 out=2 | items=[5, 6, 7]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[5, 6, 7]
+[task 1] I/O interval finished.
+[task 1] Consumed item 5 from slot 2.
+[queue] Consumer removed item 5 | count=2/3 in=2 out=0 | items=[6, 7]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 8 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 8 | count=3/3 in=0 out=0 | items=[6, 7, 8]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[6, 7, 8]
+[task 1] I/O interval finished.
+[task 1] Consumed item 6 from slot 0.
+[queue] Consumer removed item 6 | count=2/3 in=0 out=1 | items=[7, 8]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 9 into slot 0.
+[queue] Producer inserted item 9 | count=3/3 in=1 out=1 | items=[7, 8, 9]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[7, 8, 9]
+[task 1] I/O interval finished.
+[task 1] Consumed item 7 from slot 1.
+[queue] Consumer removed item 7 | count=2/3 in=1 out=2 | items=[8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 10 into slot 1.
+[queue] Producer inserted item 10 | count=3/3 in=2 out=2 | items=[8, 9, 10]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[8, 9, 10]
+[task 1] I/O interval finished.
+[task 1] Consumed item 8 from slot 2.
+[queue] Consumer removed item 8 | count=2/3 in=2 out=0 | items=[9, 10]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 11 into slot 2.
+[queue] Producer inserted item 11 | count=3/3 in=0 out=0 | items=[9, 10, 11]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[9, 10, 11]
+[task 1] I/O interval finished.
+[task 1] Consumed item 9 from slot 0.
+[queue] Consumer removed item 9 | count=2/3 in=0 out=1 | items=[10, 11]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 12 into slot 0.
+[system] task 1 -> task 0 | not_full signaled.
+[queue] Producer inserted item 12 | count=3/3 in=1 out=1 | items=[10, 11, 12]
+[task 1] Simulating I/O for 0.85s.
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[10, 11, 12]
+[task 1] I/O interval finished.
+[task 1] Consumed item 10 from slot 1.
+[queue] Consumer removed item 10 | count=2/3 in=1 out=2 | items=[11, 12]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 13 into slot 1.
+[queue] Producer inserted item 13 | count=3/3 in=2 out=2 | items=[11, 12, 13]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[11, 12, 13]
+[task 1] I/O interval finished.
+[task 1] Consumed item 11 from slot 2.
+[queue] Consumer removed item 11 | count=2/3 in=2 out=0 | items=[12, 13]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 14 into slot 2.
+[queue] Producer inserted item 14 | count=3/3 in=0 out=0 | items=[12, 13, 14]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[12, 13, 14]
+[task 1] I/O interval finished.
+[task 1] Consumed item 12 from slot 0.
+[queue] Consumer removed item 12 | count=2/3 in=0 out=1 | items=[13, 14]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 15 into slot 0.
+[queue] Producer inserted item 15 | count=3/3 in=1 out=1 | items=[13, 14, 15]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[13, 14, 15]
+[task 1] I/O interval finished.
+[task 1] Consumed item 13 from slot 1.
+[queue] Consumer removed item 13 | count=2/3 in=1 out=2 | items=[14, 15]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 16 into slot 1.
+[queue] Producer inserted item 16 | count=3/3 in=2 out=2 | items=[14, 15, 16]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[14, 15, 16]
+[task 1] I/O interval finished.
+[task 1] Consumed item 14 from slot 2.
+[queue] Consumer removed item 14 | count=2/3 in=2 out=0 | items=[15, 16]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 17 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 17 | count=3/3 in=0 out=0 | items=[15, 16, 17]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[15, 16, 17]
+[task 1] I/O interval finished.
+[task 1] Consumed item 15 from slot 0.
+[queue] Consumer removed item 15 | count=2/3 in=0 out=1 | items=[16, 17]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 18 into slot 0.
+[queue] Producer inserted item 18 | count=3/3 in=1 out=1 | items=[16, 17, 18]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[16, 17, 18]
+[task 1] I/O interval finished.
+[task 1] Consumed item 16 from slot 1.
+[queue] Consumer removed item 16 | count=2/3 in=1 out=2 | items=[17, 18]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 19 into slot 1.
+[queue] Producer inserted item 19 | count=3/3 in=2 out=2 | items=[17, 18, 19]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[17, 18, 19]
+[task 1] I/O interval finished.
+[task 1] Consumed item 17 from slot 2.
+[queue] Consumer removed item 17 | count=2/3 in=2 out=0 | items=[18, 19]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 20 into slot 2.
+[queue] Producer inserted item 20 | count=3/3 in=0 out=0 | items=[18, 19, 20]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[18, 19, 20]
+[task 1] I/O interval finished.
+[task 1] Consumed item 18 from slot 0.
+[queue] Consumer removed item 18 | count=2/3 in=0 out=1 | items=[19, 20]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 21 into slot 0.
+[queue] Producer inserted item 21 | count=3/3 in=1 out=1 | items=[19, 20, 21]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[19, 20, 21]
+[task 1] I/O interval finished.
+[task 1] Consumed item 19 from slot 1.
+[queue] Consumer removed item 19 | count=2/3 in=1 out=2 | items=[20, 21]
+[task 1] To task 0: not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 22 into slot 1.
+[queue] Producer inserted item 22 | count=3/3 in=2 out=2 | items=[20, 21, 22]
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[20, 21, 22]
+[task 1] I/O interval finished.
+[task 1] Consumed item 20 from slot 2.
+[queue] Consumer removed item 20 | count=2/3 in=2 out=0 | items=[21, 22]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 23 into slot 2.
+[queue] Producer inserted item 23 | count=3/3 in=0 out=0 | items=[21, 22, 23]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[21, 22, 23]
+[task 1] I/O interval finished.
+[task 1] Consumed item 21 from slot 0.
+[queue] Consumer removed item 21 | count=2/3 in=0 out=1 | items=[22, 23]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 24 into slot 0.
+[queue] Producer inserted item 24 | count=3/3 in=1 out=1 | items=[22, 23, 24]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[22, 23, 24]
+[task 1] I/O interval finished.
+[task 1] Consumed item 22 from slot 1.
+[queue] Consumer removed item 22 | count=2/3 in=1 out=2 | items=[23, 24]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 25 into slot 1.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 25 | count=3/3 in=2 out=2 | items=[23, 24, 25]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[23, 24, 25]
+[task 1] I/O interval finished.
+[task 1] Consumed item 23 from slot 2.
+[queue] Consumer removed item 23 | count=2/3 in=2 out=0 | items=[24, 25]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 26 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 26 | count=3/3 in=0 out=0 | items=[24, 25, 26]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[24, 25, 26]
+[task 1] I/O interval finished.
+[task 1] Consumed item 24 from slot 0.
+[queue] Consumer removed item 24 | count=2/3 in=0 out=1 | items=[25, 26]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 27 into slot 0.
+[queue] Producer inserted item 27 | count=3/3 in=1 out=1 | items=[25, 26, 27]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[25, 26, 27]
+[task 1] I/O interval finished.
+[task 1] Consumed item 25 from slot 1.
+[queue] Consumer removed item 25 | count=2/3 in=1 out=2 | items=[26, 27]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 28 into slot 1.
+[queue] Producer inserted item 28 | count=3/3 in=2 out=2 | items=[26, 27, 28]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[26, 27, 28]
+[task 1] I/O interval finished.
+[task 1] Consumed item 26 from slot 2.
+[queue] Consumer removed item 26 | count=2/3 in=2 out=0 | items=[27, 28]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 29 into slot 2.
+[queue] Producer inserted item 29 | count=3/3 in=0 out=0 | items=[27, 28, 29]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[27, 28, 29]
+[task 1] I/O interval finished.
+[task 1] Consumed item 27 from slot 0.
+[queue] Consumer removed item 27 | count=2/3 in=0 out=1 | items=[28, 29]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 30 into slot 0.
+[queue] Producer inserted item 30 | count=3/3 in=1 out=1 | items=[28, 29, 30]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[28, 29, 30]
+[task 1] I/O interval finished.
+[task 1] Consumed item 28 from slot 1.
+[queue] Consumer removed item 28 | count=2/3 in=1 out=2 | items=[29, 30]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 31 into slot 1.
+[queue] Producer inserted item 31 | count=3/3 in=2 out=2 | items=[29, 30, 31]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[29, 30, 31]
+[task 1] I/O interval finished.
+[task 1] Consumed item 29 from slot 2.
+[queue] Consumer removed item 29 | count=2/3 in=2 out=0 | items=[30, 31]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 32 into slot 2.
+[queue] Producer inserted item 32 | count=3/3 in=0 out=0 | items=[30, 31, 32]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[30, 31, 32]
+[task 1] I/O interval finished.
+[task 1] Consumed item 30 from slot 0.
+[queue] Consumer removed item 30 | count=2/3 in=0 out=1 | items=[31, 32]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 33 into slot 0.
+[queue] Producer inserted item 33 | count=3/3 in=1 out=1 | items=[31, 32, 33]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[31, 32, 33]
+[task 1] I/O interval finished.
+[task 1] Consumed item 31 from slot 1.
+[queue] Consumer removed item 31 | count=2/3 in=1 out=2 | items=[32, 33]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 34 into slot 1.
+[queue] Producer inserted item 34 | count=3/3 in=2 out=2 | items=[32, 33, 34]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[32, 33, 34]
+[task 1] I/O interval finished.
+[task 1] Consumed item 32 from slot 2.
+[queue] Consumer removed item 32 | count=2/3 in=2 out=0 | items=[33, 34]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 35 into slot 2.
+[queue] Producer inserted item 35 | count=3/3 in=0 out=0 | items=[33, 34, 35]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[33, 34, 35]
+[task 1] I/O interval finished.
+[task 1] Consumed item 33 from slot 0.
+[queue] Consumer removed item 33 | count=2/3 in=0 out=1 | items=[34, 35]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 36 into slot 0.
+[queue] Producer inserted item 36 | count=3/3 in=1 out=1 | items=[34, 35, 36]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[34, 35, 36]
+[task 1] I/O interval finished.
+[task 1] Consumed item 34 from slot 1.
+[queue] Consumer removed item 34 | count=2/3 in=1 out=2 | items=[35, 36]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 37 into slot 1.
+[queue] Producer inserted item 37 | count=3/3 in=2 out=2 | items=[35, 36, 37]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[35, 36, 37]
+[task 1] I/O interval finished.
+[task 1] Consumed item 35 from slot 2.
+[queue] Consumer removed item 35 | count=2/3 in=2 out=0 | items=[36, 37]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 38 into slot 2.
+[queue] Producer inserted item 38 | count=3/3 in=0 out=0 | items=[36, 37, 38]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[36, 37, 38]
+[task 1] I/O interval finished.
+[task 1] Consumed item 36 from slot 0.
+[queue] Consumer removed item 36 | count=2/3 in=0 out=1 | items=[37, 38]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 39 into slot 0.
+[queue] Producer inserted item 39 | count=3/3 in=1 out=1 | items=[37, 38, 39]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[37, 38, 39]
+[task 1] I/O interval finished.
+[task 1] Consumed item 37 from slot 1.
+[queue] Consumer removed item 37 | count=2/3 in=1 out=2 | items=[38, 39]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 40 into slot 1.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 40 | count=3/3 in=2 out=2 | items=[38, 39, 40]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[38, 39, 40]
+[task 1] I/O interval finished.
+[task 1] Consumed item 38 from slot 2.
+[queue] Consumer removed item 38 | count=2/3 in=2 out=0 | items=[39, 40]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 41 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 41 | count=3/3 in=0 out=0 | items=[39, 40, 41]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[39, 40, 41]
+[task 1] I/O interval finished.
+[task 1] Consumed item 39 from slot 0.
+[queue] Consumer removed item 39 | count=2/3 in=0 out=1 | items=[40, 41]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 42 into slot 0.
+[queue] Producer inserted item 42 | count=3/3 in=1 out=1 | items=[40, 41, 42]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[40, 41, 42]
+[task 1] I/O interval finished.
+[task 1] Consumed item 40 from slot 1.
+[queue] Consumer removed item 40 | count=2/3 in=1 out=2 | items=[41, 42]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 43 into slot 1.
+[queue] Producer inserted item 43 | count=3/3 in=2 out=2 | items=[41, 42, 43]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[41, 42, 43]
+[task 1] I/O interval finished.
+[task 1] Consumed item 41 from slot 2.
+[queue] Consumer removed item 41 | count=2/3 in=2 out=0 | items=[42, 43]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 44 into slot 2.
+[queue] Producer inserted item 44 | count=3/3 in=0 out=0 | items=[42, 43, 44]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[42, 43, 44]
+[task 1] I/O interval finished.
+[task 1] Consumed item 42 from slot 0.
+[queue] Consumer removed item 42 | count=2/3 in=0 out=1 | items=[43, 44]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 45 into slot 0.
+[queue] Producer inserted item 45 | count=3/3 in=1 out=1 | items=[43, 44, 45]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[43, 44, 45]
+[task 1] I/O interval finished.
+[task 1] Consumed item 43 from slot 1.
+[queue] Consumer removed item 43 | count=2/3 in=1 out=2 | items=[44, 45]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 46 into slot 1.
+[queue] Producer inserted item 46 | count=3/3 in=2 out=2 | items=[44, 45, 46]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[44, 45, 46]
+[task 1] I/O interval finished.
+[task 1] Consumed item 44 from slot 2.
+[queue] Consumer removed item 44 | count=2/3 in=2 out=0 | items=[45, 46]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 47 into slot 2.
+[queue] Producer inserted item 47 | count=3/3 in=0 out=0 | items=[45, 46, 47]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[45, 46, 47]
+[task 1] I/O interval finished.
+[task 1] Consumed item 45 from slot 0.
+[queue] Consumer removed item 45 | count=2/3 in=0 out=1 | items=[46, 47]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 48 into slot 0.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 48 | count=3/3 in=1 out=1 | items=[46, 47, 48]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[46, 47, 48]
+[task 1] I/O interval finished.
+[task 1] Consumed item 46 from slot 1.
+[queue] Consumer removed item 46 | count=2/3 in=1 out=2 | items=[47, 48]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 49 into slot 1.
+[queue] Producer inserted item 49 | count=3/3 in=2 out=2 | items=[47, 48, 49]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[47, 48, 49]
+[task 1] I/O interval finished.
+[task 1] Consumed item 47 from slot 2.
+[queue] Consumer removed item 47 | count=2/3 in=2 out=0 | items=[48, 49]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 50 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 50 | count=3/3 in=0 out=0 | items=[48, 49, 50]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[48, 49, 50]
+[task 1] I/O interval finished.
+[task 1] Consumed item 48 from slot 0.
+[queue] Consumer removed item 48 | count=2/3 in=0 out=1 | items=[49, 50]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 51 into slot 0.
+[queue] Producer inserted item 51 | count=3/3 in=1 out=1 | items=[49, 50, 51]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[49, 50, 51]
+[task 1] I/O interval finished.
+[task 1] Consumed item 49 from slot 1.
+[queue] Consumer removed item 49 | count=2/3 in=1 out=2 | items=[50, 51]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 52 into slot 1.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 52 | count=3/3 in=2 out=2 | items=[50, 51, 52]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[50, 51, 52]
+[task 1] I/O interval finished.
+[task 1] Consumed item 50 from slot 2.
+[queue] Consumer removed item 50 | count=2/3 in=2 out=0 | items=[51, 52]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 53 into slot 2.
+[queue] Producer inserted item 53 | count=3/3 in=0 out=0 | items=[51, 52, 53]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 1] Simulating I/O for 0.85s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[51, 52, 53]
+[task 1] I/O interval finished.
+[task 1] Consumed item 51 from slot 0.
+[queue] Consumer removed item 51 | count=2/3 in=0 out=1 | items=[52, 53]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 54 into slot 0.
+[queue] Producer inserted item 54 | count=3/3 in=1 out=1 | items=[52, 53, 54]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[52, 53, 54]
+[task 1] I/O interval finished.
+[task 1] Consumed item 52 from slot 1.
+[queue] Consumer removed item 52 | count=2/3 in=1 out=2 | items=[53, 54]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 55 into slot 1.
+[queue] Producer inserted item 55 | count=3/3 in=2 out=2 | items=[53, 54, 55]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[53, 54, 55]
+[task 1] I/O interval finished.
+[task 1] Consumed item 53 from slot 2.
+[queue] Consumer removed item 53 | count=2/3 in=2 out=0 | items=[54, 55]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 56 into slot 2.
+[queue] Producer inserted item 56 | count=3/3 in=0 out=0 | items=[54, 55, 56]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[54, 55, 56]
+[task 1] I/O interval finished.
+[task 1] Consumed item 54 from slot 0.
+[queue] Consumer removed item 54 | count=2/3 in=0 out=1 | items=[55, 56]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 57 into slot 0.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 57 | count=3/3 in=1 out=1 | items=[55, 56, 57]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[55, 56, 57]
+[task 1] I/O interval finished.
+[task 1] Consumed item 55 from slot 1.
+[queue] Consumer removed item 55 | count=2/3 in=1 out=2 | items=[56, 57]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 58 into slot 1.
+[queue] Producer inserted item 58 | count=3/3 in=2 out=2 | items=[56, 57, 58]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[56, 57, 58]
+[task 1] I/O interval finished.
+[task 1] Consumed item 56 from slot 2.
+[queue] Consumer removed item 56 | count=2/3 in=2 out=0 | items=[57, 58]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 59 into slot 2.
+[queue] Producer inserted item 59 | count=3/3 in=0 out=0 | items=[57, 58, 59]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[57, 58, 59]
+[task 1] I/O interval finished.
+[task 1] Consumed item 57 from slot 0.
+[queue] Consumer removed item 57 | count=2/3 in=0 out=1 | items=[58, 59]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 60 into slot 0.
+[queue] Producer inserted item 60 | count=3/3 in=1 out=1 | items=[58, 59, 60]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[58, 59, 60]
+[task 1] I/O interval finished.
+[task 1] Consumed item 58 from slot 1.
+[queue] Consumer removed item 58 | count=2/3 in=1 out=2 | items=[59, 60]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 61 into slot 1.
+[queue] Producer inserted item 61 | count=3/3 in=2 out=2 | items=[59, 60, 61]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[59, 60, 61]
+[task 1] I/O interval finished.
+[task 1] Consumed item 59 from slot 2.
+[queue] Consumer removed item 59 | count=2/3 in=2 out=0 | items=[60, 61]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 62 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 62 | count=3/3 in=0 out=0 | items=[60, 61, 62]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[60, 61, 62]
+[task 1] I/O interval finished.
+[task 1] Consumed item 60 from slot 0.
+[queue] Consumer removed item 60 | count=2/3 in=0 out=1 | items=[61, 62]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 63 into slot 0.
+[queue] Producer inserted item 63 | count=3/3 in=1 out=1 | items=[61, 62, 63]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[61, 62, 63]
+[task 1] I/O interval finished.
+[task 1] Consumed item 61 from slot 1.
+[queue] Consumer removed item 61 | count=2/3 in=1 out=2 | items=[62, 63]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 64 into slot 1.
+[queue] Producer inserted item 64 | count=3/3 in=2 out=2 | items=[62, 63, 64]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[62, 63, 64]
+[task 1] I/O interval finished.
+[task 1] Consumed item 62 from slot 2.
+[queue] Consumer removed item 62 | count=2/3 in=2 out=0 | items=[63, 64]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 65 into slot 2.
+[queue] Producer inserted item 65 | count=3/3 in=0 out=0 | items=[63, 64, 65]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[63, 64, 65]
+[task 1] I/O interval finished.
+[task 1] Consumed item 63 from slot 0.
+[queue] Consumer removed item 63 | count=2/3 in=0 out=1 | items=[64, 65]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 66 into slot 0.
+[queue] Producer inserted item 66 | count=3/3 in=1 out=1 | items=[64, 65, 66]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[64, 65, 66]
+[task 1] I/O interval finished.
+[task 1] Consumed item 64 from slot 1.
+[queue] Consumer removed item 64 | count=2/3 in=1 out=2 | items=[65, 66]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 67 into slot 1.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 67 | count=3/3 in=2 out=2 | items=[65, 66, 67]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[65, 66, 67]
+[task 1] I/O interval finished.
+[task 1] Consumed item 65 from slot 2.
+[queue] Consumer removed item 65 | count=2/3 in=2 out=0 | items=[66, 67]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 68 into slot 2.
+[queue] Producer inserted item 68 | count=3/3 in=0 out=0 | items=[66, 67, 68]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[66, 67, 68]
+[task 1] I/O interval finished.
+[task 1] Consumed item 66 from slot 0.
+[queue] Consumer removed item 66 | count=2/3 in=0 out=1 | items=[67, 68]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 69 into slot 0.
+[queue] Producer inserted item 69 | count=3/3 in=1 out=1 | items=[67, 68, 69]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[67, 68, 69]
+[task 1] I/O interval finished.
+[task 1] Consumed item 67 from slot 1.
+[queue] Consumer removed item 67 | count=2/3 in=1 out=2 | items=[68, 69]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 70 into slot 1.
+[queue] Producer inserted item 70 | count=3/3 in=2 out=2 | items=[68, 69, 70]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[68, 69, 70]
+[task 1] I/O interval finished.
+[task 1] Consumed item 68 from slot 2.
+[queue] Consumer removed item 68 | count=2/3 in=2 out=0 | items=[69, 70]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 71 into slot 2.
+[queue] Producer inserted item 71 | count=3/3 in=0 out=0 | items=[69, 70, 71]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[69, 70, 71]
+[task 1] I/O interval finished.
+[task 1] Consumed item 69 from slot 0.
+[queue] Consumer removed item 69 | count=2/3 in=0 out=1 | items=[70, 71]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 72 into slot 0.
+[queue] Producer inserted item 72 | count=3/3 in=1 out=1 | items=[70, 71, 72]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[70, 71, 72]
+[task 1] I/O interval finished.
+[task 1] Consumed item 70 from slot 1.
+[queue] Consumer removed item 70 | count=2/3 in=1 out=2 | items=[71, 72]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 73 into slot 1.
+[queue] Producer inserted item 73 | count=3/3 in=2 out=2 | items=[71, 72, 73]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[71, 72, 73]
+[task 1] I/O interval finished.
+[task 1] Consumed item 71 from slot 2.
+[queue] Consumer removed item 71 | count=2/3 in=2 out=0 | items=[72, 73]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 74 into slot 2.
+[queue] Producer inserted item 74 | count=3/3 in=0 out=0 | items=[72, 73, 74]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[72, 73, 74]
+[task 1] I/O interval finished.
+[task 1] Consumed item 72 from slot 0.
+[queue] Consumer removed item 72 | count=2/3 in=0 out=1 | items=[73, 74]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 75 into slot 0.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 75 | count=3/3 in=1 out=1 | items=[73, 74, 75]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[73, 74, 75]
+[task 1] I/O interval finished.
+[task 1] Consumed item 73 from slot 1.
+[queue] Consumer removed item 73 | count=2/3 in=1 out=2 | items=[74, 75]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 76 into slot 1.
+[queue] Producer inserted item 76 | count=3/3 in=2 out=2 | items=[74, 75, 76]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[74, 75, 76]
+[task 1] I/O interval finished.
+[task 1] Consumed item 74 from slot 2.
+[queue] Consumer removed item 74 | count=2/3 in=2 out=0 | items=[75, 76]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 77 into slot 2.
+[queue] Producer inserted item 77 | count=3/3 in=0 out=0 | items=[75, 76, 77]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[75, 76, 77]
+[task 1] I/O interval finished.
+[task 1] Consumed item 75 from slot 0.
+[queue] Consumer removed item 75 | count=2/3 in=0 out=1 | items=[76, 77]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 78 into slot 0.
+[queue] Producer inserted item 78 | count=3/3 in=1 out=1 | items=[76, 77, 78]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[76, 77, 78]
+[task 1] I/O interval finished.
+[task 1] Consumed item 76 from slot 1.
+[queue] Consumer removed item 76 | count=2/3 in=1 out=2 | items=[77, 78]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 79 into slot 1.
+[queue] Producer inserted item 79 | count=3/3 in=2 out=2 | items=[77, 78, 79]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[77, 78, 79]
+[task 1] I/O interval finished.
+[task 1] Consumed item 77 from slot 2.
+[queue] Consumer removed item 77 | count=2/3 in=2 out=0 | items=[78, 79]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 80 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 80 | count=3/3 in=0 out=0 | items=[78, 79, 80]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[78, 79, 80]
+[task 1] I/O interval finished.
+[task 1] Consumed item 78 from slot 0.
+[queue] Consumer removed item 78 | count=2/3 in=0 out=1 | items=[79, 80]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 81 into slot 0.
+[queue] Producer inserted item 81 | count=3/3 in=1 out=1 | items=[79, 80, 81]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[79, 80, 81]
+[task 1] I/O interval finished.
+[task 1] Consumed item 79 from slot 1.
+[queue] Consumer removed item 79 | count=2/3 in=1 out=2 | items=[80, 81]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 82 into slot 1.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 82 | count=3/3 in=2 out=2 | items=[80, 81, 82]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[80, 81, 82]
+[task 1] I/O interval finished.
+[task 1] Consumed item 80 from slot 2.
+[queue] Consumer removed item 80 | count=2/3 in=2 out=0 | items=[81, 82]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 83 into slot 2.
+[queue] Producer inserted item 83 | count=3/3 in=0 out=0 | items=[81, 82, 83]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[81, 82, 83]
+[task 1] I/O interval finished.
+[task 1] Consumed item 81 from slot 0.
+[queue] Consumer removed item 81 | count=2/3 in=0 out=1 | items=[82, 83]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 84 into slot 0.
+[queue] Producer inserted item 84 | count=3/3 in=1 out=1 | items=[82, 83, 84]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[82, 83, 84]
+[task 1] I/O interval finished.
+[task 1] Consumed item 82 from slot 1.
+[queue] Consumer removed item 82 | count=2/3 in=1 out=2 | items=[83, 84]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 85 into slot 1.
+[queue] Producer inserted item 85 | count=3/3 in=2 out=2 | items=[83, 84, 85]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[83, 84, 85]
+[task 1] I/O interval finished.
+[task 1] Consumed item 83 from slot 2.
+[queue] Consumer removed item 83 | count=2/3 in=2 out=0 | items=[84, 85]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 86 into slot 2.
+[queue] Producer inserted item 86 | count=3/3 in=0 out=0 | items=[84, 85, 86]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[84, 85, 86]
+[task 1] I/O interval finished.
+[task 1] Consumed item 84 from slot 0.
+[queue] Consumer removed item 84 | count=2/3 in=0 out=1 | items=[85, 86]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 87 into slot 0.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 87 | count=3/3 in=1 out=1 | items=[85, 86, 87]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[85, 86, 87]
+[task 1] I/O interval finished.
+[task 1] Consumed item 85 from slot 1.
+[queue] Consumer removed item 85 | count=2/3 in=1 out=2 | items=[86, 87]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 88 into slot 1.
+[queue] Producer inserted item 88 | count=3/3 in=2 out=2 | items=[86, 87, 88]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[86, 87, 88]
+[task 1] I/O interval finished.
+[task 1] Consumed item 86 from slot 2.
+[queue] Consumer removed item 86 | count=2/3 in=2 out=0 | items=[87, 88]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 89 into slot 2.
+[queue] Producer inserted item 89 | count=3/3 in=0 out=0 | items=[87, 88, 89]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[87, 88, 89]
+[task 1] I/O interval finished.
+[task 1] Consumed item 87 from slot 0.
+[queue] Consumer removed item 87 | count=2/3 in=0 out=1 | items=[88, 89]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 90 into slot 0.
+[queue] Producer inserted item 90 | count=3/3 in=1 out=1 | items=[88, 89, 90]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[88, 89, 90]
+[task 1] I/O interval finished.
+[task 1] Consumed item 88 from slot 1.
+[queue] Consumer removed item 88 | count=2/3 in=1 out=2 | items=[89, 90]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 91 into slot 1.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 91 | count=3/3 in=2 out=2 | items=[89, 90, 91]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[89, 90, 91]
+[task 1] I/O interval finished.
+[task 1] Consumed item 89 from slot 2.
+[queue] Consumer removed item 89 | count=2/3 in=2 out=0 | items=[90, 91]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 92 into slot 2.
+[queue] Producer inserted item 92 | count=3/3 in=0 out=0 | items=[90, 91, 92]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[90, 91, 92]
+[task 1] I/O interval finished.
+[task 1] Consumed item 90 from slot 0.
+[queue] Consumer removed item 90 | count=2/3 in=0 out=1 | items=[91, 92]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 93 into slot 0.
+[queue] Producer inserted item 93 | count=3/3 in=1 out=1 | items=[91, 92, 93]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[91, 92, 93]
+[task 1] I/O interval finished.
+[task 1] Consumed item 91 from slot 1.
+[queue] Consumer removed item 91 | count=2/3 in=1 out=2 | items=[92, 93]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Produced item 94 into slot 1.
+[queue] Producer inserted item 94 | count=3/3 in=2 out=2 | items=[92, 93, 94]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[92, 93, 94]
+[task 1] I/O interval finished.
+[task 1] Consumed item 92 from slot 2.
+[queue] Consumer removed item 92 | count=2/3 in=2 out=0 | items=[93, 94]
+[task 1] To task 0: not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] From task 1: not_full signaled.
+[task 0] Produced item 95 into slot 2.
+[system] task 1 -> task 0 | not_full signaled.
+[queue] Producer inserted item 95 | count=3/3 in=0 out=0 | items=[93, 94, 95]
+[task 1] Simulating I/O for 0.85s.
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[93, 94, 95]
+[task 1] I/O interval finished.
+[task 1] Consumed item 93 from slot 0.
+[queue] Consumer removed item 93 | count=2/3 in=0 out=1 | items=[94, 95]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 96 into slot 0.
+[queue] Producer inserted item 96 | count=3/3 in=1 out=1 | items=[94, 95, 96]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=1 out=1 | items=[94, 95, 96]
+[task 1] I/O interval finished.
+[task 1] Consumed item 94 from slot 1.
+[queue] Consumer removed item 94 | count=2/3 in=1 out=2 | items=[95, 96]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 97 into slot 1.
+[queue] Producer inserted item 97 | count=3/3 in=2 out=2 | items=[95, 96, 97]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=2 out=2 | items=[95, 96, 97]
+[task 1] I/O interval finished.
+[task 1] Consumed item 95 from slot 2.
+[queue] Consumer removed item 95 | count=2/3 in=2 out=0 | items=[96, 97]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 98 into slot 2.
+[task 1] Simulating I/O for 0.85s.
+[queue] Producer inserted item 98 | count=3/3 in=0 out=0 | items=[96, 97, 98]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Buffer full. Waiting on not_full.
+[queue] Producer blocked | count=3/3 in=0 out=0 | items=[96, 97, 98]
+[task 1] I/O interval finished.
+[task 1] Consumed item 96 from slot 0.
+[queue] Consumer removed item 96 | count=2/3 in=0 out=1 | items=[97, 98]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] Wake-up received; recheck buffer.
+[task 0] Produced item 99 into slot 0.
+[queue] Producer inserted item 99 | count=3/3 in=1 out=1 | items=[97, 98, 99]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] All items produced.
+[task 1] I/O interval finished.
+[task 1] Consumed item 97 from slot 1.
+[queue] Consumer removed item 97 | count=2/3 in=1 out=2 | items=[98, 99]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 98 from slot 2.
+[queue] Consumer removed item 98 | count=1/3 in=1 out=0 | items=[99]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 99 from slot 0.
+[queue] Consumer removed item 99 | count=0/3 in=1 out=1 | items=[]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] All items consumed.
+[system] Lab 11 run complete.

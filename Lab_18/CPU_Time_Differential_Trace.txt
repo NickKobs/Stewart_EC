@@ -1,0 +1,20 @@
+[dashboard] transcript mode active. Run with --ncurses in a real terminal for windowed output.
+[system] Run 1 started.
+[queue] CPU-only differential trace requested.
+[task 1] Run 1: measuring the 1B loop via clock().
+[task 1] Testing the execution time of a loop (in Seconds):
+[task 1] Loop iterations: 1000000000
+[task 1] Execution time: 0.391271 seconds
+[task 1] Checksum: 499999999500000000
+[task 2] Run 1: measuring the 1B loop via std::chrono.
+[task 2] Testing the execution time of a loop (in MicroSeconds):
+[task 2] Loop iterations: 1000000000
+[task 2] Execution time: 389437 microseconds
+[task 2] Execution time: 0.389437 seconds
+[task 2] Checksum: 499999999500000000
+[task 2] volatile keeps the workload observable to the compiler.
+[queue] CPU differential summary | clock() = 0.391271 seconds | std::chrono = 389437 microseconds (0.389437 seconds)
+[queue] Observed delta (chrono_seconds - clock_seconds) = -0.001834 seconds
+[system] CPU differential trace complete.
+[console] CPU trace complete. Use r to rerun or q to quit.
+[system] Lab 18 session complete.

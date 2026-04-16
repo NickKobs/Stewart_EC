@@ -14,6 +14,8 @@
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
+#include <iostream>
+#include <memory>
 #include <optional>
 #include <sstream>
 #include <string>
@@ -34,6 +36,7 @@ enum class StatCallKind {
 struct RunOptions {
     DashboardMode dashboardMode = DashboardMode::Auto;
     bool holdOnExit = true;
+    bool plainTrace = false;
     bool showHelp = false;
     std::vector<fs::path> requestedPaths;
 };
@@ -70,6 +73,9 @@ void createSymlinkIfMissing(const fs::path& target, const fs::path& linkPath, st
 SnapshotResult collectSnapshot(StatCallKind kind, const fs::path& path);
 std::string statCallName(StatCallKind kind);
 std::string describeType(mode_t mode);
+std::vector<std::string> buildDisplayFileInfoLines(const char* filename);
+void display_file_info(const char* filename);
+char* show_permissions(const char* filename);
 std::string formatPermissions(mode_t mode);
 std::string formatTimestamp(std::time_t timestamp);
 std::string formatDeviceId(dev_t deviceId);
@@ -96,6 +102,17 @@ int main(int argc, char* argv[]) {
     if (prepared.targets.empty()) {
         std::fprintf(stderr, "No files were selected for metadata inspection.\n");
         return 1;
+    }
+
+    if (options.plainTrace) {
+        for (const auto& note : prepared.notes) {
+            std::cout << note << '\n';
+        }
+
+        for (const auto& target : prepared.targets) {
+            display_file_info(target.path.c_str());
+        }
+        return 0;
     }
 
     TaskDashboard::DashboardLabels labels;
@@ -175,6 +192,11 @@ RunOptions parseArgs(int argc, char* argv[]) {
 
         if (arg == "--no-hold") {
             options.holdOnExit = false;
+            continue;
+        }
+
+        if (arg == "--plain") {
+            options.plainTrace = true;
             continue;
         }
 
@@ -390,6 +412,76 @@ std::string describeType(const mode_t mode) {
     }
 }
 
+std::vector<std::string> buildDisplayFileInfoLines(const char* filename) {
+    std::vector<std::string> lines;
+    struct stat st {};
+    if (::lstat(filename, &st) == -1) {
+        lines.push_back("-----------------------------------------");
+        lines.push_back("Use lstat() to get file information for: " + std::string(filename));
+        lines.push_back("lstat failed: " + std::string(std::strerror(errno)));
+        return lines;
+    }
+
+    lines.push_back("-----------------------------------------");
+    lines.push_back("Use lstat() to get file information for: " + std::string(filename));
+    lines.push_back("ID of containing device: " + formatDeviceId(st.st_dev));
+    lines.push_back("File type: " + describeType(st.st_mode));
+    lines.push_back("I-node number: " + std::to_string(static_cast<long long>(st.st_ino)));
+
+    std::ostringstream modeLine;
+    modeLine << "Mode: " << std::oct << static_cast<unsigned long>(st.st_mode) << std::dec << " (octal)";
+    lines.push_back(modeLine.str());
+
+    if ((st.st_mode & S_ISUID) == S_ISUID) {
+        lines.push_back("Set-User-ID bit is set");
+    }
+    if ((st.st_mode & S_ISGID) == S_ISGID) {
+        lines.push_back("Set-Group-ID bit is set");
+    }
+    if ((st.st_mode & S_ISVTX) == S_ISVTX) {
+        lines.push_back("Sticky bit is set");
+    }
+
+    std::unique_ptr<char[]> permissions(show_permissions(filename));
+    lines.push_back("Permission: " + std::string(permissions ? permissions.get() : "(unavailable)"));
+    lines.push_back("Link count: " + std::to_string(static_cast<long long>(st.st_nlink)));
+    lines.push_back("Ownership: UID=" + std::to_string(static_cast<long long>(st.st_uid)) + " GID=" +
+                    std::to_string(static_cast<long long>(st.st_gid)));
+    lines.push_back("Preferred I/O block size: " + std::to_string(static_cast<long long>(st.st_blksize)) + " bytes");
+    lines.push_back("File size: " + std::to_string(static_cast<long long>(st.st_size)) + " bytes");
+    lines.push_back("Blocks allocated: " + std::to_string(static_cast<long long>(st.st_blocks)));
+    lines.push_back("Last status change: " + formatTimestamp(st.st_ctime));
+    lines.push_back("Last file access: " + formatTimestamp(st.st_atime));
+    lines.push_back("Last file modification: " + formatTimestamp(st.st_mtime));
+    return lines;
+}
+
+void display_file_info(const char* filename) {
+    for (const auto& line : buildDisplayFileInfoLines(filename)) {
+        std::cout << line << '\n';
+    }
+}
+
+char* show_permissions(const char* filename) {
+    struct stat st {};
+    if (::stat(filename, &st) != 0 && ::lstat(filename, &st) != 0) {
+        return nullptr;
+    }
+
+    char* mode = new char[10];
+    mode[0] = (st.st_mode & S_IRUSR) ? 'r' : '-';
+    mode[1] = (st.st_mode & S_IWUSR) ? 'w' : '-';
+    mode[2] = (st.st_mode & S_IXUSR) ? 'x' : '-';
+    mode[3] = (st.st_mode & S_IRGRP) ? 'r' : '-';
+    mode[4] = (st.st_mode & S_IWGRP) ? 'w' : '-';
+    mode[5] = (st.st_mode & S_IXGRP) ? 'x' : '-';
+    mode[6] = (st.st_mode & S_IROTH) ? 'r' : '-';
+    mode[7] = (st.st_mode & S_IWOTH) ? 'w' : '-';
+    mode[8] = (st.st_mode & S_IXOTH) ? 'x' : '-';
+    mode[9] = '\0';
+    return mode;
+}
+
 std::string formatPermissions(const mode_t mode) {
     std::string permissions(10, '-');
     switch (mode & S_IFMT) {
@@ -546,6 +638,6 @@ void logSnapshot(TaskDashboard& dashboard, const int paneIndex, const SnapshotRe
 }
 
 void printUsage(const char* programName) {
-    std::printf("Usage: %s [--ncurses|--text] [--hold|--no-hold] [paths...]\n", programName);
+    std::printf("Usage: %s [--ncurses|--text|--plain] [--hold|--no-hold] [paths...]\n", programName);
     std::printf("Without explicit paths, the program prepares a lab15_fixture directory in the current working directory.\n");
 }

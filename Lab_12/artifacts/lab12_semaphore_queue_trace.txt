@@ -1,0 +1,116 @@
+[dashboard] transcript mode active. Run with --ncurses in a real terminal for windowed output.
+[system] Lab 12 dashboard online.
+[system] SEMAPHORE QUEUE TRACE: block task 1 and task 2 behind task 0, then restore them to READY.
+[system] Semaphore resource1 attached to the scheduler via sched_ptr.
+[system] create_task() invoked.
+[system] Creating task #0
+[task 0] Created and placed in READY state.
+[system] create_task() invoked.
+[system] Creating task #1
+[task 1] Created and placed in READY state.
+[system] create_task() invoked.
+[system] Creating task #2
+[task 2] Created and placed in READY state.
+[system] set_quantum(333) applied.
+[system] Scheduling started.
+[system] Current task pointer moved to task 0.
+[task 0] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After start()
+[queue] simulated_time=0 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[queue] SEMAPHORE DUMP: Initial semaphore state
+[queue] name=resource1 | value=1 | owner=-1 | wait_queue=[empty]
+[system] Task 0 called down() on resource1.
+[task 0] Requesting semaphore resource1.
+[task 0] Obtained semaphore resource1.
+[system] Semaphore resource1 granted to task 0.
+[queue] SCHEDULER DUMP: After task 0 down()
+[queue] simulated_time=0 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[queue] SEMAPHORE DUMP: After task 0 acquires the semaphore
+[queue] name=resource1 | value=0 | owner=0 | wait_queue=[empty]
+[system] Simulated CPU work advanced the scheduler clock by 720 ms. simulated_time=720
+[task 0] Attempting to yield.
+[system] Task 0 yield check: elapsed_time=720 current_quantum=333
+[system] Quantum expired. Context switch executed.
+[system] Current task pointer moved to task 1.
+[task 1] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After switching from task 0 to task 1
+[queue] simulated_time=720 | current_quantum=333 | current_task=1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=RUNNING start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[system] Task 1 called down() on resource1.
+[task 1] Requesting semaphore resource1.
+[task 1] Blocked and enqueued on resource1.
+[system] Semaphore resource1 unavailable. Task 1 joins the wait queue.
+[queue] Semaphore queue for resource1: [1]
+[task 1] Moved to BLOCKED.
+[system] Task 1 transitioned to BLOCKED because it is waiting on semaphore resource1.
+[system] Forced context switch after task block.
+[system] Current task pointer moved to task 2.
+[task 2] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After task 1 blocks on down()
+[queue] simulated_time=720 | current_quantum=333 | current_task=2
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=BLOCKED start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=RUNNING start_time=720 elapsed_time=0
+[queue] SEMAPHORE DUMP: After task 1 enters the semaphore queue
+[queue] name=resource1 | value=0 | owner=0 | wait_queue=[1]
+[system] Task 2 called down() on resource1.
+[task 2] Requesting semaphore resource1.
+[task 2] Blocked and enqueued on resource1.
+[system] Semaphore resource1 unavailable. Task 2 joins the wait queue.
+[queue] Semaphore queue for resource1: [1, 2]
+[task 2] Moved to BLOCKED.
+[system] Task 2 transitioned to BLOCKED because it is waiting on semaphore resource1.
+[system] Forced context switch after task block.
+[system] Current task pointer moved to task 0.
+[task 0] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After task 2 blocks on down()
+[queue] simulated_time=720 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=720 elapsed_time=0
+[queue] task_table[1] task_id=1 state=BLOCKED start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=BLOCKED start_time=720 elapsed_time=0
+[queue] SEMAPHORE DUMP: After task 2 enters the semaphore queue
+[queue] name=resource1 | value=0 | owner=0 | wait_queue=[1, 2]
+[system] Task 0 called up() on resource1.
+[system] Semaphore resource1 handed off from task 0 to task 1.
+[queue] Semaphore queue for resource1: [2]
+[task 1] Moved to READY.
+[system] Task 1 transitioned to READY because task 0 released semaphore resource1.
+[queue] SCHEDULER DUMP: After task 0 up() restores task 1 to READY
+[queue] simulated_time=720 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=720 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=BLOCKED start_time=720 elapsed_time=0
+[queue] SEMAPHORE DUMP: After task 0 releases the semaphore
+[queue] name=resource1 | value=0 | owner=1 | wait_queue=[2]
+[system] Simulated CPU work advanced the scheduler clock by 720 ms. simulated_time=1440
+[task 0] Attempting to yield.
+[system] Task 0 yield check: elapsed_time=720 current_quantum=333
+[system] Quantum expired. Context switch executed.
+[system] Current task pointer moved to task 1.
+[task 1] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After switching from task 0 to task 1
+[queue] simulated_time=1440 | current_quantum=333 | current_task=1
+[queue] task_table[0] task_id=0 state=READY start_time=720 elapsed_time=0
+[queue] task_table[1] task_id=1 state=RUNNING start_time=1440 elapsed_time=0
+[queue] task_table[2] task_id=2 state=BLOCKED start_time=720 elapsed_time=0
+[system] Task 1 called up() on resource1.
+[system] Semaphore resource1 handed off from task 1 to task 2.
+[queue] Semaphore queue for resource1: [empty]
+[task 2] Moved to READY.
+[system] Task 2 transitioned to READY because task 1 released semaphore resource1.
+[queue] SCHEDULER DUMP: After task 1 up() restores task 2 to READY
+[queue] simulated_time=1440 | current_quantum=333 | current_task=1
+[queue] task_table[0] task_id=0 state=READY start_time=720 elapsed_time=0
+[queue] task_table[1] task_id=1 state=RUNNING start_time=1440 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=1440 elapsed_time=0
+[queue] SEMAPHORE DUMP: After task 1 releases the semaphore
+[queue] name=resource1 | value=0 | owner=2 | wait_queue=[empty]
+[system] Lab 12 run complete.

@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = "/Users/stewartpawley/Desktop/Extra Credit/build"
 
 # The main recursive "all" target.
 all: CMakeFiles/Extra_Credit.dir/all
+all: CMakeFiles/lab17.dir/all
 all: CMakeFiles/lab10.dir/all
 all: CMakeFiles/lab11.dir/all
 all: CMakeFiles/lab12.dir/all
@@ -76,10 +77,14 @@ all: CMakeFiles/lab13.dir/all
 all: CMakeFiles/lab14.dir/all
 all: CMakeFiles/lab20.dir/all
 all: CMakeFiles/lab23.dir/all
+all: CMakeFiles/lab23a_naive.dir/all
+all: CMakeFiles/lab23a_no_deadlock_free.dir/all
+all: CMakeFiles/lab23c_starvation_free.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/Extra_Credit.dir/codegen
+codegen: CMakeFiles/lab17.dir/codegen
 codegen: CMakeFiles/lab10.dir/codegen
 codegen: CMakeFiles/lab11.dir/codegen
 codegen: CMakeFiles/lab12.dir/codegen
@@ -92,6 +97,9 @@ codegen: CMakeFiles/lab13.dir/codegen
 codegen: CMakeFiles/lab14.dir/codegen
 codegen: CMakeFiles/lab20.dir/codegen
 codegen: CMakeFiles/lab23.dir/codegen
+codegen: CMakeFiles/lab23a_naive.dir/codegen
+codegen: CMakeFiles/lab23a_no_deadlock_free.dir/codegen
+codegen: CMakeFiles/lab23c_starvation_free.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -100,6 +108,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/Extra_Credit.dir/clean
+clean: CMakeFiles/lab17.dir/clean
 clean: CMakeFiles/lab10.dir/clean
 clean: CMakeFiles/lab11.dir/clean
 clean: CMakeFiles/lab12.dir/clean
@@ -112,6 +121,9 @@ clean: CMakeFiles/lab13.dir/clean
 clean: CMakeFiles/lab14.dir/clean
 clean: CMakeFiles/lab20.dir/clean
 clean: CMakeFiles/lab23.dir/clean
+clean: CMakeFiles/lab23a_naive.dir/clean
+clean: CMakeFiles/lab23a_no_deadlock_free.dir/clean
+clean: CMakeFiles/lab23c_starvation_free.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -145,6 +157,38 @@ CMakeFiles/Extra_Credit.dir/codegen:
 CMakeFiles/Extra_Credit.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/clean
 .PHONY : CMakeFiles/Extra_Credit.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/lab17.dir
+
+# All Build rule for target.
+CMakeFiles/lab17.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=27,28 "Built target lab17"
+.PHONY : CMakeFiles/lab17.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lab17.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab17.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
+.PHONY : CMakeFiles/lab17.dir/rule
+
+# Convenience name for target.
+lab17: CMakeFiles/lab17.dir/rule
+.PHONY : lab17
+
+# codegen rule for target.
+CMakeFiles/lab17.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=27,28 "Finished codegen for target lab17"
+.PHONY : CMakeFiles/lab17.dir/codegen
+
+# clean rule for target.
+CMakeFiles/lab17.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/clean
+.PHONY : CMakeFiles/lab17.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/lab10.dir
@@ -185,12 +229,12 @@ CMakeFiles/lab10.dir/clean:
 CMakeFiles/lab11.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=7,8 "Built target lab11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=7,8,9 "Built target lab11"
 .PHONY : CMakeFiles/lab11.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lab11.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab11.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
 .PHONY : CMakeFiles/lab11.dir/rule
@@ -202,7 +246,7 @@ lab11: CMakeFiles/lab11.dir/rule
 # codegen rule for target.
 CMakeFiles/lab11.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=7,8 "Finished codegen for target lab11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=7,8,9 "Finished codegen for target lab11"
 .PHONY : CMakeFiles/lab11.dir/codegen
 
 # clean rule for target.
@@ -217,12 +261,12 @@ CMakeFiles/lab11.dir/clean:
 CMakeFiles/lab12.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=9,10 "Built target lab12"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=10,11,12,13,14 "Built target lab12"
 .PHONY : CMakeFiles/lab12.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lab12.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab12.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
 .PHONY : CMakeFiles/lab12.dir/rule
@@ -234,7 +278,7 @@ lab12: CMakeFiles/lab12.dir/rule
 # codegen rule for target.
 CMakeFiles/lab12.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=9,10 "Finished codegen for target lab12"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=10,11,12,13,14 "Finished codegen for target lab12"
 .PHONY : CMakeFiles/lab12.dir/codegen
 
 # clean rule for target.
@@ -249,12 +293,12 @@ CMakeFiles/lab12.dir/clean:
 CMakeFiles/lab18.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=22,23 "Built target lab18"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=29,30,31 "Built target lab18"
 .PHONY : CMakeFiles/lab18.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lab18.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab18.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
 .PHONY : CMakeFiles/lab18.dir/rule
@@ -266,7 +310,7 @@ lab18: CMakeFiles/lab18.dir/rule
 # codegen rule for target.
 CMakeFiles/lab18.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=22,23 "Finished codegen for target lab18"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=29,30,31 "Finished codegen for target lab18"
 .PHONY : CMakeFiles/lab18.dir/codegen
 
 # clean rule for target.
@@ -281,12 +325,12 @@ CMakeFiles/lab18.dir/clean:
 CMakeFiles/lab22_deadlock.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=30,31,32 "Built target lab22_deadlock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=38,39 "Built target lab22_deadlock"
 .PHONY : CMakeFiles/lab22_deadlock.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lab22_deadlock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab22_deadlock.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
 .PHONY : CMakeFiles/lab22_deadlock.dir/rule
@@ -298,7 +342,7 @@ lab22_deadlock: CMakeFiles/lab22_deadlock.dir/rule
 # codegen rule for target.
 CMakeFiles/lab22_deadlock.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=30,31,32 "Finished codegen for target lab22_deadlock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=38,39 "Finished codegen for target lab22_deadlock"
 .PHONY : CMakeFiles/lab22_deadlock.dir/codegen
 
 # clean rule for target.
@@ -313,7 +357,7 @@ CMakeFiles/lab22_deadlock.dir/clean:
 CMakeFiles/lab21.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=27,28,29 "Built target lab21"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=35,36,37 "Built target lab21"
 .PHONY : CMakeFiles/lab21.dir/all
 
 # Build rule for subdir invocation for target.
@@ -330,7 +374,7 @@ lab21: CMakeFiles/lab21.dir/rule
 # codegen rule for target.
 CMakeFiles/lab21.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=27,28,29 "Finished codegen for target lab21"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=35,36,37 "Finished codegen for target lab21"
 .PHONY : CMakeFiles/lab21.dir/codegen
 
 # clean rule for target.
@@ -345,7 +389,7 @@ CMakeFiles/lab21.dir/clean:
 CMakeFiles/lab15.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=16,17,18 "Built target lab15"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=21,22,23 "Built target lab15"
 .PHONY : CMakeFiles/lab15.dir/all
 
 # Build rule for subdir invocation for target.
@@ -362,7 +406,7 @@ lab15: CMakeFiles/lab15.dir/rule
 # codegen rule for target.
 CMakeFiles/lab15.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=16,17,18 "Finished codegen for target lab15"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=21,22,23 "Finished codegen for target lab15"
 .PHONY : CMakeFiles/lab15.dir/codegen
 
 # clean rule for target.
@@ -377,7 +421,7 @@ CMakeFiles/lab15.dir/clean:
 CMakeFiles/lab16.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=19,20,21 "Built target lab16"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=24,25,26 "Built target lab16"
 .PHONY : CMakeFiles/lab16.dir/all
 
 # Build rule for subdir invocation for target.
@@ -394,7 +438,7 @@ lab16: CMakeFiles/lab16.dir/rule
 # codegen rule for target.
 CMakeFiles/lab16.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=19,20,21 "Finished codegen for target lab16"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=24,25,26 "Finished codegen for target lab16"
 .PHONY : CMakeFiles/lab16.dir/codegen
 
 # clean rule for target.
@@ -409,12 +453,12 @@ CMakeFiles/lab16.dir/clean:
 CMakeFiles/lab13.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=11,12 "Built target lab13"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=15,16,17 "Built target lab13"
 .PHONY : CMakeFiles/lab13.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lab13.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab13.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
 .PHONY : CMakeFiles/lab13.dir/rule
@@ -426,7 +470,7 @@ lab13: CMakeFiles/lab13.dir/rule
 # codegen rule for target.
 CMakeFiles/lab13.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=11,12 "Finished codegen for target lab13"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=15,16,17 "Finished codegen for target lab13"
 .PHONY : CMakeFiles/lab13.dir/codegen
 
 # clean rule for target.
@@ -441,7 +485,7 @@ CMakeFiles/lab13.dir/clean:
 CMakeFiles/lab14.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=13,14,15 "Built target lab14"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=18,19,20 "Built target lab14"
 .PHONY : CMakeFiles/lab14.dir/all
 
 # Build rule for subdir invocation for target.
@@ -458,7 +502,7 @@ lab14: CMakeFiles/lab14.dir/rule
 # codegen rule for target.
 CMakeFiles/lab14.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=13,14,15 "Finished codegen for target lab14"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=18,19,20 "Finished codegen for target lab14"
 .PHONY : CMakeFiles/lab14.dir/codegen
 
 # clean rule for target.
@@ -473,7 +517,7 @@ CMakeFiles/lab14.dir/clean:
 CMakeFiles/lab20.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=24,25,26 "Built target lab20"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=32,33,34 "Built target lab20"
 .PHONY : CMakeFiles/lab20.dir/all
 
 # Build rule for subdir invocation for target.
@@ -490,7 +534,7 @@ lab20: CMakeFiles/lab20.dir/rule
 # codegen rule for target.
 CMakeFiles/lab20.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=24,25,26 "Finished codegen for target lab20"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=32,33,34 "Finished codegen for target lab20"
 .PHONY : CMakeFiles/lab20.dir/codegen
 
 # clean rule for target.
@@ -505,7 +549,7 @@ CMakeFiles/lab20.dir/clean:
 CMakeFiles/lab23.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=33,34 "Built target lab23"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=40,41 "Built target lab23"
 .PHONY : CMakeFiles/lab23.dir/all
 
 # Build rule for subdir invocation for target.
@@ -522,13 +566,109 @@ lab23: CMakeFiles/lab23.dir/rule
 # codegen rule for target.
 CMakeFiles/lab23.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=33,34 "Finished codegen for target lab23"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=40,41 "Finished codegen for target lab23"
 .PHONY : CMakeFiles/lab23.dir/codegen
 
 # clean rule for target.
 CMakeFiles/lab23.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/clean
 .PHONY : CMakeFiles/lab23.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/lab23a_naive.dir
+
+# All Build rule for target.
+CMakeFiles/lab23a_naive.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=42,43 "Built target lab23a_naive"
+.PHONY : CMakeFiles/lab23a_naive.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lab23a_naive.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab23a_naive.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
+.PHONY : CMakeFiles/lab23a_naive.dir/rule
+
+# Convenience name for target.
+lab23a_naive: CMakeFiles/lab23a_naive.dir/rule
+.PHONY : lab23a_naive
+
+# codegen rule for target.
+CMakeFiles/lab23a_naive.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=42,43 "Finished codegen for target lab23a_naive"
+.PHONY : CMakeFiles/lab23a_naive.dir/codegen
+
+# clean rule for target.
+CMakeFiles/lab23a_naive.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/clean
+.PHONY : CMakeFiles/lab23a_naive.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/lab23a_no_deadlock_free.dir
+
+# All Build rule for target.
+CMakeFiles/lab23a_no_deadlock_free.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=44,45 "Built target lab23a_no_deadlock_free"
+.PHONY : CMakeFiles/lab23a_no_deadlock_free.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lab23a_no_deadlock_free.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab23a_no_deadlock_free.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
+.PHONY : CMakeFiles/lab23a_no_deadlock_free.dir/rule
+
+# Convenience name for target.
+lab23a_no_deadlock_free: CMakeFiles/lab23a_no_deadlock_free.dir/rule
+.PHONY : lab23a_no_deadlock_free
+
+# codegen rule for target.
+CMakeFiles/lab23a_no_deadlock_free.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=44,45 "Finished codegen for target lab23a_no_deadlock_free"
+.PHONY : CMakeFiles/lab23a_no_deadlock_free.dir/codegen
+
+# clean rule for target.
+CMakeFiles/lab23a_no_deadlock_free.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/clean
+.PHONY : CMakeFiles/lab23a_no_deadlock_free.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/lab23c_starvation_free.dir
+
+# All Build rule for target.
+CMakeFiles/lab23c_starvation_free.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=46,47 "Built target lab23c_starvation_free"
+.PHONY : CMakeFiles/lab23c_starvation_free.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lab23c_starvation_free.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab23c_starvation_free.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" 0
+.PHONY : CMakeFiles/lab23c_starvation_free.dir/rule
+
+# Convenience name for target.
+lab23c_starvation_free: CMakeFiles/lab23c_starvation_free.dir/rule
+.PHONY : lab23c_starvation_free
+
+# codegen rule for target.
+CMakeFiles/lab23c_starvation_free.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=46,47 "Finished codegen for target lab23c_starvation_free"
+.PHONY : CMakeFiles/lab23c_starvation_free.dir/codegen
+
+# clean rule for target.
+CMakeFiles/lab23c_starvation_free.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/clean
+.PHONY : CMakeFiles/lab23c_starvation_free.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

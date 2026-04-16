@@ -8,9 +8,17 @@ set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 find_package(Threads REQUIRED)
 
-add_executable(Extra_Credit main.cpp)
+add_executable(Extra_Credit
+    "Lab_17/Lab17_File_Hex_Dump.cpp"
+)
 target_include_directories(Extra_Credit PRIVATE ${CURSES_INCLUDE_DIR})
 target_link_libraries(Extra_Credit PRIVATE ${CURSES_LIBRARIES})
+
+add_executable(lab17
+    "Lab_17/Lab17_File_Hex_Dump.cpp"
+)
+target_include_directories(lab17 PRIVATE ${CURSES_INCLUDE_DIR})
+target_link_libraries(lab17 PRIVATE ${CURSES_LIBRARIES})
 
 add_executable(lab10
     "Lab_10/lab10.cpp"
@@ -23,38 +31,48 @@ target_link_libraries(lab10 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab11
     "Lab_11/lab11.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
-target_include_directories(lab11 PRIVATE ${CURSES_INCLUDE_DIR})
+target_include_directories(lab11 PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
+    ${CURSES_INCLUDE_DIR}
+)
 target_link_libraries(lab11 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab12
     "Lab_12/lab12.cpp"
+    "Lab_12/lab12_Scheduler.cpp"
+    "Lab_12/lab12_Semaphore.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
-target_include_directories(lab12 PRIVATE ${CURSES_INCLUDE_DIR})
+target_include_directories(lab12 PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_12"
+    ${CURSES_INCLUDE_DIR}
+)
 target_link_libraries(lab12 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab18
-    "Lab_18/lab18.cpp"
+    "Lab_18/Lab18_System_Time.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
-target_include_directories(lab18 PRIVATE ${CURSES_INCLUDE_DIR})
+target_include_directories(lab18 PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
+    ${CURSES_INCLUDE_DIR}
+)
 target_link_libraries(lab18 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab22_deadlock
     "Lab_22/lab22_Deadlock.cpp"
-    "Lab_10/lab10_dashboard.cpp"
 )
 
-target_include_directories(lab22_deadlock PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
-    ${CURSES_INCLUDE_DIR}
-)
-target_link_libraries(lab22_deadlock PRIVATE Threads::Threads ${CURSES_LIBRARIES})
+target_link_libraries(lab22_deadlock PRIVATE Threads::Threads)
 
 add_executable(lab21
-    "Lab_21/lab21.cpp"
+    "Lab_21/lab21_Message_Passing.cpp"
     "Lab_10/lab10_dashboard.cpp"
 )
 
@@ -84,14 +102,18 @@ target_include_directories(lab16 PRIVATE
 target_link_libraries(lab16 PRIVATE Threads::Threads ${CURSES_LIBRARIES})
 
 add_executable(lab13
-    "Lab_13/lab13.cpp"
+    "Lab_13/Lab13_Sequential_IO.cpp"
+    "Lab_10/lab10_dashboard.cpp"
 )
 
-target_include_directories(lab13 PRIVATE ${CURSES_INCLUDE_DIR})
+target_include_directories(lab13 PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/Lab_10"
+    ${CURSES_INCLUDE_DIR}
+)
 target_link_libraries(lab13 PRIVATE ${CURSES_LIBRARIES})
 
 add_executable(lab14
-    "Lab_14/lab14.cpp"
+    "Lab_14/Lab14_Random_Access_IO.cpp"
     "Lab_10/lab10_dashboard.cpp"
 )
 
@@ -117,3 +139,21 @@ add_executable(lab23
 )
 
 target_link_libraries(lab23 PRIVATE Threads::Threads)
+
+add_executable(lab23a_naive
+    "Lab_23/lab23a_Dining_Philosopher_Naive.cpp"
+)
+
+target_link_libraries(lab23a_naive PRIVATE Threads::Threads)
+
+add_executable(lab23a_no_deadlock_free
+    "Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp"
+)
+
+target_link_libraries(lab23a_no_deadlock_free PRIVATE Threads::Threads)
+
+add_executable(lab23c_starvation_free
+    "Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp"
+)
+
+target_link_libraries(lab23c_starvation_free PRIVATE Threads::Threads)

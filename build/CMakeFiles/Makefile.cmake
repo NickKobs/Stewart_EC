@@ -67,6 +67,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Extra_Credit.dir/DependInfo.cmake"
+  "CMakeFiles/lab17.dir/DependInfo.cmake"
   "CMakeFiles/lab10.dir/DependInfo.cmake"
   "CMakeFiles/lab11.dir/DependInfo.cmake"
   "CMakeFiles/lab12.dir/DependInfo.cmake"
@@ -79,4 +80,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/lab14.dir/DependInfo.cmake"
   "CMakeFiles/lab20.dir/DependInfo.cmake"
   "CMakeFiles/lab23.dir/DependInfo.cmake"
+  "CMakeFiles/lab23a_naive.dir/DependInfo.cmake"
+  "CMakeFiles/lab23a_no_deadlock_free.dir/DependInfo.cmake"
+  "CMakeFiles/lab23c_starvation_free.dir/DependInfo.cmake"
   )

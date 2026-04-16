@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <cstdint>
 #include <cstdlib>
@@ -15,7 +16,7 @@
 #include <unistd.h>
 
 namespace {
-constexpr std::size_t kBytesPerRow = 16;
+constexpr std::size_t kBytesPerLine = 16;
 constexpr int kHeaderHeight = 5;
 constexpr int kFooterHeight = 2;
 constexpr int kMinTerminalRows = 10;
@@ -76,7 +77,7 @@ private:
 };
 
 std::size_t calculateRowCount(const std::vector<std::uint8_t>& bytes) {
-    return (bytes.size() + kBytesPerRow - 1) / kBytesPerRow;
+    return (bytes.size() + kBytesPerLine - 1) / kBytesPerLine;
 }
 
 int offsetWidth(const std::vector<std::uint8_t>& bytes) {
@@ -104,14 +105,14 @@ std::string ellipsizeMiddle(const std::string& text, int maxWidth) {
 }
 
 std::string formatHexLine(const std::vector<std::uint8_t>& bytes, std::size_t rowIndex) {
-    const std::size_t start = rowIndex * kBytesPerRow;
+    const std::size_t start = rowIndex * kBytesPerLine;
     std::ostringstream line;
     line << std::uppercase << std::hex << std::setfill('0') << std::setw(offsetWidth(bytes)) << start << "  ";
 
     std::string ascii;
-    ascii.reserve(kBytesPerRow);
+    ascii.reserve(kBytesPerLine);
 
-    for (std::size_t i = 0; i < kBytesPerRow; ++i) {
+    for (std::size_t i = 0; i < kBytesPerLine; ++i) {
         const std::size_t index = start + i;
         if (index < bytes.size()) {
             const unsigned int value = bytes[index];
@@ -137,10 +138,25 @@ std::vector<std::uint8_t> loadFile(const std::string& path) {
         throw std::runtime_error("unable to open file: " + path);
     }
 
-    return {
-        std::istreambuf_iterator<char>(input),
-        std::istreambuf_iterator<char>()
-    };
+    std::vector<std::uint8_t> bytes;
+    std::array<unsigned char, kBytesPerLine> buffer{};
+
+    // Read in fixed 16-byte chunks so the raw dump matches the lab specification.
+    while (input.good()) {
+        input.read(reinterpret_cast<char*>(buffer.data()), static_cast<std::streamsize>(buffer.size()));
+        const std::streamsize bytesRead = input.gcount();
+        if (bytesRead <= 0) {
+            break;
+        }
+
+        bytes.insert(
+            bytes.end(),
+            buffer.begin(),
+            buffer.begin() + static_cast<std::ptrdiff_t>(bytesRead)
+        );
+    }
+
+    return bytes;
 }
 
 Options parseArguments(int argc, char* argv[]) {
@@ -291,7 +307,7 @@ void renderNcursesViewer(const std::vector<std::uint8_t>& bytes, const std::stri
         if (totalRows != 0) {
             footer << "  |  Byte offset 0x"
                    << std::uppercase << std::hex << std::setfill('0') << std::setw(offsetWidth(bytes))
-                   << (cursorRow * kBytesPerRow);
+                   << (cursorRow * kBytesPerLine);
         }
 
         const std::string footerLine = footer.str();
@@ -348,7 +364,7 @@ int main(int argc, char* argv[]) {
     try {
         const Options options = parseArguments(argc, argv);
         if (options.showHelp) {
-            printUsage(argc > 0 ? argv[0] : "Extra_Credit");
+            printUsage(argc > 0 ? argv[0] : "lab17");
             return 0;
         }
 

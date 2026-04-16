@@ -1,0 +1,2 @@
+Operating systems treat files as structured sequences of bytes.
+Lab 17 verifies text and executable hex dumps with ncurses support.

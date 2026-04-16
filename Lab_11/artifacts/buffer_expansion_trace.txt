@@ -1,0 +1,151 @@
+[dashboard] transcript mode active. Run with --ncurses in a real terminal for windowed output.
+[system] Launching the bounded-buffer producer/consumer model.
+[system] BUFFER_SIZE=10, PRODUCE_COUNT=10, producer_sleep=0.10s, consumer_sleep=0.85s
+[system] Condition-variable waits are guarded with while loops for spurious wakeup safety.
+[queue] Initial buffer state | count=0/10 in=0 out=0 | items=[]
+[system] Parent waits for producer and consumer to finish.
+[task 0] Online and ready to produce.
+[task 0] Produced item 0 into slot 0.
+[task 1] Online and ready to consume.
+[queue] Producer inserted item 0 | count=1/10 in=1 out=0 | items=[0]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 1] Consumed item 0 from slot 0.
+[queue] Consumer removed item 0 | count=0/10 in=1 out=1 | items=[]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] I/O interval finished.
+[task 0] Produced item 1 into slot 1.
+[queue] Producer inserted item 1 | count=1/10 in=2 out=1 | items=[1]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 2 into slot 2.
+[queue] Producer inserted item 2 | count=2/10 in=3 out=1 | items=[1, 2]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 3 into slot 3.
+[queue] Producer inserted item 3 | count=3/10 in=4 out=1 | items=[1, 2, 3]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 4 into slot 4.
+[queue] Producer inserted item 4 | count=4/10 in=5 out=1 | items=[1, 2, 3, 4]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 5 into slot 5.
+[queue] Producer inserted item 5 | count=5/10 in=6 out=1 | items=[1, 2, 3, 4, 5]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 6 into slot 6.
+[queue] Producer inserted item 6 | count=6/10 in=7 out=1 | items=[1, 2, 3, 4, 5, 6]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 7 into slot 7.
+[queue] Producer inserted item 7 | count=7/10 in=8 out=1 | items=[1, 2, 3, 4, 5, 6, 7]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] Produced item 8 into slot 8.
+[queue] Producer inserted item 8 | count=8/10 in=9 out=1 | items=[1, 2, 3, 4, 5, 6, 7, 8]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 1 from slot 1.
+[queue] Consumer removed item 1 | count=7/10 in=9 out=2 | items=[2, 3, 4, 5, 6, 7, 8]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 0] I/O interval finished.
+[task 0] Produced item 9 into slot 9.
+[queue] Producer inserted item 9 | count=8/10 in=0 out=2 | items=[2, 3, 4, 5, 6, 7, 8, 9]
+[task 0] To task 1: not_empty signaled.
+[task 1] From task 0: not_empty signaled.
+[system] task 0 -> task 1 | not_empty signaled.
+[task 0] Simulating I/O for 0.10s.
+[task 0] I/O interval finished.
+[task 0] All items produced.
+[task 1] I/O interval finished.
+[task 1] Consumed item 2 from slot 2.
+[queue] Consumer removed item 2 | count=7/10 in=0 out=3 | items=[3, 4, 5, 6, 7, 8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 3 from slot 3.
+[queue] Consumer removed item 3 | count=6/10 in=0 out=4 | items=[4, 5, 6, 7, 8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 4 from slot 4.
+[queue] Consumer removed item 4 | count=5/10 in=0 out=5 | items=[5, 6, 7, 8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 5 from slot 5.
+[queue] Consumer removed item 5 | count=4/10 in=0 out=6 | items=[6, 7, 8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 6 from slot 6.
+[queue] Consumer removed item 6 | count=3/10 in=0 out=7 | items=[7, 8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 7 from slot 7.
+[queue] Consumer removed item 7 | count=2/10 in=0 out=8 | items=[8, 9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 8 from slot 8.
+[queue] Consumer removed item 8 | count=1/10 in=0 out=9 | items=[9]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] Consumed item 9 from slot 9.
+[queue] Consumer removed item 9 | count=0/10 in=0 out=0 | items=[]
+[task 1] To task 0: not_full signaled.
+[task 0] From task 1: not_full signaled.
+[system] task 1 -> task 0 | not_full signaled.
+[task 1] Simulating I/O for 0.85s.
+[task 1] I/O interval finished.
+[task 1] All items consumed.
+[system] Lab 11 run complete.

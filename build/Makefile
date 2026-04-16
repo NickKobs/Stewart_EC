@@ -130,6 +130,19 @@ Extra_Credit/fast:
 .PHONY : Extra_Credit/fast
 
 #=============================================================================
+# Target rules for targets named lab17
+
+# Build rule for target.
+lab17: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab17
+.PHONY : lab17
+
+# fast build rule for target.
+lab17/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/build
+.PHONY : lab17/fast
+
+#=============================================================================
 # Target rules for targets named lab10
 
 # Build rule for target.
@@ -285,383 +298,554 @@ lab23/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/build
 .PHONY : lab23/fast
 
-Phase_10/lab10.o: Phase_10/lab10.cpp.o
-.PHONY : Phase_10/lab10.o
+#=============================================================================
+# Target rules for targets named lab23a_naive
+
+# Build rule for target.
+lab23a_naive: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab23a_naive
+.PHONY : lab23a_naive
+
+# fast build rule for target.
+lab23a_naive/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/build
+.PHONY : lab23a_naive/fast
+
+#=============================================================================
+# Target rules for targets named lab23a_no_deadlock_free
+
+# Build rule for target.
+lab23a_no_deadlock_free: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab23a_no_deadlock_free
+.PHONY : lab23a_no_deadlock_free
+
+# fast build rule for target.
+lab23a_no_deadlock_free/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/build
+.PHONY : lab23a_no_deadlock_free/fast
+
+#=============================================================================
+# Target rules for targets named lab23c_starvation_free
+
+# Build rule for target.
+lab23c_starvation_free: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab23c_starvation_free
+.PHONY : lab23c_starvation_free
+
+# fast build rule for target.
+lab23c_starvation_free/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/build
+.PHONY : lab23c_starvation_free/fast
+
+Lab_10/lab10.o: Lab_10/lab10.cpp.o
+.PHONY : Lab_10/lab10.o
 
 # target to build an object file
-Phase_10/lab10.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o
-.PHONY : Phase_10/lab10.cpp.o
+Lab_10/lab10.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o
+.PHONY : Lab_10/lab10.cpp.o
 
-Phase_10/lab10.i: Phase_10/lab10.cpp.i
-.PHONY : Phase_10/lab10.i
+Lab_10/lab10.i: Lab_10/lab10.cpp.i
+.PHONY : Lab_10/lab10.i
 
 # target to preprocess a source file
-Phase_10/lab10.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10.cpp.i
-.PHONY : Phase_10/lab10.cpp.i
+Lab_10/lab10.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10.cpp.i
+.PHONY : Lab_10/lab10.cpp.i
 
-Phase_10/lab10.s: Phase_10/lab10.cpp.s
-.PHONY : Phase_10/lab10.s
+Lab_10/lab10.s: Lab_10/lab10.cpp.s
+.PHONY : Lab_10/lab10.s
 
 # target to generate assembly for a file
-Phase_10/lab10.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10.cpp.s
-.PHONY : Phase_10/lab10.cpp.s
+Lab_10/lab10.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10.cpp.s
+.PHONY : Lab_10/lab10.cpp.s
 
-Phase_10/lab10_dashboard.o: Phase_10/lab10_dashboard.cpp.o
-.PHONY : Phase_10/lab10_dashboard.o
+Lab_10/lab10_dashboard.o: Lab_10/lab10_dashboard.cpp.o
+.PHONY : Lab_10/lab10_dashboard.o
 
 # target to build an object file
-Phase_10/lab10_dashboard.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_10/lab10_dashboard.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_10/lab10_dashboard.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_10/lab10_dashboard.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_10/lab10_dashboard.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_10/lab10_dashboard.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_10/lab10_dashboard.cpp.o
-.PHONY : Phase_10/lab10_dashboard.cpp.o
+Lab_10/lab10_dashboard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Lab_10/lab10_dashboard.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Lab_10/lab10_dashboard.cpp.o
+.PHONY : Lab_10/lab10_dashboard.cpp.o
 
-Phase_10/lab10_dashboard.i: Phase_10/lab10_dashboard.cpp.i
-.PHONY : Phase_10/lab10_dashboard.i
+Lab_10/lab10_dashboard.i: Lab_10/lab10_dashboard.cpp.i
+.PHONY : Lab_10/lab10_dashboard.i
 
 # target to preprocess a source file
-Phase_10/lab10_dashboard.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_10/lab10_dashboard.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_10/lab10_dashboard.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_10/lab10_dashboard.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_10/lab10_dashboard.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_10/lab10_dashboard.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_10/lab10_dashboard.cpp.i
-.PHONY : Phase_10/lab10_dashboard.cpp.i
+Lab_10/lab10_dashboard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Lab_10/lab10_dashboard.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Lab_10/lab10_dashboard.cpp.i
+.PHONY : Lab_10/lab10_dashboard.cpp.i
 
-Phase_10/lab10_dashboard.s: Phase_10/lab10_dashboard.cpp.s
-.PHONY : Phase_10/lab10_dashboard.s
+Lab_10/lab10_dashboard.s: Lab_10/lab10_dashboard.cpp.s
+.PHONY : Lab_10/lab10_dashboard.s
 
 # target to generate assembly for a file
-Phase_10/lab10_dashboard.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_10/lab10_dashboard.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_10/lab10_dashboard.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_10/lab10_dashboard.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_10/lab10_dashboard.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_10/lab10_dashboard.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_10/lab10_dashboard.cpp.s
-.PHONY : Phase_10/lab10_dashboard.cpp.s
+Lab_10/lab10_dashboard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Lab_10/lab10_dashboard.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Lab_10/lab10_dashboard.cpp.s
+.PHONY : Lab_10/lab10_dashboard.cpp.s
 
-Phase_10/lab10_semaphore.o: Phase_10/lab10_semaphore.cpp.o
-.PHONY : Phase_10/lab10_semaphore.o
+Lab_10/lab10_semaphore.o: Lab_10/lab10_semaphore.cpp.o
+.PHONY : Lab_10/lab10_semaphore.o
 
 # target to build an object file
-Phase_10/lab10_semaphore.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o
-.PHONY : Phase_10/lab10_semaphore.cpp.o
+Lab_10/lab10_semaphore.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o
+.PHONY : Lab_10/lab10_semaphore.cpp.o
 
-Phase_10/lab10_semaphore.i: Phase_10/lab10_semaphore.cpp.i
-.PHONY : Phase_10/lab10_semaphore.i
+Lab_10/lab10_semaphore.i: Lab_10/lab10_semaphore.cpp.i
+.PHONY : Lab_10/lab10_semaphore.i
 
 # target to preprocess a source file
-Phase_10/lab10_semaphore.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.i
-.PHONY : Phase_10/lab10_semaphore.cpp.i
+Lab_10/lab10_semaphore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.i
+.PHONY : Lab_10/lab10_semaphore.cpp.i
 
-Phase_10/lab10_semaphore.s: Phase_10/lab10_semaphore.cpp.s
-.PHONY : Phase_10/lab10_semaphore.s
+Lab_10/lab10_semaphore.s: Lab_10/lab10_semaphore.cpp.s
+.PHONY : Lab_10/lab10_semaphore.s
 
 # target to generate assembly for a file
-Phase_10/lab10_semaphore.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.s
-.PHONY : Phase_10/lab10_semaphore.cpp.s
+Lab_10/lab10_semaphore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab10.dir/build.make CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.s
+.PHONY : Lab_10/lab10_semaphore.cpp.s
 
-Phase_11/lab11.o: Phase_11/lab11.cpp.o
-.PHONY : Phase_11/lab11.o
+Lab_11/lab11.o: Lab_11/lab11.cpp.o
+.PHONY : Lab_11/lab11.o
 
 # target to build an object file
-Phase_11/lab11.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Phase_11/lab11.cpp.o
-.PHONY : Phase_11/lab11.cpp.o
+Lab_11/lab11.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Lab_11/lab11.cpp.o
+.PHONY : Lab_11/lab11.cpp.o
 
-Phase_11/lab11.i: Phase_11/lab11.cpp.i
-.PHONY : Phase_11/lab11.i
+Lab_11/lab11.i: Lab_11/lab11.cpp.i
+.PHONY : Lab_11/lab11.i
 
 # target to preprocess a source file
-Phase_11/lab11.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Phase_11/lab11.cpp.i
-.PHONY : Phase_11/lab11.cpp.i
+Lab_11/lab11.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Lab_11/lab11.cpp.i
+.PHONY : Lab_11/lab11.cpp.i
 
-Phase_11/lab11.s: Phase_11/lab11.cpp.s
-.PHONY : Phase_11/lab11.s
+Lab_11/lab11.s: Lab_11/lab11.cpp.s
+.PHONY : Lab_11/lab11.s
 
 # target to generate assembly for a file
-Phase_11/lab11.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Phase_11/lab11.cpp.s
-.PHONY : Phase_11/lab11.cpp.s
+Lab_11/lab11.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab11.dir/build.make CMakeFiles/lab11.dir/Lab_11/lab11.cpp.s
+.PHONY : Lab_11/lab11.cpp.s
 
-Phase_12/lab12.o: Phase_12/lab12.cpp.o
-.PHONY : Phase_12/lab12.o
+Lab_12/lab12.o: Lab_12/lab12.cpp.o
+.PHONY : Lab_12/lab12.o
 
 # target to build an object file
-Phase_12/lab12.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12.cpp.o
-.PHONY : Phase_12/lab12.cpp.o
+Lab_12/lab12.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12.cpp.o
+.PHONY : Lab_12/lab12.cpp.o
 
-Phase_12/lab12.i: Phase_12/lab12.cpp.i
-.PHONY : Phase_12/lab12.i
+Lab_12/lab12.i: Lab_12/lab12.cpp.i
+.PHONY : Lab_12/lab12.i
 
 # target to preprocess a source file
-Phase_12/lab12.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12.cpp.i
-.PHONY : Phase_12/lab12.cpp.i
+Lab_12/lab12.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12.cpp.i
+.PHONY : Lab_12/lab12.cpp.i
 
-Phase_12/lab12.s: Phase_12/lab12.cpp.s
-.PHONY : Phase_12/lab12.s
+Lab_12/lab12.s: Lab_12/lab12.cpp.s
+.PHONY : Lab_12/lab12.s
 
 # target to generate assembly for a file
-Phase_12/lab12.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Phase_12/lab12.cpp.s
-.PHONY : Phase_12/lab12.cpp.s
+Lab_12/lab12.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12.cpp.s
+.PHONY : Lab_12/lab12.cpp.s
 
-Phase_13/lab13.o: Phase_13/lab13.cpp.o
-.PHONY : Phase_13/lab13.o
+Lab_12/lab12_Scheduler.o: Lab_12/lab12_Scheduler.cpp.o
+.PHONY : Lab_12/lab12_Scheduler.o
 
 # target to build an object file
-Phase_13/lab13.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Phase_13/lab13.cpp.o
-.PHONY : Phase_13/lab13.cpp.o
+Lab_12/lab12_Scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12_Scheduler.cpp.o
+.PHONY : Lab_12/lab12_Scheduler.cpp.o
 
-Phase_13/lab13.i: Phase_13/lab13.cpp.i
-.PHONY : Phase_13/lab13.i
+Lab_12/lab12_Scheduler.i: Lab_12/lab12_Scheduler.cpp.i
+.PHONY : Lab_12/lab12_Scheduler.i
 
 # target to preprocess a source file
-Phase_13/lab13.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Phase_13/lab13.cpp.i
-.PHONY : Phase_13/lab13.cpp.i
+Lab_12/lab12_Scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12_Scheduler.cpp.i
+.PHONY : Lab_12/lab12_Scheduler.cpp.i
 
-Phase_13/lab13.s: Phase_13/lab13.cpp.s
-.PHONY : Phase_13/lab13.s
+Lab_12/lab12_Scheduler.s: Lab_12/lab12_Scheduler.cpp.s
+.PHONY : Lab_12/lab12_Scheduler.s
 
 # target to generate assembly for a file
-Phase_13/lab13.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Phase_13/lab13.cpp.s
-.PHONY : Phase_13/lab13.cpp.s
+Lab_12/lab12_Scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12_Scheduler.cpp.s
+.PHONY : Lab_12/lab12_Scheduler.cpp.s
 
-Phase_14/lab14.o: Phase_14/lab14.cpp.o
-.PHONY : Phase_14/lab14.o
+Lab_12/lab12_Semaphore.o: Lab_12/lab12_Semaphore.cpp.o
+.PHONY : Lab_12/lab12_Semaphore.o
 
 # target to build an object file
-Phase_14/lab14.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_14/lab14.cpp.o
-.PHONY : Phase_14/lab14.cpp.o
+Lab_12/lab12_Semaphore.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12_Semaphore.cpp.o
+.PHONY : Lab_12/lab12_Semaphore.cpp.o
 
-Phase_14/lab14.i: Phase_14/lab14.cpp.i
-.PHONY : Phase_14/lab14.i
+Lab_12/lab12_Semaphore.i: Lab_12/lab12_Semaphore.cpp.i
+.PHONY : Lab_12/lab12_Semaphore.i
 
 # target to preprocess a source file
-Phase_14/lab14.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_14/lab14.cpp.i
-.PHONY : Phase_14/lab14.cpp.i
+Lab_12/lab12_Semaphore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12_Semaphore.cpp.i
+.PHONY : Lab_12/lab12_Semaphore.cpp.i
 
-Phase_14/lab14.s: Phase_14/lab14.cpp.s
-.PHONY : Phase_14/lab14.s
+Lab_12/lab12_Semaphore.s: Lab_12/lab12_Semaphore.cpp.s
+.PHONY : Lab_12/lab12_Semaphore.s
 
 # target to generate assembly for a file
-Phase_14/lab14.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Phase_14/lab14.cpp.s
-.PHONY : Phase_14/lab14.cpp.s
+Lab_12/lab12_Semaphore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab12.dir/build.make CMakeFiles/lab12.dir/Lab_12/lab12_Semaphore.cpp.s
+.PHONY : Lab_12/lab12_Semaphore.cpp.s
 
-Phase_15/lab15.o: Phase_15/lab15.cpp.o
-.PHONY : Phase_15/lab15.o
+Lab_13/Lab13_Sequential_IO.o: Lab_13/Lab13_Sequential_IO.cpp.o
+.PHONY : Lab_13/Lab13_Sequential_IO.o
 
 # target to build an object file
-Phase_15/lab15.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_15/lab15.cpp.o
-.PHONY : Phase_15/lab15.cpp.o
+Lab_13/Lab13_Sequential_IO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Lab_13/Lab13_Sequential_IO.cpp.o
+.PHONY : Lab_13/Lab13_Sequential_IO.cpp.o
 
-Phase_15/lab15.i: Phase_15/lab15.cpp.i
-.PHONY : Phase_15/lab15.i
+Lab_13/Lab13_Sequential_IO.i: Lab_13/Lab13_Sequential_IO.cpp.i
+.PHONY : Lab_13/Lab13_Sequential_IO.i
 
 # target to preprocess a source file
-Phase_15/lab15.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_15/lab15.cpp.i
-.PHONY : Phase_15/lab15.cpp.i
+Lab_13/Lab13_Sequential_IO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Lab_13/Lab13_Sequential_IO.cpp.i
+.PHONY : Lab_13/Lab13_Sequential_IO.cpp.i
 
-Phase_15/lab15.s: Phase_15/lab15.cpp.s
-.PHONY : Phase_15/lab15.s
+Lab_13/Lab13_Sequential_IO.s: Lab_13/Lab13_Sequential_IO.cpp.s
+.PHONY : Lab_13/Lab13_Sequential_IO.s
 
 # target to generate assembly for a file
-Phase_15/lab15.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Phase_15/lab15.cpp.s
-.PHONY : Phase_15/lab15.cpp.s
+Lab_13/Lab13_Sequential_IO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab13.dir/build.make CMakeFiles/lab13.dir/Lab_13/Lab13_Sequential_IO.cpp.s
+.PHONY : Lab_13/Lab13_Sequential_IO.cpp.s
 
-Phase_16/lab16.o: Phase_16/lab16.cpp.o
-.PHONY : Phase_16/lab16.o
+Lab_14/Lab14_Random_Access_IO.o: Lab_14/Lab14_Random_Access_IO.cpp.o
+.PHONY : Lab_14/Lab14_Random_Access_IO.o
 
 # target to build an object file
-Phase_16/lab16.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_16/lab16.cpp.o
-.PHONY : Phase_16/lab16.cpp.o
+Lab_14/Lab14_Random_Access_IO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Lab_14/Lab14_Random_Access_IO.cpp.o
+.PHONY : Lab_14/Lab14_Random_Access_IO.cpp.o
 
-Phase_16/lab16.i: Phase_16/lab16.cpp.i
-.PHONY : Phase_16/lab16.i
+Lab_14/Lab14_Random_Access_IO.i: Lab_14/Lab14_Random_Access_IO.cpp.i
+.PHONY : Lab_14/Lab14_Random_Access_IO.i
 
 # target to preprocess a source file
-Phase_16/lab16.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_16/lab16.cpp.i
-.PHONY : Phase_16/lab16.cpp.i
+Lab_14/Lab14_Random_Access_IO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Lab_14/Lab14_Random_Access_IO.cpp.i
+.PHONY : Lab_14/Lab14_Random_Access_IO.cpp.i
 
-Phase_16/lab16.s: Phase_16/lab16.cpp.s
-.PHONY : Phase_16/lab16.s
+Lab_14/Lab14_Random_Access_IO.s: Lab_14/Lab14_Random_Access_IO.cpp.s
+.PHONY : Lab_14/Lab14_Random_Access_IO.s
 
 # target to generate assembly for a file
-Phase_16/lab16.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Phase_16/lab16.cpp.s
-.PHONY : Phase_16/lab16.cpp.s
+Lab_14/Lab14_Random_Access_IO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab14.dir/build.make CMakeFiles/lab14.dir/Lab_14/Lab14_Random_Access_IO.cpp.s
+.PHONY : Lab_14/Lab14_Random_Access_IO.cpp.s
 
-Phase_18/lab18.o: Phase_18/lab18.cpp.o
-.PHONY : Phase_18/lab18.o
+Lab_15/lab15.o: Lab_15/lab15.cpp.o
+.PHONY : Lab_15/lab15.o
 
 # target to build an object file
-Phase_18/lab18.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Phase_18/lab18.cpp.o
-.PHONY : Phase_18/lab18.cpp.o
+Lab_15/lab15.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Lab_15/lab15.cpp.o
+.PHONY : Lab_15/lab15.cpp.o
 
-Phase_18/lab18.i: Phase_18/lab18.cpp.i
-.PHONY : Phase_18/lab18.i
+Lab_15/lab15.i: Lab_15/lab15.cpp.i
+.PHONY : Lab_15/lab15.i
 
 # target to preprocess a source file
-Phase_18/lab18.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Phase_18/lab18.cpp.i
-.PHONY : Phase_18/lab18.cpp.i
+Lab_15/lab15.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Lab_15/lab15.cpp.i
+.PHONY : Lab_15/lab15.cpp.i
 
-Phase_18/lab18.s: Phase_18/lab18.cpp.s
-.PHONY : Phase_18/lab18.s
+Lab_15/lab15.s: Lab_15/lab15.cpp.s
+.PHONY : Lab_15/lab15.s
 
 # target to generate assembly for a file
-Phase_18/lab18.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Phase_18/lab18.cpp.s
-.PHONY : Phase_18/lab18.cpp.s
+Lab_15/lab15.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab15.dir/build.make CMakeFiles/lab15.dir/Lab_15/lab15.cpp.s
+.PHONY : Lab_15/lab15.cpp.s
 
-Phase_20/lab20.o: Phase_20/lab20.cpp.o
-.PHONY : Phase_20/lab20.o
+Lab_16/lab16.o: Lab_16/lab16.cpp.o
+.PHONY : Lab_16/lab16.o
 
 # target to build an object file
-Phase_20/lab20.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_20/lab20.cpp.o
-.PHONY : Phase_20/lab20.cpp.o
+Lab_16/lab16.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Lab_16/lab16.cpp.o
+.PHONY : Lab_16/lab16.cpp.o
 
-Phase_20/lab20.i: Phase_20/lab20.cpp.i
-.PHONY : Phase_20/lab20.i
+Lab_16/lab16.i: Lab_16/lab16.cpp.i
+.PHONY : Lab_16/lab16.i
 
 # target to preprocess a source file
-Phase_20/lab20.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_20/lab20.cpp.i
-.PHONY : Phase_20/lab20.cpp.i
+Lab_16/lab16.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Lab_16/lab16.cpp.i
+.PHONY : Lab_16/lab16.cpp.i
 
-Phase_20/lab20.s: Phase_20/lab20.cpp.s
-.PHONY : Phase_20/lab20.s
+Lab_16/lab16.s: Lab_16/lab16.cpp.s
+.PHONY : Lab_16/lab16.s
 
 # target to generate assembly for a file
-Phase_20/lab20.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Phase_20/lab20.cpp.s
-.PHONY : Phase_20/lab20.cpp.s
+Lab_16/lab16.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab16.dir/build.make CMakeFiles/lab16.dir/Lab_16/lab16.cpp.s
+.PHONY : Lab_16/lab16.cpp.s
 
-Phase_21/lab21.o: Phase_21/lab21.cpp.o
-.PHONY : Phase_21/lab21.o
+Lab_17/Lab17_File_Hex_Dump.o: Lab_17/Lab17_File_Hex_Dump.cpp.o
+.PHONY : Lab_17/Lab17_File_Hex_Dump.o
 
 # target to build an object file
-Phase_21/lab21.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_21/lab21.cpp.o
-.PHONY : Phase_21/lab21.cpp.o
+Lab_17/Lab17_File_Hex_Dump.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/Lab_17/Lab17_File_Hex_Dump.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/Lab_17/Lab17_File_Hex_Dump.cpp.o
+.PHONY : Lab_17/Lab17_File_Hex_Dump.cpp.o
 
-Phase_21/lab21.i: Phase_21/lab21.cpp.i
-.PHONY : Phase_21/lab21.i
+Lab_17/Lab17_File_Hex_Dump.i: Lab_17/Lab17_File_Hex_Dump.cpp.i
+.PHONY : Lab_17/Lab17_File_Hex_Dump.i
 
 # target to preprocess a source file
-Phase_21/lab21.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_21/lab21.cpp.i
-.PHONY : Phase_21/lab21.cpp.i
+Lab_17/Lab17_File_Hex_Dump.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/Lab_17/Lab17_File_Hex_Dump.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/Lab_17/Lab17_File_Hex_Dump.cpp.i
+.PHONY : Lab_17/Lab17_File_Hex_Dump.cpp.i
 
-Phase_21/lab21.s: Phase_21/lab21.cpp.s
-.PHONY : Phase_21/lab21.s
+Lab_17/Lab17_File_Hex_Dump.s: Lab_17/Lab17_File_Hex_Dump.cpp.s
+.PHONY : Lab_17/Lab17_File_Hex_Dump.s
 
 # target to generate assembly for a file
-Phase_21/lab21.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Phase_21/lab21.cpp.s
-.PHONY : Phase_21/lab21.cpp.s
+Lab_17/Lab17_File_Hex_Dump.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/Lab_17/Lab17_File_Hex_Dump.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab17.dir/build.make CMakeFiles/lab17.dir/Lab_17/Lab17_File_Hex_Dump.cpp.s
+.PHONY : Lab_17/Lab17_File_Hex_Dump.cpp.s
 
-Phase_22/lab22_Deadlock.o: Phase_22/lab22_Deadlock.cpp.o
-.PHONY : Phase_22/lab22_Deadlock.o
+Lab_18/Lab18_System_Time.o: Lab_18/Lab18_System_Time.cpp.o
+.PHONY : Lab_18/Lab18_System_Time.o
 
 # target to build an object file
-Phase_22/lab22_Deadlock.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_22/lab22_Deadlock.cpp.o
-.PHONY : Phase_22/lab22_Deadlock.cpp.o
+Lab_18/Lab18_System_Time.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Lab_18/Lab18_System_Time.cpp.o
+.PHONY : Lab_18/Lab18_System_Time.cpp.o
 
-Phase_22/lab22_Deadlock.i: Phase_22/lab22_Deadlock.cpp.i
-.PHONY : Phase_22/lab22_Deadlock.i
+Lab_18/Lab18_System_Time.i: Lab_18/Lab18_System_Time.cpp.i
+.PHONY : Lab_18/Lab18_System_Time.i
 
 # target to preprocess a source file
-Phase_22/lab22_Deadlock.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_22/lab22_Deadlock.cpp.i
-.PHONY : Phase_22/lab22_Deadlock.cpp.i
+Lab_18/Lab18_System_Time.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Lab_18/Lab18_System_Time.cpp.i
+.PHONY : Lab_18/Lab18_System_Time.cpp.i
 
-Phase_22/lab22_Deadlock.s: Phase_22/lab22_Deadlock.cpp.s
-.PHONY : Phase_22/lab22_Deadlock.s
+Lab_18/Lab18_System_Time.s: Lab_18/Lab18_System_Time.cpp.s
+.PHONY : Lab_18/Lab18_System_Time.s
 
 # target to generate assembly for a file
-Phase_22/lab22_Deadlock.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Phase_22/lab22_Deadlock.cpp.s
-.PHONY : Phase_22/lab22_Deadlock.cpp.s
+Lab_18/Lab18_System_Time.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab18.dir/build.make CMakeFiles/lab18.dir/Lab_18/Lab18_System_Time.cpp.s
+.PHONY : Lab_18/Lab18_System_Time.cpp.s
 
-Phase_23/lab23.o: Phase_23/lab23.cpp.o
-.PHONY : Phase_23/lab23.o
+Lab_20/lab20.o: Lab_20/lab20.cpp.o
+.PHONY : Lab_20/lab20.o
 
 # target to build an object file
-Phase_23/lab23.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Phase_23/lab23.cpp.o
-.PHONY : Phase_23/lab23.cpp.o
+Lab_20/lab20.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Lab_20/lab20.cpp.o
+.PHONY : Lab_20/lab20.cpp.o
 
-Phase_23/lab23.i: Phase_23/lab23.cpp.i
-.PHONY : Phase_23/lab23.i
+Lab_20/lab20.i: Lab_20/lab20.cpp.i
+.PHONY : Lab_20/lab20.i
 
 # target to preprocess a source file
-Phase_23/lab23.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Phase_23/lab23.cpp.i
-.PHONY : Phase_23/lab23.cpp.i
+Lab_20/lab20.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Lab_20/lab20.cpp.i
+.PHONY : Lab_20/lab20.cpp.i
 
-Phase_23/lab23.s: Phase_23/lab23.cpp.s
-.PHONY : Phase_23/lab23.s
+Lab_20/lab20.s: Lab_20/lab20.cpp.s
+.PHONY : Lab_20/lab20.s
 
 # target to generate assembly for a file
-Phase_23/lab23.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Phase_23/lab23.cpp.s
-.PHONY : Phase_23/lab23.cpp.s
+Lab_20/lab20.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab20.dir/build.make CMakeFiles/lab20.dir/Lab_20/lab20.cpp.s
+.PHONY : Lab_20/lab20.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+Lab_21/lab21_Message_Passing.o: Lab_21/lab21_Message_Passing.cpp.o
+.PHONY : Lab_21/lab21_Message_Passing.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/main.cpp.o
-.PHONY : main.cpp.o
+Lab_21/lab21_Message_Passing.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Lab_21/lab21_Message_Passing.cpp.o
+.PHONY : Lab_21/lab21_Message_Passing.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+Lab_21/lab21_Message_Passing.i: Lab_21/lab21_Message_Passing.cpp.i
+.PHONY : Lab_21/lab21_Message_Passing.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/main.cpp.i
-.PHONY : main.cpp.i
+Lab_21/lab21_Message_Passing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Lab_21/lab21_Message_Passing.cpp.i
+.PHONY : Lab_21/lab21_Message_Passing.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+Lab_21/lab21_Message_Passing.s: Lab_21/lab21_Message_Passing.cpp.s
+.PHONY : Lab_21/lab21_Message_Passing.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extra_Credit.dir/build.make CMakeFiles/Extra_Credit.dir/main.cpp.s
-.PHONY : main.cpp.s
+Lab_21/lab21_Message_Passing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab21.dir/build.make CMakeFiles/lab21.dir/Lab_21/lab21_Message_Passing.cpp.s
+.PHONY : Lab_21/lab21_Message_Passing.cpp.s
+
+Lab_22/lab22_Deadlock.o: Lab_22/lab22_Deadlock.cpp.o
+.PHONY : Lab_22/lab22_Deadlock.o
+
+# target to build an object file
+Lab_22/lab22_Deadlock.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Lab_22/lab22_Deadlock.cpp.o
+.PHONY : Lab_22/lab22_Deadlock.cpp.o
+
+Lab_22/lab22_Deadlock.i: Lab_22/lab22_Deadlock.cpp.i
+.PHONY : Lab_22/lab22_Deadlock.i
+
+# target to preprocess a source file
+Lab_22/lab22_Deadlock.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Lab_22/lab22_Deadlock.cpp.i
+.PHONY : Lab_22/lab22_Deadlock.cpp.i
+
+Lab_22/lab22_Deadlock.s: Lab_22/lab22_Deadlock.cpp.s
+.PHONY : Lab_22/lab22_Deadlock.s
+
+# target to generate assembly for a file
+Lab_22/lab22_Deadlock.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab22_deadlock.dir/build.make CMakeFiles/lab22_deadlock.dir/Lab_22/lab22_Deadlock.cpp.s
+.PHONY : Lab_22/lab22_Deadlock.cpp.s
+
+Lab_23/lab23.o: Lab_23/lab23.cpp.o
+.PHONY : Lab_23/lab23.o
+
+# target to build an object file
+Lab_23/lab23.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Lab_23/lab23.cpp.o
+.PHONY : Lab_23/lab23.cpp.o
+
+Lab_23/lab23.i: Lab_23/lab23.cpp.i
+.PHONY : Lab_23/lab23.i
+
+# target to preprocess a source file
+Lab_23/lab23.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Lab_23/lab23.cpp.i
+.PHONY : Lab_23/lab23.cpp.i
+
+Lab_23/lab23.s: Lab_23/lab23.cpp.s
+.PHONY : Lab_23/lab23.s
+
+# target to generate assembly for a file
+Lab_23/lab23.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23.dir/build.make CMakeFiles/lab23.dir/Lab_23/lab23.cpp.s
+.PHONY : Lab_23/lab23.cpp.s
+
+Lab_23/lab23a_Dining_Philosopher_Naive.o: Lab_23/lab23a_Dining_Philosopher_Naive.cpp.o
+.PHONY : Lab_23/lab23a_Dining_Philosopher_Naive.o
+
+# target to build an object file
+Lab_23/lab23a_Dining_Philosopher_Naive.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/Lab_23/lab23a_Dining_Philosopher_Naive.cpp.o
+.PHONY : Lab_23/lab23a_Dining_Philosopher_Naive.cpp.o
+
+Lab_23/lab23a_Dining_Philosopher_Naive.i: Lab_23/lab23a_Dining_Philosopher_Naive.cpp.i
+.PHONY : Lab_23/lab23a_Dining_Philosopher_Naive.i
+
+# target to preprocess a source file
+Lab_23/lab23a_Dining_Philosopher_Naive.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/Lab_23/lab23a_Dining_Philosopher_Naive.cpp.i
+.PHONY : Lab_23/lab23a_Dining_Philosopher_Naive.cpp.i
+
+Lab_23/lab23a_Dining_Philosopher_Naive.s: Lab_23/lab23a_Dining_Philosopher_Naive.cpp.s
+.PHONY : Lab_23/lab23a_Dining_Philosopher_Naive.s
+
+# target to generate assembly for a file
+Lab_23/lab23a_Dining_Philosopher_Naive.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_naive.dir/build.make CMakeFiles/lab23a_naive.dir/Lab_23/lab23a_Dining_Philosopher_Naive.cpp.s
+.PHONY : Lab_23/lab23a_Dining_Philosopher_Naive.cpp.s
+
+Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.o: Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.o
+.PHONY : Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.o
+
+# target to build an object file
+Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.o
+.PHONY : Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.o
+
+Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.i: Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.i
+.PHONY : Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.i
+
+# target to preprocess a source file
+Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.i
+.PHONY : Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.i
+
+Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.s: Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.s
+.PHONY : Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.s
+
+# target to generate assembly for a file
+Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23a_no_deadlock_free.dir/build.make CMakeFiles/lab23a_no_deadlock_free.dir/Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.s
+.PHONY : Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.cpp.s
+
+Lab_23/lab23c_Dining_Philosopher_Starvation_Free.o: Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.o
+.PHONY : Lab_23/lab23c_Dining_Philosopher_Starvation_Free.o
+
+# target to build an object file
+Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.o
+.PHONY : Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.o
+
+Lab_23/lab23c_Dining_Philosopher_Starvation_Free.i: Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.i
+.PHONY : Lab_23/lab23c_Dining_Philosopher_Starvation_Free.i
+
+# target to preprocess a source file
+Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.i
+.PHONY : Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.i
+
+Lab_23/lab23c_Dining_Philosopher_Starvation_Free.s: Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.s
+.PHONY : Lab_23/lab23c_Dining_Philosopher_Starvation_Free.s
+
+# target to generate assembly for a file
+Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab23c_starvation_free.dir/build.make CMakeFiles/lab23c_starvation_free.dir/Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.s
+.PHONY : Lab_23/lab23c_Dining_Philosopher_Starvation_Free.cpp.s
 
 # Help Target
 help:
@@ -679,56 +863,75 @@ help:
 	@echo "... lab14"
 	@echo "... lab15"
 	@echo "... lab16"
+	@echo "... lab17"
 	@echo "... lab18"
 	@echo "... lab20"
 	@echo "... lab21"
 	@echo "... lab22_deadlock"
 	@echo "... lab23"
-	@echo "... Phase_10/lab10.o"
-	@echo "... Phase_10/lab10.i"
-	@echo "... Phase_10/lab10.s"
-	@echo "... Phase_10/lab10_dashboard.o"
-	@echo "... Phase_10/lab10_dashboard.i"
-	@echo "... Phase_10/lab10_dashboard.s"
-	@echo "... Phase_10/lab10_semaphore.o"
-	@echo "... Phase_10/lab10_semaphore.i"
-	@echo "... Phase_10/lab10_semaphore.s"
-	@echo "... Phase_11/lab11.o"
-	@echo "... Phase_11/lab11.i"
-	@echo "... Phase_11/lab11.s"
-	@echo "... Phase_12/lab12.o"
-	@echo "... Phase_12/lab12.i"
-	@echo "... Phase_12/lab12.s"
-	@echo "... Phase_13/lab13.o"
-	@echo "... Phase_13/lab13.i"
-	@echo "... Phase_13/lab13.s"
-	@echo "... Phase_14/lab14.o"
-	@echo "... Phase_14/lab14.i"
-	@echo "... Phase_14/lab14.s"
-	@echo "... Phase_15/lab15.o"
-	@echo "... Phase_15/lab15.i"
-	@echo "... Phase_15/lab15.s"
-	@echo "... Phase_16/lab16.o"
-	@echo "... Phase_16/lab16.i"
-	@echo "... Phase_16/lab16.s"
-	@echo "... Phase_18/lab18.o"
-	@echo "... Phase_18/lab18.i"
-	@echo "... Phase_18/lab18.s"
-	@echo "... Phase_20/lab20.o"
-	@echo "... Phase_20/lab20.i"
-	@echo "... Phase_20/lab20.s"
-	@echo "... Phase_21/lab21.o"
-	@echo "... Phase_21/lab21.i"
-	@echo "... Phase_21/lab21.s"
-	@echo "... Phase_22/lab22_Deadlock.o"
-	@echo "... Phase_22/lab22_Deadlock.i"
-	@echo "... Phase_22/lab22_Deadlock.s"
-	@echo "... Phase_23/lab23.o"
-	@echo "... Phase_23/lab23.i"
-	@echo "... Phase_23/lab23.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... lab23a_naive"
+	@echo "... lab23a_no_deadlock_free"
+	@echo "... lab23c_starvation_free"
+	@echo "... Lab_10/lab10.o"
+	@echo "... Lab_10/lab10.i"
+	@echo "... Lab_10/lab10.s"
+	@echo "... Lab_10/lab10_dashboard.o"
+	@echo "... Lab_10/lab10_dashboard.i"
+	@echo "... Lab_10/lab10_dashboard.s"
+	@echo "... Lab_10/lab10_semaphore.o"
+	@echo "... Lab_10/lab10_semaphore.i"
+	@echo "... Lab_10/lab10_semaphore.s"
+	@echo "... Lab_11/lab11.o"
+	@echo "... Lab_11/lab11.i"
+	@echo "... Lab_11/lab11.s"
+	@echo "... Lab_12/lab12.o"
+	@echo "... Lab_12/lab12.i"
+	@echo "... Lab_12/lab12.s"
+	@echo "... Lab_12/lab12_Scheduler.o"
+	@echo "... Lab_12/lab12_Scheduler.i"
+	@echo "... Lab_12/lab12_Scheduler.s"
+	@echo "... Lab_12/lab12_Semaphore.o"
+	@echo "... Lab_12/lab12_Semaphore.i"
+	@echo "... Lab_12/lab12_Semaphore.s"
+	@echo "... Lab_13/Lab13_Sequential_IO.o"
+	@echo "... Lab_13/Lab13_Sequential_IO.i"
+	@echo "... Lab_13/Lab13_Sequential_IO.s"
+	@echo "... Lab_14/Lab14_Random_Access_IO.o"
+	@echo "... Lab_14/Lab14_Random_Access_IO.i"
+	@echo "... Lab_14/Lab14_Random_Access_IO.s"
+	@echo "... Lab_15/lab15.o"
+	@echo "... Lab_15/lab15.i"
+	@echo "... Lab_15/lab15.s"
+	@echo "... Lab_16/lab16.o"
+	@echo "... Lab_16/lab16.i"
+	@echo "... Lab_16/lab16.s"
+	@echo "... Lab_17/Lab17_File_Hex_Dump.o"
+	@echo "... Lab_17/Lab17_File_Hex_Dump.i"
+	@echo "... Lab_17/Lab17_File_Hex_Dump.s"
+	@echo "... Lab_18/Lab18_System_Time.o"
+	@echo "... Lab_18/Lab18_System_Time.i"
+	@echo "... Lab_18/Lab18_System_Time.s"
+	@echo "... Lab_20/lab20.o"
+	@echo "... Lab_20/lab20.i"
+	@echo "... Lab_20/lab20.s"
+	@echo "... Lab_21/lab21_Message_Passing.o"
+	@echo "... Lab_21/lab21_Message_Passing.i"
+	@echo "... Lab_21/lab21_Message_Passing.s"
+	@echo "... Lab_22/lab22_Deadlock.o"
+	@echo "... Lab_22/lab22_Deadlock.i"
+	@echo "... Lab_22/lab22_Deadlock.s"
+	@echo "... Lab_23/lab23.o"
+	@echo "... Lab_23/lab23.i"
+	@echo "... Lab_23/lab23.s"
+	@echo "... Lab_23/lab23a_Dining_Philosopher_Naive.o"
+	@echo "... Lab_23/lab23a_Dining_Philosopher_Naive.i"
+	@echo "... Lab_23/lab23a_Dining_Philosopher_Naive.s"
+	@echo "... Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.o"
+	@echo "... Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.i"
+	@echo "... Lab_23/lab23a_Dining_Philosopher_No_Deadlock_Free.s"
+	@echo "... Lab_23/lab23c_Dining_Philosopher_Starvation_Free.o"
+	@echo "... Lab_23/lab23c_Dining_Philosopher_Starvation_Free.i"
+	@echo "... Lab_23/lab23c_Dining_Philosopher_Starvation_Free.s"
 .PHONY : help
 
 

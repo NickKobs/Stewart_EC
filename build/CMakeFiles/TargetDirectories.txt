@@ -1,4 +1,5 @@
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/Extra_Credit.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab17.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab10.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab11.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab12.dir
@@ -11,5 +12,8 @@
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab14.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab20.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab23.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab23a_naive.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab23a_no_deadlock_free.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab23c_starvation_free.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/edit_cache.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/rebuild_cache.dir

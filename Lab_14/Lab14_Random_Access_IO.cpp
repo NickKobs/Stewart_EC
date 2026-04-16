@@ -14,6 +14,7 @@ constexpr int kReadWritePane2 = 3;
 
 const std::filesystem::path kFile1 = "random_file_1.txt";
 const std::filesystem::path kFile2 = "random_file_2.txt";
+const std::filesystem::path kReverseTraceFile = "reverse_traversal_trace.txt";
 
 std::string escapeForLog(std::string_view text) {
     std::ostringstream escaped;
@@ -99,6 +100,18 @@ void ensureFileExists(const std::filesystem::path& path) {
     }
 
     std::ofstream create(path, std::ios::binary);
+}
+
+void logReverseTraceLine(
+    TaskDashboard& dashboard,
+    std::ofstream& traceFile,
+    const std::streamoff position,
+    const char value
+) {
+    const std::string renderedValue = escapeForLog(std::string(1, value));
+    const std::string line = "fp=" + std::to_string(position) + " char=\"" + renderedValue + '"';
+    dashboard.logTask(kReadPane, line);
+    traceFile << line << '\n';
 }
 
 DashboardMode determineDashboardMode(int argc, char* argv[]) {
@@ -217,6 +230,11 @@ void random_file_read(TaskDashboard& dashboard) {
         file.get(firstChar);
         dashboard.logTask(kReadPane, "First char: \"" + escapeForLog(std::string(1, firstChar)) + '"');
 
+        std::ofstream traceFile(kReverseTraceFile, std::ios::out | std::ios::trunc);
+        if (!traceFile.is_open()) {
+            dashboard.logTask(kReadPane, "Failed to open reverse_traversal_trace.txt for output.");
+        }
+
         std::string backward;
         backward.reserve(forward.size());
         for (std::streamoff position = fileSize; position > 0; --position) {
@@ -225,6 +243,13 @@ void random_file_read(TaskDashboard& dashboard) {
             char current = '\0';
             file.get(current);
             backward.push_back(current);
+            if (traceFile.is_open()) {
+                logReverseTraceLine(dashboard, traceFile, position - 1, current);
+            }
+        }
+        if (traceFile.is_open()) {
+            traceFile.close();
+            dashboard.logTask(kReadPane, "Reverse traversal trace saved to reverse_traversal_trace.txt.");
         }
         dashboard.logTask(kReadPane, "Backward read: \"" + escapeForLog(backward) + '"');
     }
@@ -306,6 +331,7 @@ int main(int argc, char* argv[]) {
     dashboard.logSystem("Lab 14 Random Access I/O starting.");
     dashboard.logSystem("Working directory: " + std::filesystem::current_path().string());
     dashboard.logSystem("A real terminal uses ncurses automatically; non-TTY runs fall back to transcript mode.");
+    dashboard.logSystem("Artifacts: random_file_1.txt, random_file_2.txt, reverse_traversal_trace.txt.");
     logSnapshots(dashboard, "Initial file snapshot");
 
     random_file_write(dashboard);

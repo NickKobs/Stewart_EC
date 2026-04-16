@@ -1,0 +1,11 @@
+Philosopher 0 is thinking
+Philosopher 2 is thinking
+Philosopher 1 is thinking
+Philosopher 4 is thinking
+Philosopher 3 is thinking
+Philosopher 1 picked up LEFT fork 1
+Philosopher 0 picked up LEFT fork 0
+Philosopher 2 picked up LEFT fork 2
+Philosopher 4 picked up LEFT fork 4
+Philosopher 3 picked up LEFT fork 3
+^C

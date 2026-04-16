@@ -1,251 +1,313 @@
-#include <cstdarg>
-#include <iostream>
-#include <ncurses.h>
 #include <pthread.h>
+
+#include <cerrno>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
 #include <sstream>
+#include <stdexcept>
 #include <string>
-#include <unistd.h>
+#include <string_view>
 
-// System constants matching the requested output
-const int BUFFER_SIZE = 3;
-const int PRODUCE_COUNT = 10;
-const int PROD_SLEEP_US = 100000; // 0.10s
-const int CONS_SLEEP_US = 850000; // 0.85s
+#include "lab10_dashboard.h"
 
-// Shared circular buffer state
-int buffer[BUFFER_SIZE];
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 3
+#endif
+
+#ifndef PRODUCE_COUNT
+#define PRODUCE_COUNT 10
+#endif
+
+#ifndef PRODUCER_SLEEP_SEC
+#define PRODUCER_SLEEP_SEC 0L
+#endif
+
+#ifndef PRODUCER_SLEEP_NSEC
+#define PRODUCER_SLEEP_NSEC 100000000L
+#endif
+
+#ifndef CONSUMER_SLEEP_SEC
+#define CONSUMER_SLEEP_SEC 0L
+#endif
+
+#ifndef CONSUMER_SLEEP_NSEC
+#define CONSUMER_SLEEP_NSEC 850000000L
+#endif
+
+namespace {
+constexpr int kProducerPane = 0;
+constexpr int kConsumerPane = 1;
+constexpr long kNanosecondsPerSecond = 1000000000L;
+
+int buffer[BUFFER_SIZE] = {};
 int in = 0;
 int out = 0;
 int count = 0;
 
-// POSIX synchronization primitives
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t buffer_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t not_full = PTHREAD_COND_INITIALIZER;
 pthread_cond_t not_empty = PTHREAD_COND_INITIALIZER;
 
-// Ncurses display lock and windows
-pthread_mutex_t term_display_lock = PTHREAD_MUTEX_INITIALIZER;
-WINDOW* dash_win = nullptr;
-WINDOW* buf_win = nullptr;
-WINDOW* prod_win = nullptr;
-WINDOW* cons_win = nullptr;
+TaskDashboard* g_dashboard = nullptr;
 
-void print_win(WINDOW* win, const char* fmt, ...) {
-    pthread_mutex_lock(&term_display_lock);
-
-    va_list args;
-    va_start(args, fmt);
-    vw_printw(win, fmt, args);
-    va_end(args);
-
-    wrefresh(win);
-    pthread_mutex_unlock(&term_display_lock);
-}
-
-std::string get_buffer_items() {
-    std::stringstream ss;
-    ss << "[";
-
-    int temp_out = out;
-    for (int i = 0; i < count; ++i) {
-        ss << buffer[temp_out];
-        if (i < count - 1) {
-            ss << ", ";
-        }
-        temp_out = (temp_out + 1) % BUFFER_SIZE;
+TaskDashboard& dashboard() {
+    if (g_dashboard == nullptr) {
+        throw std::logic_error("lab11 dashboard is not initialized");
     }
 
-    ss << "]";
-    return ss.str();
+    return *g_dashboard;
 }
 
-void* producer(void* arg) {
-    (void)arg;
-    print_win(prod_win, "Online and ready to produce.\n\n");
+DashboardMode determineDashboardMode(int argc, char* argv[]) {
+    if (const char* envMode = std::getenv("LAB11_UI")) {
+        const std::string_view mode(envMode);
+        if (mode == "ncurses") {
+            return DashboardMode::Ncurses;
+        }
+        if (mode == "text") {
+            return DashboardMode::Text;
+        }
+    }
 
-    for (int i = 0; i < PRODUCE_COUNT; ++i) {
-        pthread_mutex_lock(&mutex);
+    for (int i = 1; i < argc; ++i) {
+        const std::string_view arg(argv[i]);
+        if (arg == "--ncurses") {
+            return DashboardMode::Ncurses;
+        }
+        if (arg == "--text") {
+            return DashboardMode::Text;
+        }
+    }
+
+    return DashboardMode::Auto;
+}
+
+bool determineHoldOnExit(int argc, char* argv[]) {
+    if (const char* envHold = std::getenv("LAB11_HOLD")) {
+        const std::string_view hold(envHold);
+        if (hold == "0" || hold == "false" || hold == "FALSE" || hold == "no") {
+            return false;
+        }
+        if (hold == "1" || hold == "true" || hold == "TRUE" || hold == "yes") {
+            return true;
+        }
+    }
+
+    for (int i = 1; i < argc; ++i) {
+        const std::string_view arg(argv[i]);
+        if (arg == "--no-hold") {
+            return false;
+        }
+        if (arg == "--hold") {
+            return true;
+        }
+    }
+
+    return true;
+}
+
+std::string formatDuration(long sec, long nsec) {
+    std::ostringstream duration;
+    duration.setf(std::ios::fixed);
+    duration.precision(2);
+    duration << static_cast<double>(sec * kNanosecondsPerSecond + nsec) / kNanosecondsPerSecond << 's';
+    return duration.str();
+}
+
+int paneForTask(std::string_view taskName) {
+    return taskName == "Producer" ? kProducerPane : kConsumerPane;
+}
+
+std::string bufferItemsLocked() {
+    std::ostringstream items;
+    items << '[';
+
+    int tempOut = out;
+    for (int i = 0; i < count; ++i) {
+        items << buffer[tempOut];
+        if (i + 1 < count) {
+            items << ", ";
+        }
+        tempOut = (tempOut + 1) % BUFFER_SIZE;
+    }
+
+    items << ']';
+    return items.str();
+}
+
+void logBufferState(const std::string& prefix) {
+    std::ostringstream line;
+    line << prefix
+         << " | count=" << count << "/" << BUFFER_SIZE
+         << " in=" << in
+         << " out=" << out
+         << " | items=" << bufferItemsLocked();
+    dashboard().logQueue(line.str());
+}
+
+void simulate_IO_work(const std::string& taskName, long sec, long nsec) {
+    const int pane = paneForTask(taskName);
+    dashboard().logTask(pane, "Simulating I/O for " + formatDuration(sec, nsec) + ".");
+
+    struct timespec req {};
+    struct timespec rem {};
+    req.tv_sec = sec;
+    req.tv_nsec = nsec;
+
+    while (nanosleep(&req, &rem) == -1) {
+        if (errno == EINTR) {
+            dashboard().logTask(pane, "Sleep interrupted; resuming remaining interval.");
+            req = rem;
+        } else {
+            dashboard().logSystem(taskName + " nanosleep failed: " + std::string(std::strerror(errno)));
+            break;
+        }
+    }
+
+    dashboard().logTask(pane, "I/O interval finished.");
+}
+
+void* producer(void*) {
+    const std::string taskName = "Producer";
+    dashboard().logTask(kProducerPane, "Online and ready to produce.");
+
+    for (int item = 0; item < PRODUCE_COUNT; ++item) {
+        pthread_mutex_lock(&buffer_mutex);
 
         while (count == BUFFER_SIZE) {
-            print_win(prod_win, "Buffer full. Waiting on not_full.\n\n");
-            print_win(
-                buf_win,
-                "Producer blocked | count=%d/%d in=%d out=%d | items=%s\n\n",
-                count,
-                BUFFER_SIZE,
-                in,
-                out,
-                get_buffer_items().c_str()
-            );
-            pthread_cond_wait(&not_full, &mutex);
-            print_win(prod_win, "Wake-up received; recheck buffer.\n\n");
+            dashboard().logTask(kProducerPane, "Buffer full. Waiting on not_full.");
+            logBufferState("Producer blocked");
+            pthread_cond_wait(&not_full, &buffer_mutex);
+            dashboard().logTask(kProducerPane, "Wake-up received; recheck buffer.");
         }
 
-        buffer[in] = i;
-        print_win(prod_win, "Produced item %d into slot %d.\n\n", i, in);
+        buffer[in] = item;
+        dashboard().logTask(
+            kProducerPane,
+            "Produced item " + std::to_string(item) + " into slot " + std::to_string(in) + '.'
+        );
         in = (in + 1) % BUFFER_SIZE;
         ++count;
-
-        print_win(
-            buf_win,
-            "Producer inserted item %d | count=%d/%d in=%d out=%d | items=%s\n\n",
-            i,
-            count,
-            BUFFER_SIZE,
-            in,
-            out,
-            get_buffer_items().c_str()
-        );
-
-        print_win(prod_win, "To task 1: not_empty signaled.\n");
-        print_win(dash_win, "From task 0: not_empty signaled.\n\ntask 0 -> task 1 | not_empty signaled.\n\n");
+        logBufferState("Producer inserted item " + std::to_string(item));
 
         pthread_cond_signal(&not_empty);
-        pthread_mutex_unlock(&mutex);
+        pthread_mutex_unlock(&buffer_mutex);
 
-        print_win(prod_win, "Simulating I/O for 0.10s.\n");
-        usleep(PROD_SLEEP_US);
-        print_win(prod_win, "I/O interval finished.\n");
+        dashboard().sendTaskMessage(kProducerPane, kConsumerPane, "not_empty signaled.");
+        simulate_IO_work(taskName, PRODUCER_SLEEP_SEC, PRODUCER_SLEEP_NSEC);
     }
 
-    print_win(prod_win, "All items produced.\n");
+    dashboard().logTask(kProducerPane, "All items produced.");
     return nullptr;
 }
 
-void* consumer(void* arg) {
-    (void)arg;
-    print_win(cons_win, "Online and ready to consume.\n");
+void* consumer(void*) {
+    const std::string taskName = "Consumer";
+    dashboard().logTask(kConsumerPane, "Online and ready to consume.");
 
-    for (int i = 0; i < PRODUCE_COUNT; ++i) {
-        pthread_mutex_lock(&mutex);
+    for (int iteration = 0; iteration < PRODUCE_COUNT; ++iteration) {
+        pthread_mutex_lock(&buffer_mutex);
 
         while (count == 0) {
-            print_win(cons_win, "Buffer empty. Waiting on not_empty.\n\n");
-            pthread_cond_wait(&not_empty, &mutex);
-            print_win(cons_win, "Wake-up received; recheck buffer.\n\n");
+            dashboard().logTask(kConsumerPane, "Buffer empty. Waiting on not_empty.");
+            logBufferState("Consumer blocked");
+            pthread_cond_wait(&not_empty, &buffer_mutex);
+            dashboard().logTask(kConsumerPane, "Wake-up received; recheck buffer.");
         }
 
         const int item = buffer[out];
-        print_win(cons_win, "Consumed item %d from slot %d.\n\n", item, out);
+        dashboard().logTask(
+            kConsumerPane,
+            "Consumed item " + std::to_string(item) + " from slot " + std::to_string(out) + '.'
+        );
         out = (out + 1) % BUFFER_SIZE;
         --count;
-
-        print_win(
-            buf_win,
-            "Consumer removed item %d | count=%d/%d in=%d out=%d | items=%s\n\n",
-            item,
-            count,
-            BUFFER_SIZE,
-            in,
-            out,
-            get_buffer_items().c_str()
-        );
-
-        print_win(cons_win, "To task 0: not_full signaled.\n");
-        print_win(dash_win, "From task 1: not_full signaled.\n\ntask 1 -> task 0 | not_full signaled.\n\n");
+        logBufferState("Consumer removed item " + std::to_string(item));
 
         pthread_cond_signal(&not_full);
-        pthread_mutex_unlock(&mutex);
+        pthread_mutex_unlock(&buffer_mutex);
 
-        print_win(cons_win, "Simulating I/O for 0.85s.\n");
-        usleep(CONS_SLEEP_US);
-        print_win(cons_win, "I/O interval finished.\n");
+        dashboard().sendTaskMessage(kConsumerPane, kProducerPane, "not_full signaled.");
+        simulate_IO_work(taskName, CONSUMER_SLEEP_SEC, CONSUMER_SLEEP_NSEC);
     }
 
-    print_win(cons_win, "All items consumed.\n");
+    dashboard().logTask(kConsumerPane, "All items consumed.");
     return nullptr;
 }
+}
 
-int main() {
-    initscr();
-    cbreak();
-    noecho();
-    curs_set(0);
+int main(int argc, char* argv[]) {
+    try {
+        TaskDashboard::DashboardLabels labels;
+        labels.systemTitle = "Lab 11 Producer/Consumer";
+        labels.systemSubtitle =
+            "Bounded-buffer producer/consumer using one mutex, two condition variables, and nanosleep().";
+        labels.sharedTitle = "Buffer State";
+        labels.taskTitles = {"Producer", "Consumer"};
 
-    int max_y = 0;
-    int max_x = 0;
-    getmaxyx(stdscr, max_y, max_x);
+        TaskDashboard activeDashboard(2, determineDashboardMode(argc, argv), labels);
+        activeDashboard.setHoldOnExit(determineHoldOnExit(argc, argv));
+        g_dashboard = &activeDashboard;
 
-    const int dash_h = max_y / 3;
-    const int buf_h = max_y / 3;
-    const int task_h = max_y - dash_h - buf_h;
-    const int col_width = max_x / 2;
+        dashboard().logSystem("Launching the bounded-buffer producer/consumer model.");
+        {
+            std::ostringstream settings;
+            settings << "BUFFER_SIZE=" << BUFFER_SIZE
+                     << ", PRODUCE_COUNT=" << PRODUCE_COUNT
+                     << ", producer_sleep=" << formatDuration(PRODUCER_SLEEP_SEC, PRODUCER_SLEEP_NSEC)
+                     << ", consumer_sleep=" << formatDuration(CONSUMER_SLEEP_SEC, CONSUMER_SLEEP_NSEC);
+            dashboard().logSystem(settings.str());
+        }
+        dashboard().logSystem("Condition-variable waits are guarded with while loops for spurious wakeup safety.");
+        logBufferState("Initial buffer state");
 
-    WINDOW* dash_frame = newwin(dash_h, max_x, 0, 0);
-    box(dash_frame, 0, 0);
-    mvwprintw(dash_frame, 0, 2, " Phase 11 Producer/Consumer ");
-    wrefresh(dash_frame);
-    dash_win = newwin(dash_h - 2, max_x - 2, 1, 1);
-    scrollok(dash_win, TRUE);
+        pthread_t producerThread {};
+        pthread_t consumerThread {};
 
-    WINDOW* buf_frame = newwin(buf_h, max_x, dash_h, 0);
-    box(buf_frame, 0, 0);
-    mvwprintw(buf_frame, 0, 2, " Buffer State ");
-    wrefresh(buf_frame);
-    buf_win = newwin(buf_h - 2, max_x - 2, dash_h + 1, 1);
-    scrollok(buf_win, TRUE);
+        int createResult = pthread_create(&producerThread, nullptr, producer, nullptr);
+        if (createResult != 0) {
+            throw std::runtime_error("pthread_create producer failed: " + std::string(std::strerror(createResult)));
+        }
 
-    WINDOW* prod_frame = newwin(task_h, col_width, dash_h + buf_h, 0);
-    box(prod_frame, 0, 0);
-    mvwprintw(prod_frame, 0, 2, " Producer ");
-    wrefresh(prod_frame);
-    prod_win = newwin(task_h - 2, col_width - 2, dash_h + buf_h + 1, 1);
-    scrollok(prod_win, TRUE);
+        createResult = pthread_create(&consumerThread, nullptr, consumer, nullptr);
+        if (createResult != 0) {
+            throw std::runtime_error("pthread_create consumer failed: " + std::string(std::strerror(createResult)));
+        }
 
-    WINDOW* cons_frame = newwin(task_h, max_x - col_width, dash_h + buf_h, col_width);
-    box(cons_frame, 0, 0);
-    mvwprintw(cons_frame, 0, 2, " Consumer ");
-    wrefresh(cons_frame);
-    cons_win = newwin(task_h - 2, max_x - col_width - 2, dash_h + buf_h + 1, col_width + 1);
-    scrollok(cons_win, TRUE);
+        dashboard().logSystem("Parent waits for producer and consumer to finish.");
 
-    print_win(dash_win, "ncurses dashboard online.\n\n");
-    print_win(dash_win, "Launching Lab 11 producer/consumer dashboard.\n\n");
-    print_win(dash_win, "Each task has its own window. The shared pane shows the circular buffer.\n\n");
-    print_win(
-        dash_win,
-        "BUFFER_SIZE=%d, PRODUCE_COUNT=%d, producer_sleep=%.2fs, consumer_sleep=%.2fs\n\n",
-        BUFFER_SIZE,
-        PRODUCE_COUNT,
-        PROD_SLEEP_US / 1000000.0,
-        CONS_SLEEP_US / 1000000.0
-    );
+        int joinResult = pthread_join(producerThread, nullptr);
+        if (joinResult != 0) {
+            throw std::runtime_error("pthread_join producer failed: " + std::string(std::strerror(joinResult)));
+        }
 
-    print_win(
-        buf_win,
-        "Initial buffer state | count=%d/%d in=%d out=%d | items=%s\n\n",
-        count,
-        BUFFER_SIZE,
-        in,
-        out,
-        get_buffer_items().c_str()
-    );
+        joinResult = pthread_join(consumerThread, nullptr);
+        if (joinResult != 0) {
+            throw std::runtime_error("pthread_join consumer failed: " + std::string(std::strerror(joinResult)));
+        }
 
-    pthread_t prod_thread;
-    pthread_t cons_thread;
+        int destroyResult = pthread_mutex_destroy(&buffer_mutex);
+        if (destroyResult != 0) {
+            throw std::runtime_error("pthread_mutex_destroy failed: " + std::string(std::strerror(destroyResult)));
+        }
 
-    pthread_create(&prod_thread, nullptr, producer, nullptr);
-    pthread_create(&cons_thread, nullptr, consumer, nullptr);
+        destroyResult = pthread_cond_destroy(&not_full);
+        if (destroyResult != 0) {
+            throw std::runtime_error("pthread_cond_destroy not_full failed: " + std::string(std::strerror(destroyResult)));
+        }
 
-    print_win(dash_win, "Parent waits for producer and consumer to finish.\n\n");
+        destroyResult = pthread_cond_destroy(&not_empty);
+        if (destroyResult != 0) {
+            throw std::runtime_error("pthread_cond_destroy not_empty failed: " + std::string(std::strerror(destroyResult)));
+        }
 
-    pthread_join(prod_thread, nullptr);
-    pthread_join(cons_thread, nullptr);
-
-    print_win(dash_win, "All routines concluded. Press any key to exit Ncurses.\n");
-
-    nodelay(dash_win, FALSE);
-    wgetch(dash_win);
-
-    delwin(dash_win);
-    delwin(dash_frame);
-    delwin(buf_win);
-    delwin(buf_frame);
-    delwin(prod_win);
-    delwin(prod_frame);
-    delwin(cons_win);
-    delwin(cons_frame);
-    endwin();
-
-    return 0;
+        dashboard().finish("Lab 11 run complete.");
+        g_dashboard = nullptr;
+        return 0;
+    } catch (const std::exception& error) {
+        std::fprintf(stderr, "lab11 error: %s\n", error.what());
+        return 1;
+    }
 }

@@ -72,60 +72,60 @@ include CMakeFiles/lab10.dir/flags.make
 CMakeFiles/lab10.dir/codegen:
 .PHONY : CMakeFiles/lab10.dir/codegen
 
-CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o: CMakeFiles/lab10.dir/flags.make
-CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Phase\ 10/lab10.cpp
-CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o: CMakeFiles/lab10.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o -MF CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o.d -o CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10.cpp"
+CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o: CMakeFiles/lab10.dir/flags.make
+CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Lab_10/lab10.cpp
+CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o: CMakeFiles/lab10.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o -MF CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o.d -o CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10.cpp"
 
-CMakeFiles/lab10.dir/Phase_10/lab10.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab10.dir/Phase_10/lab10.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10.cpp" > CMakeFiles/lab10.dir/Phase_10/lab10.cpp.i
+CMakeFiles/lab10.dir/Lab_10/lab10.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab10.dir/Lab_10/lab10.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10.cpp" > CMakeFiles/lab10.dir/Lab_10/lab10.cpp.i
 
-CMakeFiles/lab10.dir/Phase_10/lab10.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab10.dir/Phase_10/lab10.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10.cpp" -o CMakeFiles/lab10.dir/Phase_10/lab10.cpp.s
+CMakeFiles/lab10.dir/Lab_10/lab10.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab10.dir/Lab_10/lab10.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10.cpp" -o CMakeFiles/lab10.dir/Lab_10/lab10.cpp.s
 
-CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o: CMakeFiles/lab10.dir/flags.make
-CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Phase\ 10/lab10_dashboard.cpp
-CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o: CMakeFiles/lab10.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o -MF CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o.d -o CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_dashboard.cpp"
+CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o: CMakeFiles/lab10.dir/flags.make
+CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Lab_10/lab10_dashboard.cpp
+CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o: CMakeFiles/lab10.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o -MF CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o.d -o CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_dashboard.cpp"
 
-CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_dashboard.cpp" > CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.i
+CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_dashboard.cpp" > CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.i
 
-CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_dashboard.cpp" -o CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.s
+CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_dashboard.cpp" -o CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.s
 
-CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o: CMakeFiles/lab10.dir/flags.make
-CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Phase\ 10/lab10_semaphore.cpp
-CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o: CMakeFiles/lab10.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o -MF CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o.d -o CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_semaphore.cpp"
+CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o: CMakeFiles/lab10.dir/flags.make
+CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o: /Users/stewartpawley/Desktop/Extra\ Credit/Lab_10/lab10_semaphore.cpp
+CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o: CMakeFiles/lab10.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o -MF CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o.d -o CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o -c "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_semaphore.cpp"
 
-CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_semaphore.cpp" > CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.i
+CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_semaphore.cpp" > CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.i
 
-CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_semaphore.cpp" -o CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.s
+CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_semaphore.cpp" -o CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.s
 
 # Object files for target lab10
 lab10_OBJECTS = \
-"CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o" \
-"CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o" \
-"CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o"
+"CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o" \
+"CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o" \
+"CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o"
 
 # External object files for target lab10
 lab10_EXTERNAL_OBJECTS =
 
-lab10: CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o
-lab10: CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o
-lab10: CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o
+lab10: CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o
+lab10: CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o
+lab10: CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o
 lab10: CMakeFiles/lab10.dir/build.make
 lab10: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libncurses.tbd
 lab10: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libform.tbd

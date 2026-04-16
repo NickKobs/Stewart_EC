@@ -1,0 +1,91 @@
+Using command-line paths. Fixture generation skipped.
+-----------------------------------------
+Use lstat() to get file information for: Lab_15/submission/environment_fixture/random_file_1.txt
+ID of containing device: [1,13]
+File type: regular file
+I-node number: 15780922
+Mode: 100644 (octal)
+Permission: rw-r--r--
+Link count: 1
+Ownership: UID=501 GID=20
+Preferred I/O block size: 4096 bytes
+File size: 24 bytes
+Blocks allocated: 8
+Last status change: 2026-04-16 01:44:24 EDT
+Last file access: 2026-04-16 01:44:25 EDT
+Last file modification: 2026-04-16 01:44:23 EDT
+-----------------------------------------
+Use lstat() to get file information for: Lab_15/submission/environment_fixture/a.exe
+ID of containing device: [1,13]
+File type: regular file
+I-node number: 15780923
+Mode: 100755 (octal)
+Permission: rwxr-xr-x
+Link count: 1
+Ownership: UID=501 GID=20
+Preferred I/O block size: 4096 bytes
+File size: 33 bytes
+Blocks allocated: 8
+Last status change: 2026-04-16 01:44:24 EDT
+Last file access: 2026-04-16 01:44:25 EDT
+Last file modification: 2026-04-16 01:44:23 EDT
+-----------------------------------------
+Use lstat() to get file information for: Lab_15/submission/environment_fixture
+ID of containing device: [1,13]
+File type: directory
+I-node number: 15780920
+Mode: 40755 (octal)
+Permission: rwxr-xr-x
+Link count: 7
+Ownership: UID=501 GID=20
+Preferred I/O block size: 4096 bytes
+File size: 224 bytes
+Blocks allocated: 0
+Last status change: 2026-04-16 01:44:23 EDT
+Last file access: 2026-04-16 01:44:23 EDT
+Last file modification: 2026-04-16 01:44:23 EDT
+-----------------------------------------
+Use lstat() to get file information for: Lab_15/submission/environment_fixture/i-nodes
+ID of containing device: [1,13]
+File type: regular file
+I-node number: 15780924
+Mode: 100644 (octal)
+Permission: rw-r--r--
+Link count: 2
+Ownership: UID=501 GID=20
+Preferred I/O block size: 4096 bytes
+File size: 42 bytes
+Blocks allocated: 8
+Last status change: 2026-04-16 01:44:24 EDT
+Last file access: 2026-04-16 01:44:25 EDT
+Last file modification: 2026-04-16 01:44:23 EDT
+-----------------------------------------
+Use lstat() to get file information for: Lab_15/submission/environment_fixture/mylink
+ID of containing device: [1,13]
+File type: regular file
+I-node number: 15780924
+Mode: 100644 (octal)
+Permission: rw-r--r--
+Link count: 2
+Ownership: UID=501 GID=20
+Preferred I/O block size: 4096 bytes
+File size: 42 bytes
+Blocks allocated: 8
+Last status change: 2026-04-16 01:44:24 EDT
+Last file access: 2026-04-16 01:44:25 EDT
+Last file modification: 2026-04-16 01:44:23 EDT
+-----------------------------------------
+Use lstat() to get file information for: Lab_15/submission/environment_fixture/mysymlink
+ID of containing device: [1,13]
+File type: symlink
+I-node number: 15780927
+Mode: 120755 (octal)
+Permission: rw-r--r--
+Link count: 1
+Ownership: UID=501 GID=20
+Preferred I/O block size: 4096 bytes
+File size: 7 bytes
+Blocks allocated: 0
+Last status change: 2026-04-16 01:44:23 EDT
+Last file access: 2026-04-16 01:44:23 EDT
+Last file modification: 2026-04-16 01:44:23 EDT

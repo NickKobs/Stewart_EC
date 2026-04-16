@@ -1,0 +1,78 @@
+[dashboard] transcript mode active. Run with --ncurses in a real terminal for windowed output.
+[system] Lab 12 dashboard online.
+[system] STATE TRANSITION TRACE: create tasks, start the scheduler, and perform three yields.
+[system] Semaphore resource1 attached to the scheduler via sched_ptr.
+[system] create_task() invoked.
+[system] Creating task #0
+[task 0] Created and placed in READY state.
+[system] create_task() invoked.
+[system] Creating task #1
+[task 1] Created and placed in READY state.
+[system] create_task() invoked.
+[system] Creating task #2
+[task 2] Created and placed in READY state.
+[system] set_quantum(333) applied.
+[queue] SCHEDULER DUMP: After set_quantum(1000 / MAX_TASKS)
+[queue] simulated_time=0 | current_quantum=333 | current_task=-1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[system] Scheduling started.
+[system] Current task pointer moved to task 0.
+[task 0] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After start()
+[queue] simulated_time=0 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[system] Simulated CPU work advanced the scheduler clock by 720 ms. simulated_time=720
+[queue] SCHEDULER DUMP: Before yield() pass #1
+[queue] simulated_time=720 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=0 elapsed_time=720
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[task 0] Attempting to yield.
+[system] Task 0 yield check: elapsed_time=720 current_quantum=333
+[system] Quantum expired. Context switch executed.
+[system] Current task pointer moved to task 1.
+[task 1] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After yield() pass #1
+[queue] simulated_time=720 | current_quantum=333 | current_task=1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=RUNNING start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[system] Simulated CPU work advanced the scheduler clock by 720 ms. simulated_time=1440
+[queue] SCHEDULER DUMP: Before yield() pass #2
+[queue] simulated_time=1440 | current_quantum=333 | current_task=1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=RUNNING start_time=720 elapsed_time=720
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[task 1] Attempting to yield.
+[system] Task 1 yield check: elapsed_time=720 current_quantum=333
+[system] Quantum expired. Context switch executed.
+[system] Current task pointer moved to task 2.
+[task 2] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After yield() pass #2
+[queue] simulated_time=1440 | current_quantum=333 | current_task=2
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=RUNNING start_time=1440 elapsed_time=0
+[system] Simulated CPU work advanced the scheduler clock by 720 ms. simulated_time=2160
+[queue] SCHEDULER DUMP: Before yield() pass #3
+[queue] simulated_time=2160 | current_quantum=333 | current_task=2
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=RUNNING start_time=1440 elapsed_time=720
+[task 2] Attempting to yield.
+[system] Task 2 yield check: elapsed_time=720 current_quantum=333
+[system] Quantum expired. Context switch executed.
+[system] Current task pointer moved to task 0.
+[task 0] Scheduled RUNNING.
+[queue] SCHEDULER DUMP: After yield() pass #3
+[queue] simulated_time=2160 | current_quantum=333 | current_task=0
+[queue] task_table[0] task_id=0 state=RUNNING start_time=2160 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=720 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=1440 elapsed_time=0
+[queue] SEMAPHORE DUMP: Semaphore state at the end of the state transition trace
+[queue] name=resource1 | value=1 | owner=-1 | wait_queue=[empty]
+[system] Lab 12 run complete.

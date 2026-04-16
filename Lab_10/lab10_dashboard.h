@@ -16,8 +16,11 @@ enum class DashboardMode {
 class TaskDashboard {
 public:
     struct DashboardLabels {
-        std::string systemTitle = "System";
+        std::string systemTitle = "Lab Dashboard";
+        std::string systemSubtitle = "Modeled after the Lab 4 / Lab 7 ncurses process-window layout.";
+        std::string logTitle = "Log Window";
         std::string sharedTitle = "Shared State";
+        std::string consoleTitle = "Console";
         std::vector<std::string> taskTitles;
     };
 
@@ -27,6 +30,7 @@ public:
 
     void logSystem(const std::string& message);
     void logQueue(const std::string& message);
+    void logConsole(const std::string& message);
     void logTask(int taskId, const std::string& message);
     void sendTaskMessage(int fromTaskId, int toTaskId, const std::string& message);
     bool isInteractive() const;
@@ -45,7 +49,9 @@ private:
     void buildLayout();
     void destroyPane(LogPane& pane);
     void appendLine(LogPane& pane, const std::string& message);
+    void renderHeader();
     void renderTitle(LogPane& pane);
+    void refreshConsole();
     int clampTaskId(int taskId) const;
 
     bool interactive_ = false;
@@ -54,8 +60,10 @@ private:
     int taskCount_ = 0;
     DashboardLabels labels_;
     std::mutex renderMutex_;
+    LogPane headerPane_;
     LogPane systemPane_;
     LogPane queuePane_;
+    LogPane consolePane_;
     std::vector<LogPane> taskPanes_;
 };
 

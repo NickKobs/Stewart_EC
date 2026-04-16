@@ -1,0 +1,36 @@
+Lab 23 State-Machine Answers
+============================
+
+Question 1: Should we change our state to EATING?
+
+Yes, the philosopher must eventually enter the EATING state before leaving
+take_forks(). The important detail is that take_forks() does not directly force
+that change after the while-loop. Instead, the change happens only through the
+test(i) function after the program verifies that the philosopher is HUNGRY and
+that neither adjacent neighbor is currently EATING.
+
+Question 2: Who is changing our state to EATING?
+
+There are two valid cases:
+
+1. The philosopher can change its own state indirectly by calling test(i)
+   inside take_forks(). If both neighbors are not EATING, test(i) changes
+   state[i] from HUNGRY to EATING and signals cond[i].
+
+2. A neighbor can change the philosopher's state indirectly when that neighbor
+   finishes eating and calls put_forks(). Inside put_forks(), the neighbor calls
+   test(left(i)) and test(right(i)). If the waiting philosopher is now HUNGRY
+   and both adjacent neighbors are not EATING, test() changes that waiting
+   philosopher's state to EATING and signals the corresponding condition
+   variable.
+
+Short explanation of the control flow:
+
+- take_forks() sets state[i] to HUNGRY.
+- test(i) decides whether the philosopher may advance to EATING.
+- If test(i) cannot promote the philosopher, pthread_cond_wait() blocks the
+  thread.
+- When a neighbor finishes and executes put_forks(), that neighbor re-runs
+  test() on adjacent philosophers.
+- The blocked philosopher wakes up only after some execution of test() has
+  already changed state[i] to EATING.

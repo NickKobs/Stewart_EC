@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10.cpp" "CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o" "gcc" "CMakeFiles/lab10.dir/Phase_10/lab10.cpp.o.d"
-  "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_dashboard.cpp" "CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o" "gcc" "CMakeFiles/lab10.dir/Phase_10/lab10_dashboard.cpp.o.d"
-  "/Users/stewartpawley/Desktop/Extra Credit/Phase 10/lab10_semaphore.cpp" "CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o" "gcc" "CMakeFiles/lab10.dir/Phase_10/lab10_semaphore.cpp.o.d"
+  "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10.cpp" "CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o" "gcc" "CMakeFiles/lab10.dir/Lab_10/lab10.cpp.o.d"
+  "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_dashboard.cpp" "CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o" "gcc" "CMakeFiles/lab10.dir/Lab_10/lab10_dashboard.cpp.o.d"
+  "/Users/stewartpawley/Desktop/Extra Credit/Lab_10/lab10_semaphore.cpp" "CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o" "gcc" "CMakeFiles/lab10.dir/Lab_10/lab10_semaphore.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

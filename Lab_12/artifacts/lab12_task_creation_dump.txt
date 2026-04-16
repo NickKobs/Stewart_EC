@@ -1,0 +1,43 @@
+[dashboard] transcript mode active. Run with --ncurses in a real terminal for windowed output.
+[system] Lab 12 dashboard online.
+[system] TASK CREATION DUMP: attempting to create 4 tasks while MAX_TASKS = 3.
+[system] Semaphore resource1 attached to the scheduler via sched_ptr.
+[queue] SCHEDULER DUMP: Initial task table
+[queue] simulated_time=0 | current_quantum=300 | current_task=-1
+[queue] task_table[0] task_id=-1 state=DEAD start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=-1 state=DEAD start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=-1 state=DEAD start_time=0 elapsed_time=0
+[system] create_task() invoked.
+[system] Creating task #0
+[task 0] Created and placed in READY state.
+[queue] SCHEDULER DUMP: After create_task() attempt #1
+[queue] simulated_time=0 | current_quantum=300 | current_task=-1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=-1 state=DEAD start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=-1 state=DEAD start_time=0 elapsed_time=0
+[system] create_task() invoked.
+[system] Creating task #1
+[task 1] Created and placed in READY state.
+[queue] SCHEDULER DUMP: After create_task() attempt #2
+[queue] simulated_time=0 | current_quantum=300 | current_task=-1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=-1 state=DEAD start_time=0 elapsed_time=0
+[system] create_task() invoked.
+[system] Creating task #2
+[task 2] Created and placed in READY state.
+[queue] SCHEDULER DUMP: After create_task() attempt #3
+[queue] simulated_time=0 | current_quantum=300 | current_task=-1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[system] create_task() invoked.
+[system] Create_task() FAILED: Available tasks exceeded. MAX_TASKS = 3
+[queue] SCHEDULER DUMP: After create_task() attempt #4
+[queue] simulated_time=0 | current_quantum=300 | current_task=-1
+[queue] task_table[0] task_id=0 state=READY start_time=0 elapsed_time=0
+[queue] task_table[1] task_id=1 state=READY start_time=0 elapsed_time=0
+[queue] task_table[2] task_id=2 state=READY start_time=0 elapsed_time=0
+[queue] SEMAPHORE DUMP: Semaphore state after creation attempts
+[queue] name=resource1 | value=1 | owner=-1 | wait_queue=[empty]
+[system] Lab 12 run complete.

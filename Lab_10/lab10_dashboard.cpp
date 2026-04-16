@@ -1,6 +1,7 @@
 #include "lab10_dashboard.h"
 
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <cstdlib>
 #include <cstdio>
@@ -15,9 +16,10 @@
 
 namespace {
 constexpr int kHeaderHeight = 5;
-constexpr int kQueueHeight = 5;
-constexpr int kMinPaneHeight = 6;
-constexpr int kMinPaneWidth = 24;
+constexpr int kUpperPaneHeight = 6;
+constexpr int kMinPaneHeight = 5;
+constexpr int kMinPaneWidth = 20;
+constexpr int kMinConsoleWidth = 20;
 
 bool needsDefaultTerm() {
     const char* term = std::getenv("TERM");
@@ -40,11 +42,23 @@ TaskDashboard::TaskDashboard(int taskCount, DashboardMode mode, DashboardLabels 
     }
 
     if (labels_.systemTitle.empty()) {
-        labels_.systemTitle = "System";
+        labels_.systemTitle = "Lab Dashboard";
+    }
+
+    if (labels_.systemSubtitle.empty()) {
+        labels_.systemSubtitle = "Modeled after the Lab 4 / Lab 7 ncurses process-window layout.";
+    }
+
+    if (labels_.logTitle.empty()) {
+        labels_.logTitle = "Log Window";
     }
 
     if (labels_.sharedTitle.empty()) {
         labels_.sharedTitle = "Shared State";
+    }
+
+    if (labels_.consoleTitle.empty()) {
+        labels_.consoleTitle = "Console";
     }
 
     const bool ttyReady = isatty(STDIN_FILENO) && isatty(STDOUT_FILENO);
@@ -88,8 +102,10 @@ TaskDashboard::~TaskDashboard() {
         for (auto& pane : taskPanes_) {
             destroyPane(pane);
         }
+        destroyPane(consolePane_);
         destroyPane(queuePane_);
         destroyPane(systemPane_);
+        destroyPane(headerPane_);
         endwin();
         cursesReady_ = false;
     }
@@ -113,6 +129,16 @@ void TaskDashboard::logQueue(const std::string& message) {
 
     std::lock_guard<std::mutex> guard(renderMutex_);
     appendLine(queuePane_, message);
+}
+
+void TaskDashboard::logConsole(const std::string& message) {
+    if (!interactive_) {
+        std::printf("[console] %s\n", message.c_str());
+        return;
+    }
+
+    std::lock_guard<std::mutex> guard(renderMutex_);
+    appendLine(consolePane_, message);
 }
 
 void TaskDashboard::logTask(int taskId, const std::string& message) {
@@ -164,47 +190,30 @@ std::string TaskDashboard::promptInput(const std::string& prompt, int maxLength)
     std::lock_guard<std::mutex> guard(renderMutex_);
 
     const int safeMaxLength = std::max(1, maxLength);
-    const int promptWidth = std::min(
-        COLS - 4,
-        std::max(kMinPaneWidth, std::min(COLS - 4, static_cast<int>(prompt.size()) + safeMaxLength + 6))
-    );
-    const int promptHeight = 5;
-    const int promptY = std::max(0, (LINES - promptHeight) / 2);
-    const int promptX = std::max(0, (COLS - promptWidth) / 2);
+    int bodyRows = 0;
+    int bodyCols = 0;
+    getmaxyx(consolePane_.body, bodyRows, bodyCols);
 
-    WINDOW* promptFrame = newwin(promptHeight, promptWidth, promptY, promptX);
-    WINDOW* promptBody = derwin(promptFrame, promptHeight - 2, promptWidth - 2, 1, 1);
-    box(promptFrame, 0, 0);
-    mvwprintw(promptFrame, 0, 2, " Input ");
-    mvwprintw(promptBody, 0, 0, "%.*s", promptWidth - 4, prompt.c_str());
-    wmove(promptBody, 1, 0);
-    wclrtoeol(promptBody);
-    wrefresh(promptFrame);
-    wrefresh(promptBody);
+    renderTitle(consolePane_);
+    werase(consolePane_.body);
+    mvwprintw(consolePane_.body, 0, 0, "%.*s", std::max(1, bodyCols - 1), prompt.c_str());
 
-    keypad(promptBody, TRUE);
+    const int inputRow = bodyRows > 1 ? 1 : 0;
+    const int inputCol = bodyRows > 1 ? 0 : std::min(static_cast<int>(prompt.size()), std::max(0, bodyCols - 2));
+    wmove(consolePane_.body, inputRow, inputCol);
+    wclrtoeol(consolePane_.body);
+    wrefresh(consolePane_.body);
+
+    keypad(consolePane_.body, TRUE);
     echo();
     curs_set(1);
 
     std::vector<char> buffer(static_cast<std::size_t>(safeMaxLength) + 1U, '\0');
-    const int status = wgetnstr(promptBody, buffer.data(), safeMaxLength);
+    const int status = wgetnstr(consolePane_.body, buffer.data(), safeMaxLength);
 
     noecho();
     curs_set(0);
-    delwin(promptBody);
-    delwin(promptFrame);
-
-    auto refreshPane = [&](LogPane& pane) {
-        renderTitle(pane);
-        touchwin(pane.body);
-        wrefresh(pane.body);
-    };
-
-    refreshPane(systemPane_);
-    refreshPane(queuePane_);
-    for (auto& pane : taskPanes_) {
-        refreshPane(pane);
-    }
+    refreshConsole();
 
     if (status == ERR) {
         return {};
@@ -220,14 +229,12 @@ void TaskDashboard::setHoldOnExit(bool holdOnExit) {
 void TaskDashboard::finish(const std::string& message) {
     logSystem(message);
 
-    if (interactive_) {
+    if (interactive_ && holdOnExit_) {
+        logConsole("Press Enter, q, or Esc to exit.");
         std::lock_guard<std::mutex> guard(renderMutex_);
-        if (holdOnExit_) {
-            appendLine(systemPane_, "Press Enter, q, or Esc to exit.");
-            int key = 0;
-            while (key != '\n' && key != '\r' && key != 'q' && key != 'Q' && key != 27) {
-                key = wgetch(stdscr);
-            }
+        int key = 0;
+        while (key != '\n' && key != '\r' && key != 'q' && key != 'Q' && key != 27) {
+            key = wgetch(consolePane_.body);
         }
     }
 }
@@ -249,28 +256,48 @@ void TaskDashboard::initializeCurses() {
 void TaskDashboard::buildLayout() {
     const int totalRows = LINES;
     const int totalCols = COLS;
-    const int bodyTop = kHeaderHeight + kQueueHeight;
+    const int bodyTop = kHeaderHeight + kUpperPaneHeight;
     const int bodyHeight = totalRows - bodyTop;
     const int preferredCols = taskCount_ == 1 ? 1 : (taskCount_ <= 4 ? 2 : 3);
     const int taskCols = std::max(1, std::min(preferredCols, std::max(1, totalCols / kMinPaneWidth)));
     const int taskRows = static_cast<int>(std::ceil(static_cast<double>(taskCount_) / taskCols));
 
     if (bodyHeight < taskRows * kMinPaneHeight) {
-        throw std::runtime_error("terminal is too small for the phase 10 ncurses layout");
+        throw std::runtime_error("terminal is too small for the shared Lab 4 / Lab 7 ncurses layout");
     }
 
-    systemPane_.title = labels_.systemTitle;
-    systemPane_.frame = newwin(kHeaderHeight, totalCols, 0, 0);
-    systemPane_.body = derwin(systemPane_.frame, kHeaderHeight - 2, totalCols - 2, 1, 1);
+    const int consoleWidth = std::max(kMinConsoleWidth, std::min(28, totalCols / 4));
+    const int centerWidth = totalCols - consoleWidth;
+    const int systemWidth = centerWidth / 2;
+    const int sharedWidth = centerWidth - systemWidth;
+    if (systemWidth < kMinPaneWidth || sharedWidth < kMinPaneWidth) {
+        throw std::runtime_error("terminal is too small for the log/shared/console panes");
+    }
+
+    headerPane_.title = labels_.systemTitle;
+    headerPane_.frame = newwin(kHeaderHeight, totalCols, 0, 0);
+    headerPane_.body = derwin(headerPane_.frame, kHeaderHeight - 2, totalCols - 2, 1, 1);
+
+    systemPane_.title = labels_.logTitle;
+    systemPane_.frame = newwin(kUpperPaneHeight, systemWidth, kHeaderHeight, 0);
+    systemPane_.body = derwin(systemPane_.frame, kUpperPaneHeight - 2, systemWidth - 2, 1, 1);
 
     queuePane_.title = labels_.sharedTitle;
-    queuePane_.frame = newwin(kQueueHeight, totalCols, kHeaderHeight, 0);
-    queuePane_.body = derwin(queuePane_.frame, kQueueHeight - 2, totalCols - 2, 1, 1);
+    queuePane_.frame = newwin(kUpperPaneHeight, sharedWidth, kHeaderHeight, systemWidth);
+    queuePane_.body = derwin(queuePane_.frame, kUpperPaneHeight - 2, sharedWidth - 2, 1, 1);
 
+    consolePane_.title = labels_.consoleTitle;
+    consolePane_.frame = newwin(kUpperPaneHeight, consoleWidth, kHeaderHeight, systemWidth + sharedWidth);
+    consolePane_.body = derwin(consolePane_.frame, kUpperPaneHeight - 2, consoleWidth - 2, 1, 1);
+
+    renderHeader();
     renderTitle(systemPane_);
     renderTitle(queuePane_);
+    renderTitle(consolePane_);
     scrollok(systemPane_.body, TRUE);
     scrollok(queuePane_.body, TRUE);
+    scrollok(consolePane_.body, TRUE);
+    refreshConsole();
 
     taskPanes_.resize(static_cast<std::size_t>(taskCount_));
     const int paneHeight = bodyHeight / taskRows;
@@ -315,11 +342,62 @@ void TaskDashboard::appendLine(LogPane& pane, const std::string& message) {
     wrefresh(pane.body);
 }
 
+void TaskDashboard::renderHeader() {
+    werase(headerPane_.frame);
+    wborder(headerPane_.frame, '|', '|', '-', '-', '+', '+', '+', '+');
+    mvwprintw(headerPane_.frame, 0, 2, " %s ", headerPane_.title.c_str());
+
+    werase(headerPane_.body);
+    int bodyRows = 0;
+    int bodyCols = 0;
+    getmaxyx(headerPane_.body, bodyRows, bodyCols);
+
+    mvwprintw(headerPane_.body, 0, 0, "%.*s", std::max(1, bodyCols - 1), labels_.systemSubtitle.c_str());
+
+    if (bodyRows > 1) {
+        const std::string modeLine = interactive_
+            ? "ncurses active | Lab 7-style serialized window writes | console pane handles prompts and exit"
+            : "transcript fallback active | run inside a TTY for the ncurses process-model view";
+        mvwprintw(headerPane_.body, 1, 0, "%.*s", std::max(1, bodyCols - 1), modeLine.c_str());
+    }
+
+    if (bodyRows > 2) {
+        std::ostringstream line;
+        line << "task panes=" << taskCount_ << " | top row=" << labels_.logTitle << ", " << labels_.sharedTitle
+             << ", " << labels_.consoleTitle;
+        mvwprintw(headerPane_.body, 2, 0, "%.*s", std::max(1, bodyCols - 1), line.str().c_str());
+    }
+
+    wrefresh(headerPane_.frame);
+    wrefresh(headerPane_.body);
+}
+
 void TaskDashboard::renderTitle(LogPane& pane) {
     werase(pane.frame);
     wborder(pane.frame, '|', '|', '-', '-', '+', '+', '+', '+');
     mvwprintw(pane.frame, 0, 2, " %s ", pane.title.c_str());
     wrefresh(pane.frame);
+}
+
+void TaskDashboard::refreshConsole() {
+    renderTitle(consolePane_);
+    werase(consolePane_.body);
+
+    const std::array<std::string, 4> defaultLines = {
+        "Lab 4 / Lab 7 console",
+        "prompts render here",
+        "close: Enter/q/Esc",
+        interactive_ ? "TTY attached" : "transcript mode",
+    };
+
+    int bodyRows = 0;
+    int bodyCols = 0;
+    getmaxyx(consolePane_.body, bodyRows, bodyCols);
+    for (int row = 0; row < bodyRows && row < static_cast<int>(defaultLines.size()); ++row) {
+        mvwprintw(consolePane_.body, row, 0, "%.*s", std::max(1, bodyCols - 1), defaultLines[row].c_str());
+    }
+
+    wrefresh(consolePane_.body);
 }
 
 int TaskDashboard::clampTaskId(int taskId) const {
