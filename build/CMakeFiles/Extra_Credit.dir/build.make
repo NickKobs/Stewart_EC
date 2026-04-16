@@ -95,6 +95,8 @@ Extra_Credit_EXTERNAL_OBJECTS =
 
 Extra_Credit: CMakeFiles/Extra_Credit.dir/main.cpp.o
 Extra_Credit: CMakeFiles/Extra_Credit.dir/build.make
+Extra_Credit: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libncurses.tbd
+Extra_Credit: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libform.tbd
 Extra_Credit: CMakeFiles/Extra_Credit.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Extra_Credit"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Extra_Credit.dir/link.txt --verbose=$(VERBOSE)

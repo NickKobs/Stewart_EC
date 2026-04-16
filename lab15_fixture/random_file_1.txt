@@ -1,0 +1,2 @@
+Lab 15 sample text file.
+This file demonstrates metadata extraction.

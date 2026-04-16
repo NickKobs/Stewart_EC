@@ -1,288 +1,251 @@
-#include <cerrno>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <iomanip>
+#include <cstdarg>
+#include <iostream>
+#include <ncurses.h>
 #include <pthread.h>
 #include <sstream>
 #include <string>
-#include <string_view>
-#include <time.h>
+#include <unistd.h>
 
-#include "lab10_dashboard.h"
+// System constants matching the requested output
+const int BUFFER_SIZE = 3;
+const int PRODUCE_COUNT = 10;
+const int PROD_SLEEP_US = 100000; // 0.10s
+const int CONS_SLEEP_US = 850000; // 0.85s
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 3
-#endif
-
-#ifndef PRODUCE_COUNT
-#define PRODUCE_COUNT 10
-#endif
-
-#ifndef PRODUCER_SLEEP_SEC
-#define PRODUCER_SLEEP_SEC 0L
-#endif
-
-#ifndef PRODUCER_SLEEP_NSEC
-#define PRODUCER_SLEEP_NSEC 100000000L
-#endif
-
-#ifndef CONSUMER_SLEEP_SEC
-#define CONSUMER_SLEEP_SEC 0L
-#endif
-
-#ifndef CONSUMER_SLEEP_NSEC
-#define CONSUMER_SLEEP_NSEC 850000000L
-#endif
-
-namespace {
-constexpr int kProducerTaskId = 0;
-constexpr int kConsumerTaskId = 1;
-constexpr int kTaskCount = 2;
-constexpr long kNanosecondsPerSecond = 1000000000L;
-
-TaskDashboard* g_dashboard = nullptr;
-
-struct ThreadContext {
-    int taskId = 0;
-    std::string taskName;
-};
-
-DashboardMode determineDashboardMode(int argc, char* argv[]) {
-    const char* envMode = std::getenv("LAB11_UI");
-    if (envMode != nullptr) {
-        const std::string_view mode(envMode);
-        if (mode == "text") {
-            return DashboardMode::Text;
-        }
-        if (mode == "ncurses") {
-            return DashboardMode::Ncurses;
-        }
-    }
-
-    for (int i = 1; i < argc; ++i) {
-        const std::string_view arg(argv[i]);
-        if (arg == "--text") {
-            return DashboardMode::Text;
-        }
-        if (arg == "--ncurses") {
-            return DashboardMode::Ncurses;
-        }
-    }
-
-    return DashboardMode::Ncurses;
-}
-
-std::string formatDuration(long sec, long nsec) {
-    std::ostringstream builder;
-    builder << std::fixed << std::setprecision(2)
-            << static_cast<double>(sec * kNanosecondsPerSecond + nsec) / kNanosecondsPerSecond
-            << "s";
-    return builder.str();
-}
-
-std::string bufferSnapshotLocked(const std::string& event, int buffer[], int bufferCount, int in, int out) {
-    std::ostringstream builder;
-    builder << event << " | count=" << bufferCount << "/" << BUFFER_SIZE << " in=" << in << " out=" << out
-            << " | items=[";
-
-    for (int index = 0; index < bufferCount; ++index) {
-        if (index > 0) {
-            builder << ", ";
-        }
-
-        builder << buffer[(out + index) % BUFFER_SIZE];
-    }
-
-    builder << "]";
-    return builder.str();
-}
-}
-
+// Shared circular buffer state
 int buffer[BUFFER_SIZE];
 int in = 0;
 int out = 0;
-int buffer_count = 0;
+int count = 0;
 
-pthread_mutex_t buffer_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t not_empty = PTHREAD_COND_INITIALIZER;
+// POSIX synchronization primitives
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t not_full = PTHREAD_COND_INITIALIZER;
+pthread_cond_t not_empty = PTHREAD_COND_INITIALIZER;
 
-void* producer(void* arg);
-void* consumer(void* arg);
-void simulate_IO_work(const ThreadContext& context, long sec, long nsec);
+// Ncurses display lock and windows
+pthread_mutex_t term_display_lock = PTHREAD_MUTEX_INITIALIZER;
+WINDOW* dash_win = nullptr;
+WINDOW* buf_win = nullptr;
+WINDOW* prod_win = nullptr;
+WINDOW* cons_win = nullptr;
 
-int main(int argc, char* argv[]) {
-    TaskDashboard dashboard(
-        kTaskCount,
-        determineDashboardMode(argc, argv),
-        {
-            .systemTitle = "Phase 11 Producer/Consumer",
-            .sharedTitle = "Buffer State",
-            .taskTitles = {"Producer", "Consumer"},
+void print_win(WINDOW* win, const char* fmt, ...) {
+    pthread_mutex_lock(&term_display_lock);
+
+    va_list args;
+    va_start(args, fmt);
+    vw_printw(win, fmt, args);
+    va_end(args);
+
+    wrefresh(win);
+    pthread_mutex_unlock(&term_display_lock);
+}
+
+std::string get_buffer_items() {
+    std::stringstream ss;
+    ss << "[";
+
+    int temp_out = out;
+    for (int i = 0; i < count; ++i) {
+        ss << buffer[temp_out];
+        if (i < count - 1) {
+            ss << ", ";
         }
-    );
-    g_dashboard = &dashboard;
-
-    pthread_t prod;
-    pthread_t cons;
-    ThreadContext producerContext {kProducerTaskId, "Producer"};
-    ThreadContext consumerContext {kConsumerTaskId, "Consumer"};
-
-    dashboard.logSystem("Launching Lab 11 producer/consumer dashboard.");
-    dashboard.logSystem("Each task has its own window. The shared pane shows the circular buffer.");
-    {
-        std::ostringstream builder;
-        builder << "BUFFER_SIZE=" << BUFFER_SIZE << ", PRODUCE_COUNT=" << PRODUCE_COUNT
-                << ", producer_sleep=" << formatDuration(PRODUCER_SLEEP_SEC, PRODUCER_SLEEP_NSEC)
-                << ", consumer_sleep=" << formatDuration(CONSUMER_SLEEP_SEC, CONSUMER_SLEEP_NSEC);
-        dashboard.logSystem(builder.str());
-    }
-    dashboard.logQueue("Initial buffer state | count=0/" + std::to_string(BUFFER_SIZE) + " in=0 out=0 | items=[]");
-
-    int create_result = pthread_create(&prod, nullptr, producer, &producerContext);
-    if (create_result != 0) {
-        std::fprintf(stderr, "pthread_create producer failed: %s\n", strerror(create_result));
-        return EXIT_FAILURE;
+        temp_out = (temp_out + 1) % BUFFER_SIZE;
     }
 
-    create_result = pthread_create(&cons, nullptr, consumer, &consumerContext);
-    if (create_result != 0) {
-        std::fprintf(stderr, "pthread_create consumer failed: %s\n", strerror(create_result));
-        return EXIT_FAILURE;
-    }
-
-    dashboard.logSystem("Parent waits for producer and consumer to finish.");
-
-    int join_result = pthread_join(prod, nullptr);
-    if (join_result != 0) {
-        std::fprintf(stderr, "pthread_join producer failed: %s\n", strerror(join_result));
-        return EXIT_FAILURE;
-    }
-
-    join_result = pthread_join(cons, nullptr);
-    if (join_result != 0) {
-        std::fprintf(stderr, "pthread_join consumer failed: %s\n", strerror(join_result));
-        return EXIT_FAILURE;
-    }
-
-    dashboard.logSystem("Threads completed. Destroying mutex and condition variables.");
-
-    int destroy_result = pthread_mutex_destroy(&buffer_mutex);
-    if (destroy_result != 0) {
-        std::fprintf(stderr, "pthread_mutex_destroy failed: %s\n", strerror(destroy_result));
-        return EXIT_FAILURE;
-    }
-
-    destroy_result = pthread_cond_destroy(&not_empty);
-    if (destroy_result != 0) {
-        std::fprintf(stderr, "pthread_cond_destroy not_empty failed: %s\n", strerror(destroy_result));
-        return EXIT_FAILURE;
-    }
-
-    destroy_result = pthread_cond_destroy(&not_full);
-    if (destroy_result != 0) {
-        std::fprintf(stderr, "pthread_cond_destroy not_full failed: %s\n", strerror(destroy_result));
-        return EXIT_FAILURE;
-    }
-
-    dashboard.finish("Phase 11 run complete. Closing dashboard shortly.");
-    g_dashboard = nullptr;
-    return EXIT_SUCCESS;
+    ss << "]";
+    return ss.str();
 }
 
 void* producer(void* arg) {
-    auto* context = static_cast<ThreadContext*>(arg);
-    g_dashboard->logTask(context->taskId, "Online and ready to produce.");
+    (void)arg;
+    print_win(prod_win, "Online and ready to produce.\n\n");
 
     for (int i = 0; i < PRODUCE_COUNT; ++i) {
-        pthread_mutex_lock(&buffer_mutex);
+        pthread_mutex_lock(&mutex);
 
-        while (buffer_count == BUFFER_SIZE) {
-            g_dashboard->logTask(context->taskId, "Buffer full. Waiting on not_full.");
-            g_dashboard->logQueue(bufferSnapshotLocked("Producer blocked", buffer, buffer_count, in, out));
-            pthread_cond_wait(&not_full, &buffer_mutex);
-            g_dashboard->logTask(context->taskId, "Wake-up received; recheck buffer.");
+        while (count == BUFFER_SIZE) {
+            print_win(prod_win, "Buffer full. Waiting on not_full.\n\n");
+            print_win(
+                buf_win,
+                "Producer blocked | count=%d/%d in=%d out=%d | items=%s\n\n",
+                count,
+                BUFFER_SIZE,
+                in,
+                out,
+                get_buffer_items().c_str()
+            );
+            pthread_cond_wait(&not_full, &mutex);
+            print_win(prod_win, "Wake-up received; recheck buffer.\n\n");
         }
 
-        const int writeIndex = in;
         buffer[in] = i;
+        print_win(prod_win, "Produced item %d into slot %d.\n\n", i, in);
         in = (in + 1) % BUFFER_SIZE;
-        ++buffer_count;
+        ++count;
 
-        {
-            std::ostringstream event;
-            event << "Produced item " << i << " into slot " << writeIndex << ".";
-            g_dashboard->logTask(context->taskId, event.str());
-        }
-        g_dashboard->logQueue(bufferSnapshotLocked("Producer inserted item " + std::to_string(i), buffer, buffer_count, in, out));
-        g_dashboard->sendTaskMessage(context->taskId, kConsumerTaskId, "not_empty signaled.");
+        print_win(
+            buf_win,
+            "Producer inserted item %d | count=%d/%d in=%d out=%d | items=%s\n\n",
+            i,
+            count,
+            BUFFER_SIZE,
+            in,
+            out,
+            get_buffer_items().c_str()
+        );
 
-        pthread_mutex_unlock(&buffer_mutex);
+        print_win(prod_win, "To task 1: not_empty signaled.\n");
+        print_win(dash_win, "From task 0: not_empty signaled.\n\ntask 0 -> task 1 | not_empty signaled.\n\n");
+
         pthread_cond_signal(&not_empty);
+        pthread_mutex_unlock(&mutex);
 
-        simulate_IO_work(*context, PRODUCER_SLEEP_SEC, PRODUCER_SLEEP_NSEC);
+        print_win(prod_win, "Simulating I/O for 0.10s.\n");
+        usleep(PROD_SLEEP_US);
+        print_win(prod_win, "I/O interval finished.\n");
     }
 
-    g_dashboard->logTask(context->taskId, "All items produced.");
+    print_win(prod_win, "All items produced.\n");
     return nullptr;
 }
 
 void* consumer(void* arg) {
-    auto* context = static_cast<ThreadContext*>(arg);
-    g_dashboard->logTask(context->taskId, "Online and ready to consume.");
+    (void)arg;
+    print_win(cons_win, "Online and ready to consume.\n");
 
     for (int i = 0; i < PRODUCE_COUNT; ++i) {
-        pthread_mutex_lock(&buffer_mutex);
+        pthread_mutex_lock(&mutex);
 
-        while (buffer_count == 0) {
-            g_dashboard->logTask(context->taskId, "Buffer empty. Waiting on not_empty.");
-            g_dashboard->logQueue(bufferSnapshotLocked("Consumer blocked", buffer, buffer_count, in, out));
-            pthread_cond_wait(&not_empty, &buffer_mutex);
-            g_dashboard->logTask(context->taskId, "Wake-up received; recheck buffer.");
+        while (count == 0) {
+            print_win(cons_win, "Buffer empty. Waiting on not_empty.\n\n");
+            pthread_cond_wait(&not_empty, &mutex);
+            print_win(cons_win, "Wake-up received; recheck buffer.\n\n");
         }
 
-        const int readIndex = out;
         const int item = buffer[out];
+        print_win(cons_win, "Consumed item %d from slot %d.\n\n", item, out);
         out = (out + 1) % BUFFER_SIZE;
-        --buffer_count;
+        --count;
 
-        {
-            std::ostringstream event;
-            event << "Consumed item " << item << " from slot " << readIndex << ".";
-            g_dashboard->logTask(context->taskId, event.str());
-        }
-        g_dashboard->logQueue(bufferSnapshotLocked("Consumer removed item " + std::to_string(item), buffer, buffer_count, in, out));
-        g_dashboard->sendTaskMessage(context->taskId, kProducerTaskId, "not_full signaled.");
+        print_win(
+            buf_win,
+            "Consumer removed item %d | count=%d/%d in=%d out=%d | items=%s\n\n",
+            item,
+            count,
+            BUFFER_SIZE,
+            in,
+            out,
+            get_buffer_items().c_str()
+        );
 
-        pthread_mutex_unlock(&buffer_mutex);
+        print_win(cons_win, "To task 0: not_full signaled.\n");
+        print_win(dash_win, "From task 1: not_full signaled.\n\ntask 1 -> task 0 | not_full signaled.\n\n");
+
         pthread_cond_signal(&not_full);
+        pthread_mutex_unlock(&mutex);
 
-        simulate_IO_work(*context, CONSUMER_SLEEP_SEC, CONSUMER_SLEEP_NSEC);
+        print_win(cons_win, "Simulating I/O for 0.85s.\n");
+        usleep(CONS_SLEEP_US);
+        print_win(cons_win, "I/O interval finished.\n");
     }
 
-    g_dashboard->logTask(context->taskId, "All items consumed.");
+    print_win(cons_win, "All items consumed.\n");
     return nullptr;
 }
 
-void simulate_IO_work(const ThreadContext& context, long sec, long nsec) {
-    struct timespec req {};
-    struct timespec rem {};
+int main() {
+    initscr();
+    cbreak();
+    noecho();
+    curs_set(0);
 
-    req.tv_sec = sec;
-    req.tv_nsec = nsec;
+    int max_y = 0;
+    int max_x = 0;
+    getmaxyx(stdscr, max_y, max_x);
 
-    g_dashboard->logTask(context.taskId, "Simulating I/O for " + formatDuration(sec, nsec) + ".");
+    const int dash_h = max_y / 3;
+    const int buf_h = max_y / 3;
+    const int task_h = max_y - dash_h - buf_h;
+    const int col_width = max_x / 2;
 
-    while (nanosleep(&req, &rem) == -1) {
-        if (errno == EINTR) {
-            g_dashboard->logTask(context.taskId, "Sleep interrupted; resuming remaining interval.");
-            req = rem;
-        } else {
-            perror("nanosleep");
-            break;
-        }
-    }
+    WINDOW* dash_frame = newwin(dash_h, max_x, 0, 0);
+    box(dash_frame, 0, 0);
+    mvwprintw(dash_frame, 0, 2, " Phase 11 Producer/Consumer ");
+    wrefresh(dash_frame);
+    dash_win = newwin(dash_h - 2, max_x - 2, 1, 1);
+    scrollok(dash_win, TRUE);
 
-    g_dashboard->logTask(context.taskId, "I/O interval finished.");
+    WINDOW* buf_frame = newwin(buf_h, max_x, dash_h, 0);
+    box(buf_frame, 0, 0);
+    mvwprintw(buf_frame, 0, 2, " Buffer State ");
+    wrefresh(buf_frame);
+    buf_win = newwin(buf_h - 2, max_x - 2, dash_h + 1, 1);
+    scrollok(buf_win, TRUE);
+
+    WINDOW* prod_frame = newwin(task_h, col_width, dash_h + buf_h, 0);
+    box(prod_frame, 0, 0);
+    mvwprintw(prod_frame, 0, 2, " Producer ");
+    wrefresh(prod_frame);
+    prod_win = newwin(task_h - 2, col_width - 2, dash_h + buf_h + 1, 1);
+    scrollok(prod_win, TRUE);
+
+    WINDOW* cons_frame = newwin(task_h, max_x - col_width, dash_h + buf_h, col_width);
+    box(cons_frame, 0, 0);
+    mvwprintw(cons_frame, 0, 2, " Consumer ");
+    wrefresh(cons_frame);
+    cons_win = newwin(task_h - 2, max_x - col_width - 2, dash_h + buf_h + 1, col_width + 1);
+    scrollok(cons_win, TRUE);
+
+    print_win(dash_win, "ncurses dashboard online.\n\n");
+    print_win(dash_win, "Launching Lab 11 producer/consumer dashboard.\n\n");
+    print_win(dash_win, "Each task has its own window. The shared pane shows the circular buffer.\n\n");
+    print_win(
+        dash_win,
+        "BUFFER_SIZE=%d, PRODUCE_COUNT=%d, producer_sleep=%.2fs, consumer_sleep=%.2fs\n\n",
+        BUFFER_SIZE,
+        PRODUCE_COUNT,
+        PROD_SLEEP_US / 1000000.0,
+        CONS_SLEEP_US / 1000000.0
+    );
+
+    print_win(
+        buf_win,
+        "Initial buffer state | count=%d/%d in=%d out=%d | items=%s\n\n",
+        count,
+        BUFFER_SIZE,
+        in,
+        out,
+        get_buffer_items().c_str()
+    );
+
+    pthread_t prod_thread;
+    pthread_t cons_thread;
+
+    pthread_create(&prod_thread, nullptr, producer, nullptr);
+    pthread_create(&cons_thread, nullptr, consumer, nullptr);
+
+    print_win(dash_win, "Parent waits for producer and consumer to finish.\n\n");
+
+    pthread_join(prod_thread, nullptr);
+    pthread_join(cons_thread, nullptr);
+
+    print_win(dash_win, "All routines concluded. Press any key to exit Ncurses.\n");
+
+    nodelay(dash_win, FALSE);
+    wgetch(dash_win);
+
+    delwin(dash_win);
+    delwin(dash_frame);
+    delwin(buf_win);
+    delwin(buf_frame);
+    delwin(prod_win);
+    delwin(prod_frame);
+    delwin(cons_win);
+    delwin(cons_frame);
+    endwin();
+
+    return 0;
 }

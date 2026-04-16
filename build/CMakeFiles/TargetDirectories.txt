@@ -2,5 +2,9 @@
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab10.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab11.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab12.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab15.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab16.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab13.dir
+/Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/lab14.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/edit_cache.dir
 /Users/stewartpawley/Desktop/Extra Credit/build/CMakeFiles/rebuild_cache.dir
